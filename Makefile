@@ -6,7 +6,7 @@
 #    By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2019/10/09 13:47:19 by vveyrat-    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/10/09 14:00:38 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,8 +19,8 @@ SRC_DIR		=	src
 OBJ_DIR		=	obj
 INC_DIR		=	inc
 
-SRC_NAME	=	main.c
-				check
+SRC_NAME	=	main.c\
+				check_error.c
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\
@@ -32,7 +32,7 @@ SRC			=	$(addprefix $(SRC_DIR)/, $(SRC_NAME))
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(OBJ_NAME))
 INC			=	$(addprefix $(INC_DIR)/, $(INC_NAME))
 
-INC_FLAG	=	-I$(INC_DIR)
+INC_FLAG	=	-I$(INC_DIR) -Ilibft/inc
 LIB_FAGS	=	-Llibft -lft
 
 all: $(NAME)
