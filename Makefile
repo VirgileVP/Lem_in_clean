@@ -6,7 +6,7 @@
 #    By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2019/10/09 13:37:40 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/10/09 13:47:19 by vveyrat-    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,9 +20,11 @@ OBJ_DIR		=	obj
 INC_DIR		=	inc
 
 SRC_NAME	=	main.c
+				check
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
-INC_NAME	=	lem-in.h
+INC_NAME	=	lem_in.h\
+				check_error.h
 
 MKDIRP		=	mkdir -p
 
