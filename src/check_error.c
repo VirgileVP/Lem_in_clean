@@ -36,7 +36,8 @@ int			check_room(char *line, int tube_pars)
 	count = 0;
 	if (check_space(line) != 2 && ft_count_words(line, ' ') != 3 && tube_pars == 0)
 		return (-1);
-	split = ft_strsplit(line, ' ');
+	if (!(split = ft_strsplit(line, ' ')))
+		return (-1);
 	while (split[count])
 		count++;
 	if (count != 3)
@@ -99,6 +100,56 @@ int		first_line(char **room)
 }
 
 /*
+** check_sharp:
+**
+** check lines begining with sharp
+*/
+
+int		check_sharp(char **room, int index, t_check_bad_order *order)
+{
+	if (ft_strcmp(pars->room[index], "##start") == 0 || ft_strcmp(pars->room[index], "##end") == 0)
+	{
+		if ((ft_strcmp(pars->room[index], "##start") == 0 && check_bad_order->start == 1) || (ft_strcmp(pars->room[index], "##end") == 0 && check_bad_order->end == 1) || ft_strcmp(pars->room[index + 1], "##start") == 0 || ft_strcmp(pars->room[index + 1], "##end") == 0)
+			return (-1);
+		check_bad_order->start = (ft_strcmp(pars->room[index], "##start") == 0) ? 1 : 0;
+		check_bad_order->end = (ft_strcmp(pars->room[index], "##end") == 0) ? 1 : 0;
+		index++;
+		if (pars->room[index][0] != '#')
+		{
+			if (nmatch(pars->room[index], "* * *") == 1)
+			{
+				if (check_room(pars->room[index], check_bad_order->tube_pars) == -1)
+					return (-1);
+				pars->nb_room++;
+			}
+			else
+				return (-1);
+		}
+	}
+}
+
+/*
+** check_definition:
+**
+** run check_room and check_tubes
+*/
+
+int		check_definition()
+{
+	if (nmatch(pars->room[index], "* * *") == 1)
+	{
+		if (check_room(pars->room[index], check_bad_order->tube_pars) == -1)
+			return (-1);
+		pars->nb_room++;
+	}
+	else if (nmatch(pars->room[index], "*-*") == 1)
+	{
+		if (check_tubes(pars->room[index]) == -1)
+			return (-1);
+	}
+}
+
+/*
 ** check_error:
 **
 ** check if errors are present in the file
@@ -106,14 +157,14 @@ int		first_line(char **room)
 
 int		check_error(t_read *pars)
 {
-	int		tube_pars;
-	int		index;
-	int		start;
-	int		end;
+	t_check_bad_order	*order;
+	int					index;
 
-	tube_pars = 0;
-	start = 0;
-	end = 0;
+	if (!(ft_bzero(&order, sizeof(t_check_bad_order))))
+		return (-1);
+	check_bad_order->tube_pars = 0;
+	check_bad_order->start = 0;
+	check_bad_order->end = 0;
 	index = first_line(pars->room);
 	if (index == -1)
 		return (-1);
@@ -121,36 +172,11 @@ int		check_error(t_read *pars)
 	{
 		if (pars->room[index][0] == ' ' || pars->room[index][0] == 'L')
 			return (-1);
-		if (ft_strcmp(pars->room[index], "##start") == 0 || ft_strcmp(pars->room[index], "##end") == 0)
-		{
-			if ((ft_strcmp(pars->room[index], "##start") == 0 && start == 1) || (ft_strcmp(pars->room[index], "##end") == 0 && end == 1) ||ft_strcmp(pars->room[index + 1], "##start") == 0 || ft_strcmp(pars->room[index + 1], "##end") == 0)
+		if (pars->room[index][0] == '#')
+			if (check_sharp(pars->room, index, order) == -1)
 				return (-1);
-			start = (ft_strcmp(pars->room[index], "##start") == 0) ? 1 : 0;
-			end = (ft_strcmp(pars->room[index], "##end") == 0) ? 1 : 0;
-			index++;
-			if (pars->room[index][0] != '#')
-			{
-				if (nmatch(pars->room[index], "* * *") == 1)
-				{
-					if (check_room(pars->room[index], tube_pars) == -1)
-						return (-1);
-					pars->nb_room++;
-				}
-				else
-					return (-1);
-			}
-		}
-		else if (nmatch(pars->room[index], "* * *") == 1)
-		{
-			if (check_room(pars->room[index], tube_pars) == -1)
-				return (-1);
-			pars->nb_room++;
-		}
-		else if (nmatch(pars->room[index], "*-*") == 1)
-		{
-			if (check_tubes(pars->room[index]) == -1)
-				return (-1);
-		}
+		else if (check_definition() == -1)
+			return (-1);
 		else
 			return (-1);
 		index++;
