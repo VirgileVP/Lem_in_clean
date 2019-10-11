@@ -37,5 +37,6 @@ typedef struct			s_roadset
 }						t_roadset;
 
 int						parse(t_anthill *ah, t_room *rdata, int **matrix);
+int						read_error(t_read *pars);
 
 #endif
