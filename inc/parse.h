@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   lem_in.h                                         .::    .:/ .      .::   */
+/*   parse.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/11 10:46:49 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/10 14:28:41 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#ifndef PARSE_H
+# define PARSE_H
 
-# include "libft.h"
+# include "lem_in.h"
 
-typedef struct			s_anthill
+# define				START	0x01
+# define				END		0x02
+
+enum					status
 {
-	size_t				nb_room;
-	size_t				nb_ant;
-}						t_anthill;
+	ROOM,
+	TUNNEL
+};
 
-typedef struct			s_room
+enum					flags
 {
-	char				name;
-	int					x;
-	int					y;
-	size_t				nb_ant;
-}						t_room;
+	PROCEED,
+	STOP,
+	DUP_ERROR,
+	MALLOC_ERROR
+};
 
-typedef struct			s_roadset
-{
-	int					**roadmap;
-	size_t				nb_road;
-}						t_roadset;
-
-int						parse(t_anthill *ah, t_room *rdata, int **matrix);
+int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix)
 
 #endif

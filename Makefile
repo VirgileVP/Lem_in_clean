@@ -6,7 +6,7 @@
 #    By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2019/10/09 14:00:38 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/10/11 10:47:47 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,11 +20,13 @@ OBJ_DIR		=	obj
 INC_DIR		=	inc
 
 SRC_NAME	=	main.c\
-				check_error.c
+				check_error.c\
+				parse.c
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\
-				check_error.h
+				check_error.h\
+				parse.h
 
 MKDIRP		=	mkdir -p
 

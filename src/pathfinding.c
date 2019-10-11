@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   lem_in.h                                         .::    .:/ .      .::   */
+/*   pathfinding.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/11 10:46:49 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/10 14:30:52 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/10 15:45:27 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "pathfinding.h"
 
-# include "libft.h"
-
-typedef struct			s_anthill
+void				calc_dstart(t_cost *tab, int **matrix)
 {
-	size_t				nb_room;
-	size_t				nb_ant;
-}						t_anthill;
+	int					*used;
+	size_t				pos;
 
-typedef struct			s_room
+	if (!(used = ft_memalloc(sizeof(int) * len)))
+		return (-1);
+	pos = 0;
+
+}
+
+t_roadset			*pathfinding(t_anthill *ah, int **matrix)
 {
-	char				name;
-	int					x;
-	int					y;
-	size_t				nb_ant;
-}						t_room;
+	t_cost				*tab;
 
-typedef struct			s_roadset
-{
-	int					**roadmap;
-	size_t				nb_road;
-}						t_roadset;
-
-int						parse(t_anthill *ah, t_room *rdata, int **matrix);
-
-#endif
+	if (!(tab = (t_cost *)malloc(sizeof(t_cost) * ah->nb_room)))
+		return (-1);
+	ft_bzero(tab, sizeof(t_cost) * ah->nb_room);
+	calc_dstart(tab, matrix);
+	calc_dend(tab, matrix);
+	calc_total(tab);
+}i

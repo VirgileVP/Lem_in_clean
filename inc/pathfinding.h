@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   lem_in.h                                         .::    .:/ .      .::   */
+/*   pathfinding.h                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/11 10:46:49 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/10 14:30:42 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/10 14:35:27 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#ifndef PATHFINDING_H
+# define PATHFINDING_H
 
-# include "libft.h"
-
-typedef struct			s_anthill
+typedef struct			s_cost
 {
-	size_t				nb_room;
-	size_t				nb_ant;
-}						t_anthill;
-
-typedef struct			s_room
-{
-	char				name;
-	int					x;
-	int					y;
-	size_t				nb_ant;
-}						t_room;
-
-typedef struct			s_roadset
-{
-	int					**roadmap;
-	size_t				nb_road;
-}						t_roadset;
-
-int						parse(t_anthill *ah, t_room *rdata, int **matrix);
+	int					d_start;
+	int					d_end;
+	int					total;
+}						t_cost;
 
 #endif
