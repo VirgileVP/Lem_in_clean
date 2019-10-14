@@ -16,11 +16,11 @@
 
 # include "libft.h"
 
-typedef struct			s_read
+typedef struct			s_read_room
 {
 	char				**room;
 	int					nb_room;
-}						t_read;
+}						t_read_room;
 
 typedef struct			s_anthill
 {

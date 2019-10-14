@@ -139,7 +139,7 @@ int		check_sharp(char **room, int index, t_check_bad_order *order)
 ** run check_room and check_tubes
 */
 
-int		check_definition(t_read *pars, t_check_bad_order *order, int index)
+int		check_definition(t_read_room *pars, t_check_bad_order *order, int index)
 {
 	if (nmatch(pars->room[index], "* * *") == 1)
 	{
@@ -160,7 +160,7 @@ int		check_definition(t_read *pars, t_check_bad_order *order, int index)
 ** check if errors are present in the file
 */
 
-int		check_error(t_read *pars)
+int		check_error(t_read_room *pars)
 {
 	t_check_bad_order	*order;
 	int					index;
@@ -235,7 +235,7 @@ int			read_line(int fd, char **line)
 ** Stock lines in string and split it in pars->room
 */
 
-int			read_error(t_read *pars)
+int			read_error(t_read_room *pars)
 {
 	char	*temp;
 	char	*line;
