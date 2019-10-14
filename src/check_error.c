@@ -204,22 +204,26 @@ int			read_line(int fd, char **line)
 	char	*temp;
 	char	*cpy;
 
-	cpy = ft_strnew(0);
+	if (!(cpy = ft_strnew(0)))
+		return (-1);
 	while ((ret = read(fd, buff, 1)) > 0)	
 	{
 		buff[1] = 0;
 		if (!ft_strcmp(buff, "\n"))
 		{
 			temp = cpy;
-			cpy = ft_strjoin(cpy, buff);
+			if (!(cpy = ft_strjoin(cpy, buff)))
+				return (-1);
 			ft_strdel(&temp);
 			break ;
 		}
 		temp = cpy;
-		cpy = ft_strjoin(cpy, buff);
+		if (!(cpy = ft_strjoin(cpy, buff)))
+			return (-1);
 		ft_strdel(&temp);
 	}
-	*line = ft_strdup(cpy);
+	if (!(*line = ft_strdup(cpy)))
+		return (-1);
 	ft_strdel(&cpy);
 	return (ret);
 }
@@ -236,7 +240,8 @@ int			read_error(t_read *pars)
 	char	*temp;
 	char	*line;
 
-	temp = ft_strnew(0);
+	if (!(temp = ft_strnew(0)))
+		return (-1);
 	line = NULL;
 	while (read_line(0, &line) > 0)
 	{
@@ -251,7 +256,8 @@ int			read_error(t_read *pars)
 				return (-1);
 		ft_strdel(&line);
 	}
-	pars->room = ft_strsplit(temp, '\n');
+	if (!(pars->room = ft_strsplit(temp, '\n')))
+		return (-1);
 	if (check_error(pars) == -1)
 		return (-1);
 	return (0);
