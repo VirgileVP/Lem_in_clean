@@ -249,16 +249,34 @@ int			read_error(t_read_room *pars)
 		{
 			if (ft_strcmp(line, "##start\n") == 0 || ft_strcmp(line, "##end\n") == 0)
 				if (!(temp = ft_strjoin(temp, line))
+				{
+					ft_strdel(&line);
+					ft_strdel(&temp);
 					return (-1);
+				}
 		}
 		else
 			if (!(temp = ft_strjoin(temp, line))
+			{
+				ft_strdel(&line);
+				ft_strdel(&temp);
 				return (-1);
+			}
 		ft_strdel(&line);
 	}
 	if (!(pars->room = ft_strsplit(temp, '\n')))
+	{
+		ft_strdel(&line);
+		ft_strdel(&temp);
 		return (-1);
+	}
 	if (check_error(pars) == -1)
+	{
+		ft_strdel(&line);
+		ft_strdel(&temp);
 		return (-1);
+	}
+	ft_strdel(&line);
+	ft_strdel(&temp);
 	return (0);
 }
