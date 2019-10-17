@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parse.h                                          .::    .:/ .      .::   */
+/*   nmatch.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/10 14:28:41 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/08/12 09:50:28 by vveyrat-     #+#   ##    ##    #+#       */
+/*   Updated: 2018/08/12 15:56:09 by vveyrat-    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
-
-# include "lem_in.h"
-
-# define				START	0x01
-# define				END		0x02
-
-enum					status
+int		nmatch(char *s1, char *s2)
 {
-	ROOM,
-	TUNNEL
-};
-
-enum					flags
-{
-	PROCEED,
-	STOP,
-	DUP_ERROR,
-	MALLOC_ERROR
-};
-
-int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix);
-
-#endif
+	if (*s1 == '\0' && *s2 == '\0')
+		return (1);
+	else if (*s2 == '*' && *s1 == '\0')
+		return (nmatch(s1, s2 + 1));
+	else if (*s2 == '*')
+		return (nmatch(s1 + 1, s2) + nmatch(s1, s2 + 1));
+	else if (*s1 == *s2)
+		return (nmatch(s1 + 1, s2 + 1));
+	return (0);
+}

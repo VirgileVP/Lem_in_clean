@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parse.h                                          .::    .:/ .      .::   */
+/*   ft_count_words.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/10 14:28:41 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/16 13:19:09 by vveyrat-     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/24 15:15:50 by vveyrat-    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#include "libft.h"
 
-# include "lem_in.h"
-
-# define				START	0x01
-# define				END		0x02
-
-enum					status
+size_t	ft_count_words(char *s, char c)
 {
-	ROOM,
-	TUNNEL
-};
+	size_t	nb;
+	size_t	counter;
 
-enum					flags
-{
-	PROCEED,
-	STOP,
-	DUP_ERROR,
-	MALLOC_ERROR
-};
-
-int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix);
-
-#endif
+	nb = 0;
+	counter = 0;
+	if (!s || !c)
+		return (0);
+	if (*s != c && *s != '\0')
+		nb++;
+	while (s[counter] != '\0')
+	{
+		if (s[counter] == c && s[counter + 1] != c && s[counter + 1] != '\0')
+			nb++;
+		counter++;
+	}
+	return (nb);
+}

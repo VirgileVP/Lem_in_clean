@@ -106,6 +106,7 @@ void					ft_data_free(t_data **datap);
 int						ft_atoi(const char *str);
 int						ft_isalpha(int c);
 int						ft_isdigit(int c);
+int						ft_is_strdigit(char *str);
 void					ft_putchar(char c);
 void					ft_putstr(char const *s);
 char					*ft_itoa(int n);
@@ -119,6 +120,7 @@ void					ft_strdel(char **as);
 int						ft_isalnum(int c);
 int						ft_isascii(int c);
 int						ft_isprint(int c);
+int						ft_isspace(int c);
 int						ft_toupper(int c);
 int						ft_tolower(int c);
 t_list					*ft_lstnew(void const *content, size_t content_size);
@@ -128,5 +130,8 @@ void					ft_lstdelone(t_list **alst,
 void					ft_lstadd(t_list **alst, t_list *new);
 void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+int						nmatch(char *s1, char *s2);
+size_t					ft_count_words(char *s, char c);
 
 #endif

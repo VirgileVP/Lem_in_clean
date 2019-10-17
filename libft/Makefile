@@ -12,7 +12,7 @@
 # **************************************************************************** #
 
 NAME 		=	libft.a
-CC 			=	gcc-9
+CC 			=	gcc
 CFLAGS		=	-O3 -march=native -Wall -Werror -Wextra
 
 SRC_DIR		=	src
@@ -21,11 +21,14 @@ INC_DIR		=	inc
 
 SRC_NAME	=	ft_atoi.c\
 				ft_bzero.c\
+				ft_count_words.c\
+				ft_is_strdigit.c\
 				ft_isalnum.c\
 				ft_isalpha.c\
 				ft_isascii.c\
 				ft_isdigit.c\
 				ft_isprint.c\
+				ft_isspace.c\
 				ft_itoa.c\
 				ft_lstadd.c\
 				ft_lstdel.c\
@@ -83,7 +86,9 @@ SRC_NAME	=	ft_atoi.c\
 				ft_read_alloc.c\
 				ft_data_cat.c\
 				ft_data_free.c\
-				ft_read_free.c
+				ft_read_free.c\
+				nmatch.c
+
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	libft.h
 

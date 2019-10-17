@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parse.h                                          .::    .:/ .      .::   */
+/*   ft_is_strdigit.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/10 14:28:41 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/06/17 16:15:54 by vveyrat-     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/17 16:15:58 by vveyrat-    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#include "libft.h"
 
-# include "lem_in.h"
-
-# define				START	0x01
-# define				END		0x02
-
-enum					status
+int	ft_is_strdigit(char *str)
 {
-	ROOM,
-	TUNNEL
-};
+	int count;
 
-enum					flags
-{
-	PROCEED,
-	STOP,
-	DUP_ERROR,
-	MALLOC_ERROR
-};
-
-int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix);
-
-#endif
+	count = 0;
+	if (str)
+	{
+		while (str[count])
+		{
+			if (ft_isdigit(str[count]) == 0)
+				return (0);
+			count++;
+		}
+		return (1);
+	}
+	return (0);
+}

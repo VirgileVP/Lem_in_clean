@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parse.h                                          .::    .:/ .      .::   */
+/*   ft_isspace.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/10 14:28:41 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/17 15:59:58 by vveyrat-     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/24 15:14:02 by vveyrat-    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#include "libft.h"
 
-# include "lem_in.h"
-
-# define				START	0x01
-# define				END		0x02
-
-enum					status
+int	ft_isspace(int c)
 {
-	ROOM,
-	TUNNEL
-};
-
-enum					flags
-{
-	PROCEED,
-	STOP,
-	DUP_ERROR,
-	MALLOC_ERROR
-};
-
-int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix);
-
-#endif
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\r' ||
+					c == '\v' || c == '\f')
+		return (1);
+	return (0);
+}

@@ -12,7 +12,7 @@
 # **************************************************************************** #
 
 NAME 		=	lem-in
-CC 			=	gcc-9
+CC 			=	gcc
 CFLAGS		=	-O3 -march=native -Wall -Werror -Wextra
 
 SRC_DIR		=	src
@@ -21,12 +21,14 @@ INC_DIR		=	inc
 
 SRC_NAME	=	main.c\
 				check_error.c\
-				parse.c
+				parse.c\
+				pathfinding.c
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\
 				check_error.h\
-				parse.h
+				parse.h\
+				pathfinding.h
 
 MKDIRP		=	mkdir -p
 

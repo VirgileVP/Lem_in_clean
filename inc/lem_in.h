@@ -16,18 +16,6 @@
 
 # include "libft.h"
 
-typedef struct			s_read_room
-{
-	char				**room;
-	int					nb_room;
-}						t_read_room;
-
-typedef struct			s_anthill
-{
-	size_t				nb_room;
-	size_t				nb_ant;
-}						t_anthill;
-
 typedef struct			s_room
 {
 	char				name;
@@ -36,13 +24,27 @@ typedef struct			s_room
 	size_t				nb_ant;
 }						t_room;
 
+typedef struct			s_read_room
+{
+	char				**room;
+	int					nb_room;
+}						t_read_room;
+
+typedef struct			s_anthill
+{
+	struct s_room		*room_data;
+	int					**matrice;
+	size_t				nb_room;
+	size_t				total_ant;
+}						t_anthill;
+
 typedef struct			s_roadset
 {
 	int					**roadmap;
 	size_t				nb_road;
 }						t_roadset;
 
-int						parse(t_anthill *ah, t_room *rdata, int **matrix);
-int						read_error(t_read *pars);
+int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix);
+int						read_error(t_read_room *pars);
 
 #endif

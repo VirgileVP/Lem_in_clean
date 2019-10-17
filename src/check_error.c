@@ -107,7 +107,7 @@ int		first_line(char **room)
 ** check lines begining with sharp
 */
 
-int		check_sharp(char **room, int index, t_check_bad_order *order)
+int		check_sharp(t_read_room *pars, int index, t_check_bad_order *order)
 {
 	if (ft_strcmp(pars->room[index], "##start") == 0 || ft_strcmp(pars->room[index], "##end") == 0)
 	{
@@ -131,6 +131,7 @@ int		check_sharp(char **room, int index, t_check_bad_order *order)
 				return (-1);
 		}
 	}
+	return (0);
 }
 
 /*
@@ -139,7 +140,8 @@ int		check_sharp(char **room, int index, t_check_bad_order *order)
 ** run check_room and check_tubes
 */
 
-int		check_definition(t_read_room *pars, t_check_bad_order *order, int index)
+int		check_definition
+(t_read_room *pars, t_check_bad_order *order, int index)
 {
 	if (nmatch(pars->room[index], "* * *") == 1)
 	{
@@ -152,6 +154,7 @@ int		check_definition(t_read_room *pars, t_check_bad_order *order, int index)
 		if (check_tubes(pars->room[index]) == -1)
 			return (-1);
 	}
+	return (0);
 }
 
 /*
@@ -165,8 +168,7 @@ int		check_error(t_read_room *pars)
 	t_check_bad_order	*order;
 	int					index;
 
-	if (!(ft_bzero(&order, sizeof(t_check_bad_order))))
-		return (-1);
+	ft_bzero(&order, sizeof(t_check_bad_order));
 	order->tube_pars = 0;
 	order->start = 0;
 	order->end = 0;
@@ -178,8 +180,10 @@ int		check_error(t_read_room *pars)
 		if (pars->room[index][0] == ' ' || pars->room[index][0] == 'L')
 			return (-1);
 		if (pars->room[index][0] == '#')
-			if (check_sharp(pars->room, index, order) == -1)
+		{
+			if (check_sharp(pars, index, order) == -1)
 				return (-1);
+		}
 		else if (check_definition(pars, order, index) == -1)
 			return (-1);
 		else
@@ -248,15 +252,17 @@ int			read_error(t_read_room *pars)
 		if (line[0] == '#')
 		{
 			if (ft_strcmp(line, "##start\n") == 0 || ft_strcmp(line, "##end\n") == 0)
-				if (!(temp = ft_strjoin(temp, line))
+			{
+				if (!(temp = ft_strjoin(temp, line)))
 				{
 					ft_strdel(&line);
 					ft_strdel(&temp);
 					return (-1);
 				}
+			}
 		}
 		else
-			if (!(temp = ft_strjoin(temp, line))
+			if (!(temp = ft_strjoin(temp, line)))
 			{
 				ft_strdel(&line);
 				ft_strdel(&temp);
