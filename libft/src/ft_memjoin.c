@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parse.h                                          .::    .:/ .      .::   */
+/*   ft_memjoin.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 14:43:46 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/14 12:58:56 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/14 13:22:55 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#include "libft.h"
 
-# include "lem_in.h"
-
-# define				START	0x01
-# define				END		0x02
-
-enum					status
+void				*ft_memjoin(const void *p1, size_t len1,
+		const void *p2, size_t len2)
 {
-	ROOM,
-	TUNNEL
-};
+	t_ul				ret;
 
-enum					flags
-{
-	PROCEED,
-	STOP,
-	DUP_ERROR,
-	MALLOC_ERROR
-};
-
-int						room_seek(char *name, t_root *rdata, t_anthill *ah);
-
-#endif
+	if (!(ret = (t_ul)malloc(sizeof(t_byte) * (len1 + len2))))
+		return (NULL);
+	ft_memcpy((void *)ret, p1, len1);
+	ft_memcpy((void *)(ret + len1), p2, len2);
+	return ((void *)ret);
+}

@@ -6,18 +6,13 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 14:02:10 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/10 14:28:40 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/17 14:49:20 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "lem_in.h"
-
-const enum flags		parse_fct[] = {
-	&parse_room(char *, t_anthill *, t_room *, int **),
-	&parse_tunnel(char *, t_anthill *, t_room *, int **)
-}
 
 static void			tabtok(char **entry)
 {
@@ -56,11 +51,16 @@ static char			*ntoken(char *chain, size_t n)
 	return (p);
 }
 
-static enum flags	parse_room(char *entry, t_anthill *ah, t_room *rdata, int **matrix)
+static enum flags	parse_room(char *entry,
+		t_anthill *ah,
+		t_room *rdata,
+		int **matrix __attribute__ ((unused)))
 {
 	static int			flag = 0;
 	static int			prev = 0;
+	int					i;
 
+	i = 0;
 	if (entry[0] == '#')
 	{
 		if (entry[2] == 's')
@@ -80,22 +80,29 @@ static enum flags	parse_room(char *entry, t_anthill *ah, t_room *rdata, int **ma
 		return (MALLOC_ERROR);
 	rdata[i].x = ft_atoi(ntoken(entry, 1));
 	rdata[i].y = ft_atoi(ntoken(entry, 2));
-	prev = i;
-	return (room_dup(rdata, i));
+	return (room_dup(rdata, i, ah));
 }
 
-static enum flags		parse_tunnel(char *entry, t_anthill *ah, t_room *rdata, int **matrix)
+static enum flags		parse_tunnel(char *entry,
+		t_anthill *ah,
+		t_room *rdata,
+		int **matrix)
 {
 	int					x;
 	int					y;
 
-	if ((x = room_seek(ntoken(entry, 0))) == NULL ||
-			(y = room_seek(ntoken(entry, 1))) == NULL)
+	if ((x = room_seek(ntoken(entry, 0), rdata)) == -1 ||
+			(y = room_seek(ntoken(entry, 1), rdata)) == -1)
 		return (STOP);
 	matrix[x][y] = 0;
 	matrix[y][x] = 0;
 	return (PROCEED);
 }
+
+enum flags				(*const parse_fct[])(char *, t_anthill *, t_room *, int **) = {
+	&parse_room,
+	&parse_tunnel
+};
 
 int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix)
 {
@@ -112,7 +119,7 @@ int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix)
 		if (ret == MALLOC_ERROR || ret == DUP_ERROR)
 			return (-1);
 		if (status == ROOM && ntoken(entry[i], 2) == NULL)
-			satus = TUNNEL;
+			status = TUNNEL;
 	}
 	return (1);
 }

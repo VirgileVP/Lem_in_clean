@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parse.h                                          .::    .:/ .      .::   */
+/*   matrix.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 14:43:46 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/17 13:08:03 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/17 13:40:26 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#include "matrix.h"
 
-# include "lem_in.h"
 
-# define				START	0x01
-# define				END		0x02
-
-enum					status
+void			m_set(int **matrix, int x, int y, char c)
 {
-	ROOM,
-	TUNNEL
-};
+	char			px;
+	char			py;
 
-enum					flags
-{
-	PROCEED,
-	STOP,
-	DUP_ERROR,
-	MALLOC_ERROR
-};
-
-int						room_seek(char *name, t_root *rdata, t_anthill *ah);
-
-#endif
+	px = 0x08 >> (x % sizeof(long));
+	py = y % sizeof(long);
+	x /= sizeof(long);
+	y /= sizeof(long);
+}

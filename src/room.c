@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parse.h                                          .::    .:/ .      .::   */
+/*   room.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 14:43:46 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/10/17 14:38:02 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/10/17 14:49:20 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#include "parse.h"
 
-# include "lem_in.h"
-
-# define				START	0x01
-# define				END		0x02
-
-enum					status
+int			room_seek(char *name, t_room *rdata, t_anthill *ah)
 {
-	ROOM,
-	TUNNEL
-};
+	int			y;
 
-enum					flags
+	y = 0;
+	while (y < ah->nb)
+	{
+		if (ft_strcmp(rdata[y].name) == 0)
+			return (x);
+	}
+	return (-1);
+}
+
+int			room_dup(t_room *rdata, int i, t_anthill *ah)
 {
-	PROCEED,
-	STOP,
-	DUP_ERROR,
-	MALLOC_ERROR
-};
+	int			y;
 
-int						room_seek(char *name, t_root *rdata, t_anthill *ah);
-
-#endif
+	y = 0;
+	while (y < 
+}
