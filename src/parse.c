@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   parse.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 14:02:10 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 14:49:20 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/05 11:55:23 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,18 +69,20 @@ static enum flags	parse_room(char *entry,
 			flag = END;
 		return (PROCEED);
 	}
-	if (flag == 0)
-		i = prev + 1;
-	else if (flag == START)
-		i = 0;
-	else if (flag == END)
-		i = 1;
-	flag = 0;
+	i = prev + 1;
 	if (!(rdata[i].name = ft_strdup(ntoken(entry, 0))))
 		return (MALLOC_ERROR);
 	rdata[i].x = ft_atoi(ntoken(entry, 1));
 	rdata[i].y = ft_atoi(ntoken(entry, 2));
-	return (room_dup(rdata, i, ah));
+	if (flag != 0)
+	{
+		if (flag == START)
+			ah->start = i;
+		else if (flag == END)
+			ah->end = i;
+		flag = 0;
+	}
+	return (room_dup(rdata, i));
 }
 
 static enum flags		parse_tunnel(char *entry,
@@ -91,8 +93,8 @@ static enum flags		parse_tunnel(char *entry,
 	int					x;
 	int					y;
 
-	if ((x = room_seek(ntoken(entry, 0), rdata)) == -1 ||
-			(y = room_seek(ntoken(entry, 1), rdata)) == -1)
+	if ((x = room_seek(ntoken(entry, 0), rdata, ah)) == -1 ||
+			(y = room_seek(ntoken(entry, 1), rdata, ah)) == -1)
 		return (STOP);
 	matrix[x][y] = 0;
 	matrix[y][x] = 0;
@@ -104,7 +106,7 @@ enum flags				(*const parse_fct[])(char *, t_anthill *, t_room *, int **) = {
 	&parse_tunnel
 };
 
-int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix)
+int						parse(char **entry, t_anthill *ah, t_room *rdata)
 {
 	enum status 			status;
 	enum flags				ret;
@@ -113,7 +115,7 @@ int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix)
 	status = ROOM;
 	i = 0;
 	tabtok(entry);
-	while ((ret = parse_fct[status](entry[i], ah, rdata, matrix)) == PROCEED)
+	while ((ret = parse_fct[status](entry[i], ah, rdata, ah->matrix)) != STOP)
 	{
 		i += 1;
 		if (ret == MALLOC_ERROR || ret == DUP_ERROR)

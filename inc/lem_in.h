@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   lem_in.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 14:17:23 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/05 11:42:06 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,9 +33,11 @@ typedef struct			s_read_room
 typedef struct			s_anthill
 {
 	struct s_room		*room_data;
-	int					**matrice;
+	int					**matrix;
 	size_t				nb_room;
 	size_t				total_ant;
+	int					start;	
+	int					end;
 }						t_anthill;
 
 typedef struct			s_roadset
@@ -44,7 +46,7 @@ typedef struct			s_roadset
 	size_t				nb_road;
 }						t_roadset;
 
-int						parse(char **entry, t_anthill *ah, t_room *rdata, int **matrix);
+int						parse(char **entry, t_anthill *ah, t_room *rdata);
 int						read_error(t_read_room *pars);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+      #
+#    By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2019/10/11 10:47:47 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/19 10:12:10 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -22,7 +22,12 @@ INC_DIR		=	inc
 SRC_NAME	=	main.c\
 				check_error.c\
 				parse.c\
-				pathfinding.c
+				pathfinding.c\
+				ant.c\
+				roadmap.c\
+				room_dup.c\
+				room.c\
+				colony.c
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\
@@ -47,6 +52,8 @@ $(NAME): $(OBJ)
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INC)
 	@if test ! -d $(OBJ_DIR); then $(MKDIRP) $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) $(INC_FLAG) -c $< -o $@
+
+
 
 .PHONY: all clean fclean re
 

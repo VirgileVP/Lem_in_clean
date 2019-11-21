@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   parse.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 14:43:46 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/05 11:56:00 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,7 @@ enum					flags
 	MALLOC_ERROR
 };
 
-int						room_seek(char *name, t_root *rdata, t_anthill *ah);
+int						room_seek(char *name, t_room *rdata, t_anthill *ah);
+enum flags				room_dup(t_room *rdata, int i);
 
 #endif

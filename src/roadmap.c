@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   room.c                                           .::    .:/ .      .::   */
+/*   roadmap.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/17 14:38:02 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/21 12:45:04 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/12 09:41:02 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/21 12:43:05 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "lem_in.h"
+#include "pathfinding.h"
 
-int			room_seek(char *name, t_room *rdata, t_anthill *ah)
+t_rlist			*roadmap_new(void)
 {
-	int			y;
+	t_rlist			*r;
 
-	y = 0;
-	while (y < ah->nb)
-	{
-		if (ft_strcmp(rdata[y].name) == 0)
-			return (x);
-	}
-	return (-1);
+	if (!(r = (t_rlist *)malloc(sizeof(t_rlist))))
+		return (NULL);
+	r->begin = NULL;
+	r->p = NULL;
+	r->len = 0;
+	return (r);
 }
 
-int			room_dup(t_room *rdata, int i, t_anthill *ah, int max)
+int				roadmap_add(t_rlist *r, int n)
 {
-	int			y;
+	t_rlink			*new;
 
-	y = 0;
-	while (y < max)
-	{
-		if (ft_strcmp(rdata[y]
-	}
+	if (!(new = (t_rlink *)malloc(sizeof(t_rlink))))
+		return (-1);
 }

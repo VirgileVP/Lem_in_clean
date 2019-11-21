@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   matrix.c                                         .::    .:/ .      .::   */
+/*   room_dup.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/17 13:08:03 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 13:40:26 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/11/05 11:36:20 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2019/11/05 11:52:08 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "matrix.h"
+#include "parse.h"
+#include "lem_in.h"
 
-
-void			m_set(int **matrix, int x, int y, char c)
+enum flags		room_dup(t_room *rdata, int i)
 {
-	char			px;
-	char			py;
+	int				n;
 
-	px = 0x08 >> (x % sizeof(long));
-	py = y % sizeof(long);
-	x /= sizeof(long);
-	y /= sizeof(long);
+	n = 0;
+	while (n < i)
+	{
+		if (ft_strcmp(rdata[i].name, rdata[n].name) == 0 ||
+			rdata[i].x == rdata[n].x ||
+			rdata[i].y == rdata[n].y)
+		return (DUP_ERROR);
+		n += 1;
+	}
+	return (PROCEED);
 }

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:58:22 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/09 14:00:05 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/05 11:29:24 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,13 +42,13 @@ int		data_init(t_anthill *data, int nb_room, int nb_lemin)
 	ft_bzero(data->room_data, sizeof(t_room) * nb_room);
 	data->room_data[0].nb_ant = nb_lemin;
 	data->total_ant = nb_lemin;
-	if (!(data->matrice = (int **)malloc(sizeof(int *) * nb_room)))
+	if (!(data->matrix = (int **)malloc(sizeof(int *) * nb_room)))
 		return(-1);
 	while (count < nb_room)
 	{
-		if(!(data->matrice[count] = (int *)malloc(sizeof(int) * nb_room)))
+		if(!(data->matrix[count] = (int *)malloc(sizeof(int) * nb_room)))
 			return(-1);
-		ft_bzero(data->matrice[count], sizeof(int) * nb_room);
+		ft_bzero(data->matrix[count], sizeof(int) * nb_room);
 		count += 1;
 	}
 	data->nb_room = nb_room;
@@ -90,7 +90,7 @@ int				main(int argc __attribute__ ((unused)),char *argv[] __attribute__ ((unuse
 		main_free(&data, &read, 0);
 		return (-1);
 	}
-	if (parse(&read.room[1], &data, data.room_data, data.matrice) == -1)
+	if (parse(&read.room[1], &data, data.room_data) == -1)
 	{
 		main_free(&data, &read, 1);
 		ft_putstr("ERROR\n");
