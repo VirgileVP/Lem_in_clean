@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/10 14:30:42 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 12:43:05 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/21 12:45:09 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,7 @@ typedef struct			s_colony
 	size_t				len;
 }						t_colony;
 
-t_colony				ant_spawn;
+t_colony				*colony_init(size_t len);
+void					colony_destroy(t_colony **c);
 
 #endif
