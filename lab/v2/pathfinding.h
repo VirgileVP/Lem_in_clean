@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/13 10:25:42 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 12:45:52 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/27 13:56:31 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,20 +46,19 @@ typedef struct				s_colony
 	size_t					len;
 }							t_colony;
 
-typedef struct				s_rtab
+typedef struct				s_rmap
 {
-	int						*t;
+	t_rlink					*p;
 	size_t					len;
-	struct s_rtab			*next;
-}							t_rtab;
+	struct s_rmap			*next;
+}							t_rmap;
 
 typedef struct				s_rclass;
 {
-	struct s_rtab			*rtab;
-	struct s_rtab			*t;
+	struct s_rmap			*rmap;
+	struct s_rmap			*m;
 	unsigned long			*barr;
 	struct s_rclass			*next;
-	struct s_rclass			*c;
 }							t_rclass;
 
 typedef struct				s_pfinding
@@ -67,10 +66,16 @@ typedef struct				s_pfinding
 	struct s_colony			*wander;
 	struct s_colony			*end;
 	struct s_rclass			*root;
+	struct s_rclass			*c;
 	struct s_rclass			*best;
 	unsigned long			**xmatrix;
 	size_t					xlen;
 	size_t					len;
 }							t_pfinding;
 
+t_rclass					*rclass_chr(t_pfinding *pf, t_ant *ant);
+t_rclass					*rclass_new(t_pfinding *pf);
+int							rclass_add_ant(t_rclass *r, t_ant *ant, t_pfinding *pf);
+
 #endif
+
