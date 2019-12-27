@@ -6,10 +6,24 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/13 11:33:46 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/18 09:49:01 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/27 15:02:41 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
+
+int				pfinding_init(t_pfinding **pf, t_anthill *ah)
+{
+	if (((*pf) = (t_pfinding *)malloc(sizeof(t_pfinding))) == NULL)
+		return (-1);
+	(*pf)->
+	(*pf)->
+	(*pf)->
+	(*pf)->
+	(*pf)->
+	(*pf)->
+	(*pf)->
+	(*pf)->
+}
 
 int				eval()
 {
