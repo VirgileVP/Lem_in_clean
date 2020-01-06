@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/13 11:33:46 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/27 15:02:41 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/06 07:06:09 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,14 +15,11 @@ int				pfinding_init(t_pfinding **pf, t_anthill *ah)
 {
 	if (((*pf) = (t_pfinding *)malloc(sizeof(t_pfinding))) == NULL)
 		return (-1);
-	(*pf)->
-	(*pf)->
-	(*pf)->
-	(*pf)->
-	(*pf)->
-	(*pf)->
-	(*pf)->
-	(*pf)->
+	colony_init(*pf, ah);
+	rclass_init(*pf);
+	(*pf)->matrix = ah->matrix;
+	(*pf)->len = ah->len;
+	return (1);
 }
 
 int				eval()

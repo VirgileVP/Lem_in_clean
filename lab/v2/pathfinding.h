@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/13 10:25:42 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/27 13:56:31 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/06 11:44:58 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,6 +37,7 @@ typedef struct				s_ant
 	struct s_rlink			*p;
 	size_t					rlen;
 	unsigned long			*used;
+	struct s_ant			*prev;
 	struct s_ant			*next;
 }							t_ant;
 
@@ -57,6 +58,7 @@ typedef struct				s_rclass;
 {
 	struct s_rmap			*rmap;
 	struct s_rmap			*m;
+	size_t					rlen;
 	unsigned long			*barr;
 	struct s_rclass			*next;
 }							t_rclass;
@@ -68,8 +70,7 @@ typedef struct				s_pfinding
 	struct s_rclass			*root;
 	struct s_rclass			*c;
 	struct s_rclass			*best;
-	unsigned long			**xmatrix;
-	size_t					xlen;
+	unsigned long			**matrix;
 	size_t					len;
 }							t_pfinding;
 
