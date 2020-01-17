@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   roadmap.c                                        .::    .:/ .      .::   */
+/*   ant_loop.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/12 09:41:02 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/21 12:43:05 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/10 09:57:22 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/14 08:28:35 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lem_in.h"
 #include "pathfinding.h"
 
-t_rlist			*roadmap_new(void)
+enum e_ant		ant_loop(t_pfinding *pf)
 {
-	t_rlist			*r;
+	int				ret;
 
-	if (!(r = (t_rlist *)malloc(sizeof(t_rlist))))
-		return (NULL);
-	r->begin = NULL;
-	r->p = NULL;
-	r->len = 0;
-	return (r);
-}
-
-int				roadmap_add(t_rlist *r, int n)
-{
-	t_rlink			*new;
-
-	if (!(new = (t_rlink *)malloc(sizeof(t_rlink))))
-		return (-1);
+	while (pf->xant > 0)
+	{
+		if ((ret = ant_scout() == END_REACHED)
+			return (END_REACHED);
+		pf->ant = pf->ant->next;
+	}
+	return (EMTPY_COLONY);
 }

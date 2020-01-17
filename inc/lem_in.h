@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/05 11:42:06 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 12:46:47 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ typedef struct			s_read_room
 typedef struct			s_anthill
 {
 	struct s_room		*room_data;
-	int					**matrix;
+	t_ul				**matrix;
 	size_t				nb_room;
 	size_t				total_ant;
 	int					start;	

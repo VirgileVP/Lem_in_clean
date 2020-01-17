@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 14:02:10 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/05 11:55:23 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 10:03:56 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -88,16 +88,23 @@ static enum flags	parse_room(char *entry,
 static enum flags		parse_tunnel(char *entry,
 		t_anthill *ah,
 		t_room *rdata,
-		int **matrix)
+		t_ul **matrix)
 {
 	int					x;
+	int					xn;
 	int					y;
+	int					yn;
+	t_ul				cccc;
 
 	if ((x = room_seek(ntoken(entry, 0), rdata, ah)) == -1 ||
 			(y = room_seek(ntoken(entry, 1), rdata, ah)) == -1)
 		return (STOP);
-	matrix[x][y] = 0;
-	matrix[y][x] = 0;
+	cccc = BZERO >> (x % (sizeof(t_ul) * 8));
+	xn = x / (sizeof(t_ul) * 8);
+	yn = y / (sizeof(t_ul) * 8);
+	matrix[y][xn] |= cccc;
+	cccc = BZERO >> (y % (sizeof(t_ul) * 8));
+	matrix[x][yn] |= cccc; 
 	return (PROCEED);
 }
 

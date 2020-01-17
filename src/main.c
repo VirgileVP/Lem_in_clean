@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:58:22 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/05 11:29:24 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 10:07:40 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,13 +42,12 @@ int		data_init(t_anthill *data, int nb_room, int nb_lemin)
 	ft_bzero(data->room_data, sizeof(t_room) * nb_room);
 	data->room_data[0].nb_ant = nb_lemin;
 	data->total_ant = nb_lemin;
-	if (!(data->matrix = (int **)malloc(sizeof(int *) * nb_room)))
+	if (!(data->matrix = (t_ul **)malloc(sizeof(t_ul *) * nb_room)))
 		return(-1);
 	while (count < nb_room)
 	{
-		if(!(data->matrix[count] = (int *)malloc(sizeof(int) * nb_room)))
+		if(!(data->matrix[count] = (t_ul *)ft_memalloc(sizeof(t_ul) * (nb_room / (sizeof(t_ul) * 8)))))
 			return(-1);
-		ft_bzero(data->matrix[count], sizeof(int) * nb_room);
 		count += 1;
 	}
 	data->nb_room = nb_room;

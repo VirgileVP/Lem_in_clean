@@ -6,7 +6,7 @@
 #    By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2019/11/19 10:12:10 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/15 10:04:06 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -22,12 +22,16 @@ INC_DIR		=	inc
 SRC_NAME	=	main.c\
 				check_error.c\
 				parse.c\
-				pathfinding.c\
-				ant.c\
-				roadmap.c\
 				room_dup.c\
 				room.c\
-				colony.c
+				ant_kill.c\
+				ant_loop.c\
+				ant_scout.c\
+				pfinding.c\
+				rclass_add.c\
+				rclass_free.c\
+				rclass_new.c\
+				roadset_set.c
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\
