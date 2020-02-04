@@ -5,105 +5,134 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/08 09:00:55 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/15 08:18:30 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/31 11:06:30 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/03 11:47:32 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "pathfinding.h"
 
-static int		sbchr(t_bindex *i, t_ul t, t_ul u)
+static void		ant_end(t_pf *pf)
 {
-	while (i->cccc != 0)
+	t_ant			*tmp;
+
+	tmp = pf->ant;
+	tmp->next->prev = tmp->prev->next;
+	tmp->prev->next = tmp->next->prev;
+	if (pf->xant > 1)
+		pf->ant = pf->ant->next;
+	else
+		pf->ant = NULL;
+	pf->xant -= 1;
+	if (pf->xend == 0)
 	{
-		if ((i->cccc & t) && !(i->cccc & u))
-			return (1);
-		i->cccc >>= 1;
-		i->x += 1;
+		pf->end = tmp;
+		tmp->next = tmp;
+		tmp->prev = tmp;
 	}
-	return (0);
+	else
+	{
+		tmp->next = pf->end;
+		tmp->prev = pf->prev;
+		pf->end->prev->next = tmp;
+		pf->end->prev = tmp;
+		pf->end = tmp;
+	}
+	pf->xend += 1;
 }
 
-static int		bchr(t_bindex *i, t_ul *t, t_ul *used, size_t len)
+static int		ant_move(t_pf *pf, t_bdindex *i)
 {
-	while (i->xn < len)
-	{
-		if (t[i->xn] & used[i->xn])
-		{
-			if (sbchr(i, t[i->xn], u[i->xn]) == 1)
-				return (1);
-			else
-			{
-				i->cccc = BZERO;
-				i->x = i->xn * 64;
-			}
-		}
-		i->xn += 1;
-		i->x += 64;
-	}
-	i->xn = 0;
-	i->x = 0;
-	return (0);
-}
-
-static int		ant_dup(t_pfinding *pf)
-{
-	t_ant			*a;
-	t_rlink			*tmp;
-
-	if ((a = (t_ant *)ft_memalloc(sizeof(t_ant))) == NULL ||
-			(a->used = (t_ul *)ft_memdup(pf->ant->used, sizeof(t_ul) * pf->xm)) == NULL)
-		return (-1);
-	tmp = pf->ant->root;
-	while (a->rlen < pf->ant->len)
-	{
-		rlink_add(a, tmp->n);
-		tmp = tmp->next;
-	}
-	pf->ant->next->prev = a;
-	a->next = c->p->next;
-	a->prev = c->p;
-	pf->ant->next = a;
+	if (!(pf->ant->r->next = (t_rlink *)malloc(sizeof(t_rlink))))
+		return (MALLOC_ERROR);
+	pf->ant->r = pf->ant->r->next;
+	pf->ant->r->n = i->x;
+	pf->ant->len += 1;
+	pf->ant->barr[i->xn] |= i->cccc;
 	return (1);
 }
 
-static int		ant_move(t_ant *ant, t_bindex *i)
+static int		barr_chr(t_bindex *i, t_ul *t, t_ul *u, size_t len)
 {
-	if ((ant->p->next = (t_rlink *)malloc(sizeof(t_rlink))) == NULL)
-		return (-1);
-	ant->p = ant->p->next;
-	ant->p->n = i->x;
-	ant->p->next = NULL;
-	ant->used[i->xn] |= i->cccc;
-	ant->len += 1;
+	while (i->xn < len)
+	{
+		if (t[i->xn] != 0)
+		{
+			if (i->cccc == 0)
+			{
+				i->x = i->xn * 64;
+				i->cccc = BINIT;
+			}
+			while (i->cccc != 0)
+			{
+				if (!(i->cccc & u[i->xn]) && (i->cccc & t[i->xn]))
+					return (1);
+				i->cccc >>= 1;
+				i->x += 1;
+			}
+		}
+		i->xn += 1;
+	}
+	return (0);
 }
 
-enum e_pstat	ant_scout(t_ant *ant, int pos, t_pfinding *pf)
+static int		ant_multi(t_pf *pf, t_bindex *i, t_bindex *n)
 {
-	static t_bindex	*i = NULL;
+	ant_dup(pf);
+	ant_move(pf, &i);
+	ft_memcpy(&i, &n, sizeof(t_bindex));
+	n->x += 1;
+	n->cccc >>= 1;
+	while (bchr(&n, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen) == 1)
+	{
+		if (ant_dup(pf) == MALLOC_ERROR)
+			return (MALLOC_ERROR);
+		ant_move(pf, &i);
+		if (i->x == pf->end)
+			ant_end(pf);
+		else
+			pf->ant = pf->ant->next;
+		i = n;
+		ft_memcpy(&i, &n, sizeof(t_bindex));
+		n->x += 1;
+		n->cccc >>= 1;
+	}
+	ant_move(pf, &i);
+	if (i->x == pf->end)
+		ant_end(pf);
+	else
+		pf->ant = pf->ant->next;
+}
+
+int				ant_scout(t_pf *pf)
+{
+	t_bindex		i;
 	t_bindex		n;
 
-	if (i == NULL && (i = (t_bindex *)ft_memalloc(sizeof(t_bindex))))
-		return (MALLOC_ERROR);
-	if (bchr(i, pf->matrix[pos], ant->used, pf->xm) == 1)
+	while (pf->xant > 0)
 	{
-		n = *i;
+		ft_memset(&i, 0, sizeof(t_bindex));
+		bchr(&i, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen);
+		ft_memcpy(&n, &i, sizeof(t_bindex));
 		n.cccc >>= 1;
 		n.x += 1;
-		if (bchr(&n, pf->matrix[pos], ant->used, pf->xm) == 1 &&
-				ant_dup(pf) < 0)
-			return (MALLOC_ERROR);
-		if (ant_move(ant, i) < 0)
-			return (MALLOC_ERROR);
-		*i = n;
-		i->cccc >>= 1;
-		i->x += 1;
-		if (ant->p->n == pf->end)
-			return (RCLASS_SORT);
+		if (bchr(&n, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen) == 1)
+		{
+			if (ant_multi(pf, &i, &n) == MALLOC_ERROR)
+				return (MALLOC_ERROR);
+		}
+		else
+		{
+			if (ant_move(pf, &i) == MALLOC_ERROR)
+				return (MALLOC_ERROR);
+		}
+		if (i.x == pf->end)
+			ant_end(pf);
+		else
+			pf->ant = pf->ant->next;
 	}
-	else
-		return (ANT_KILL);
-	pf->ant = pf->ant->next;
-	return (PROCEED);
+	if (pf->xend == 0)
+		return (NO_PATH);
+	return (1);
 }

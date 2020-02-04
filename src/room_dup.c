@@ -6,13 +6,12 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/05 11:36:20 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/05 11:52:08 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 08:51:13 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "lem_in.h"
 
 enum flags		room_dup(t_room *rdata, int i)
 {

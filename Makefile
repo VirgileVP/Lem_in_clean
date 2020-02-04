@@ -6,7 +6,7 @@
 #    By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2020/01/15 10:04:06 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/03 13:23:29 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,14 +24,14 @@ SRC_NAME	=	main.c\
 				parse.c\
 				room_dup.c\
 				room.c\
+				ant_conver.c\
+				ant_dup.c\
 				ant_kill.c\
-				ant_loop.c\
 				ant_scout.c\
-				pfinding.c\
-				rclass_add.c\
-				rclass_free.c\
-				rclass_new.c\
-				roadset_set.c
+				barr.c\
+				bf.c\
+				eval.c\
+				pathfinding.c
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\

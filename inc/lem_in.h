@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 12:46:47 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 09:01:07 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,18 +35,20 @@ typedef struct			s_anthill
 	struct s_room		*room_data;
 	t_ul				**matrix;
 	size_t				nb_room;
-	size_t				total_ant;
+	size_t				nb_ant;
 	int					start;	
 	int					end;
 }						t_anthill;
 
 typedef struct			s_roadset
 {
-	int					**roadmap;
-	size_t				nb_road;
+	int					*t;
+	size_t				len;
+	int					ant;
 }						t_roadset;
 
 int						parse(char **entry, t_anthill *ah, t_room *rdata);
 int						read_error(t_read_room *pars);
+int						pathfinding(t_anthill *ah, t_roadset **rs);
 
 #endif

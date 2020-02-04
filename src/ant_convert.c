@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   colony_init.c                                    .::    .:/ .      .::   */
+/*   ant_convert.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/11/28 14:58:34 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 10:23:56 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/03 11:50:12 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/03 13:03:26 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "colony.h"
+#include "pathfinding.h"
 
-int				colony_init(t_colony **c, t_anthill *ah, size_t n)
+int				ant_convert(t_pf *pf)
 {
-	t_colony		src;
+	t_ant			*t;
+	t_ant			*tmp1;
+	t_ant			*tmp2;
+	size_t			y;
 
-	if (((*c) = (t_colony *)malloc(sizeof(t_colony))) == NULL)
-		return (-1);
-	if (n > 0)
+	if (!(t = (t_ant *)malloc(sizeof(t_ant) * pf->xend)))
+		return (MALLOC_ERROR);
+	y = 0;
+	tmp1 = pf->end;
+	while (y < pf->xend)
 	{
-		ft_memset(&src, 0, sizeof(t_colony));
-		if (ant_spawn(src, ah, n) < 0)
-			return (-1);
-		while (n-- > 0)
-			colony_push(*c, &src);
+		tmp2 = tmp1->next;
+		ft_memcpy(&t[y], tmp1, sizeof(t_ant));
+		free(tmp1);
 	}
-	else
-		ft_memset(*c, 0, sizeof(t_colony));
+	pf->end = t;
 	return (1);
 }

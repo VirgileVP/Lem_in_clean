@@ -6,13 +6,12 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 14:02:10 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 10:03:56 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 08:50:33 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "lem_in.h"
 
 static void			tabtok(char **entry)
 {
@@ -54,7 +53,7 @@ static char			*ntoken(char *chain, size_t n)
 static enum flags	parse_room(char *entry,
 		t_anthill *ah,
 		t_room *rdata,
-		int **matrix __attribute__ ((unused)))
+		t_ul **matrix __attribute__ ((unused)))
 {
 	static int			flag = 0;
 	static int			prev = 0;

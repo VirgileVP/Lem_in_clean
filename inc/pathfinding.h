@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/13 10:25:42 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 08:26:17 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/18 10:00:05 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/04 08:55:19 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,15 +14,20 @@
 #ifndef PATHFINDING_H
 # define PATHFINDING_H
 
-# include "lem_in.h"
+# include "lemin.h"
 
-# define BZERO				0x8000000000000000UL
+# define BINIT				0x8000000000000000UL
+
+# define MALLOC_ERROR		-2
+# define NO_PATH			-1
+# define STOP				0
+# define CONTINUE			1
 
 typedef struct				s_bindex
 {
+	t_ul					cccc;
 	size_t					xn;
 	size_t					x;
-	t_ul					cccc;
 }							t_bindex;
 
 typedef struct				s_rlink
@@ -34,63 +39,48 @@ typedef struct				s_rlink
 typedef struct				s_ant
 {
 	struct s_rlink			*root;
-	struct s_rlink			*p;
+	struct s_rlink			*r;
 	size_t					len;
-	unsigned long			*used;
+	t_ul					*barr;
 	struct s_ant			*prev;
 	struct s_ant			*next;
 }							t_ant;
 
-typedef struct				s_rmap
+typedef struct				s_rclass
 {
-	t_rlink					*p;
-	size_t					len;
-	struct s_rmap			*next;
-}							t_rmap;
-
-typedef struct				s_rclass;
-{
-	struct s_rmap			*rmap;
-	struct s_rmap			*m;
-	size_t					rlen;
-	size_t					value;
-	char					flag;
-	unsigned long			*barr;
-	struct s_rclass			*next;
+	int						*best;
+	size_t					blen;
+	int						*brep;
+	int						bvalue;
+	int						*tmp;
+	int						*trep;
+	size_t					tlen;
+	int						tvalue;
+	t_ul					*barr;
 }							t_rclass;
 
-typedef struct				s_pfinding
+typedef struct				s_pf
 {
 	struct s_ant			*ant;
 	size_t					xant;
-	struct s_rclass			*root;
-	struct s_rclass			*c;
-	struct s_rclass			*best;
-	unsigned long			**matrix;
-	size_t					xm;
-	size_t					lemin;
+	struct s_ant			*end;
+	size_t					xend;
 	int						start;
 	int						end;
-}							t_pfinding;
+	t_ul					**matrix;
+	size_t					xlen;
+	size_t					lemin
+}							t_pf;
 
-enum 						e_pstat
-{
-	PROCEED = 0,
-	RCLASS_SORT = 1,
-	EVAL = 2,
-	ANT_KILL = 3,
-	STOP = -1,
-	MALLOC_ERROR = -2,
-	NO_PATH = -3,
-};
+void						ant_kill(t_pf *pf);
+int							ant_scout(t_pf *pf);
+int							ant_convert(t_pf *pf);
 
-int							pathfinding(t_anthill *ah, t_roadset **rs);
-void						pfinding_free(t_pfinding **pf);
-t_rclass					*rclass_new(t_pfinding *pf);
-enum e_pstat				ant_scout(t_ant *ant, int pos, t_pfinding *pf);
-int							roadset_set(t_roadaset **rs, t_rclass *rc);
-enum e_pstat				rclass_add(t_pfinding *pf);
-enum e_pstat				ant_kill(t_pfinding *pf);
-enum e_pstat				pf_eval(t_pfinding *pf);
+int							barr_cmp(t_ul *t1, t_ul *t2, size_t len);
+void						barr_add(t_ul *dst, t_ul *src, size_t len);
+void						barr_remove(t_ul *dst, t_ul *src, size_t len);
+
+int							bf_main(t_pf *pf, t_roadset **rs);
+int							eval(t_pf *pf, t_rclass *rc);
 
 #endif

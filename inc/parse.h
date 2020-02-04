@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 14:02:37 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/05 11:56:00 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 08:54:46 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,8 +16,9 @@
 
 # include "lem_in.h"
 
-# define				START	0x01
-# define				END		0x02
+# define START				0x01
+# define END				0x02
+# define BZERO				0x8000000000000000UL
 
 enum					status
 {

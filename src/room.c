@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 14:38:02 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/21 12:45:04 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/03 14:25:24 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,18 +21,11 @@ int			room_seek(char *name, t_room *rdata, t_anthill *ah)
 	while (y < ah->nb)
 	{
 		if (ft_strcmp(rdata[y].name) == 0)
-			return (x);
+			return (y);
 	}
 	return (-1);
 }
 
 int			room_dup(t_room *rdata, int i, t_anthill *ah, int max)
 {
-	int			y;
-
-	y = 0;
-	while (y < max)
-	{
-		if (ft_strcmp(rdata[y]
-	}
 }
