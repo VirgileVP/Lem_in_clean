@@ -111,6 +111,7 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 	int		nb_road;
 	int		*remaining_ants;
 
+	count = 0;
 	nb_road = nb_road(roads);
 	if (fill_remaining_ants(road, remaining_ants, nb_road) == 1);
 		return (1);
@@ -120,9 +121,7 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 		while (count < nb_road)
 		{
 			if (roads[count].nb_ants != 0)
-			{
 				update_roads_rooms(anthill, roads, remaining_ants, count);
-			}
 			count++;
 		}
 		ft_putchar('\n');
