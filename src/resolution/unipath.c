@@ -39,13 +39,14 @@ static void		update_roads_rooms( t_anthill *anthill, t_roadsset *roads, int room
 		roads[0]->nb_ant = 0;
 }
 
+
 int			all_ant_one_path(t_anthill *anthill, t_roadsset *roads)
 {
-	ft_putstr("\n\nONE PATH\n\n");
 	int		count_room;
 	int		begin;
 
 	begin = 1;
+	count_room = 0;
 	while (roads[0]->nb_ant > 0)
 	{
 		count_room = 0;
@@ -54,10 +55,7 @@ int			all_ant_one_path(t_anthill *anthill, t_roadsset *roads)
 			if (roads[0]->t[count_room].ant_index != 0)
 			{
 				if (roads[0]->t[count_room].ant_index == roads[0]->nb_ant)
-				{
-					// roads[0]->nb_ant--;
-					roads[0]->t[count_room].ant_index = 0;
-				}
+					roads[0]->t[count_room].ant_index = 0:
 				update_roads_rooms(anthill, roads, count_room);
 				begin = 0;
 				count_room = len;
