@@ -148,11 +148,7 @@ int						read_error(t_read_room *pars)
 	line = NULL;
 	while (read_line(0, &line) > 0)
 	{
-		if (line[0] == '#'
-		&&(ft_strcmp(line, "##start\n") == 0 || ft_strcmp(line, "##end\n") == 0)
-		&& (!(temp = ft_strjoin(temp, line))))
-			return (free_temp_line(temp, line, -1));
-		else if (!(temp = ft_strjoin(temp, line)))
+		if (!(temp = ft_strjoin(temp, line)))
 			return (free_temp_line(temp, line, -1));
 		ft_strdel(&line);
 	}
