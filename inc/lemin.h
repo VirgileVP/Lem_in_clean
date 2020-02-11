@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   lem_in.h                                         .::    .:/ .      .::   */
+/*   lemin.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
@@ -11,10 +11,11 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#ifndef LEMIN_H
+# define LEMIN_H
 
-# include "libft.h"
+#include "stdio.h"
+#include "libft.h"
 
 typedef struct			s_room
 {
@@ -51,7 +52,7 @@ typedef struct			s_roadset
 	t_rdata				*t;
 	size_t				len;		//size of the road
 	int					nb_ant;		//number of ant to send
-}						t_roadset
+}						t_roadset;
 
 int						parse(char **entry, t_anthill *ah, t_room *rdata);
 int						read_error(t_read_room *pars);

@@ -65,14 +65,15 @@ typedef struct				s_pf
 	size_t					xant;
 	struct s_ant			*end;
 	size_t					xend;
-	int						start;
-	int						end;
+	int						start_index;
+	int						end_index;
 	t_ul					**matrix;
 	size_t					xlen;
-	size_t					lemin
+	size_t					lemin;
 }							t_pf;
 
 void						ant_kill(t_pf *pf);
+int							ant_dup(t_pf *pf);
 int							ant_scout(t_pf *pf);
 int							ant_convert(t_pf *pf);
 

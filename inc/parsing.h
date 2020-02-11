@@ -14,7 +14,7 @@
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "lem_in.h"
+# include "lemin.h"
 
 # define BINIT				0x8000000000000000UL
 

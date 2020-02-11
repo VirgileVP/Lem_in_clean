@@ -33,8 +33,8 @@ static void		ant_end(t_pf *pf)
 	}
 	else
 	{
-		tmp->next = pf->end;
-		tmp->prev = pf->prev;
+		//tmp->next = pf->end;
+		//tmp->prev = pf->prev;
 		pf->end->prev->next = tmp;
 		pf->end->prev = tmp;
 		pf->end = tmp;
@@ -42,7 +42,7 @@ static void		ant_end(t_pf *pf)
 	pf->xend += 1;
 }
 
-static int		ant_move(t_pf *pf, t_bdindex *i)
+static int		ant_move(t_pf *pf, t_bindex *i)
 {
 	if (!(pf->ant->r->next = (t_rlink *)malloc(sizeof(t_rlink))))
 		return (MALLOC_ERROR);
@@ -79,17 +79,18 @@ static int		barr_chr(t_bindex *i, t_ul *t, t_ul *u, size_t len)
 
 static int		ant_multi(t_pf *pf, t_bindex *i, t_bindex *n)
 {
-	ant_dup(pf);
-	ant_move(pf, &i);
+	if (ant_dup(pf) == MALLOC_ERROR)
+		return (MALLOC_ERROR);
+	ant_move(pf, i);
 	ft_memcpy(&i, &n, sizeof(t_bindex));
 	n->x += 1;
 	n->cccc >>= 1;
-	while (bchr(&n, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen) == 1)
+	while (barr_chr(n, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen) == 1)
 	{
 		if (ant_dup(pf) == MALLOC_ERROR)
 			return (MALLOC_ERROR);
-		ant_move(pf, &i);
-		if (i->x == pf->end)
+		ant_move(pf, i);
+		if (i->x == pf->end_index)
 			ant_end(pf);
 		else
 			pf->ant = pf->ant->next;
@@ -98,8 +99,8 @@ static int		ant_multi(t_pf *pf, t_bindex *i, t_bindex *n)
 		n->x += 1;
 		n->cccc >>= 1;
 	}
-	ant_move(pf, &i);
-	if (i->x == pf->end)
+	ant_move(pf, i);
+	if (i->x == pf->end_index)
 		ant_end(pf);
 	else
 		pf->ant = pf->ant->next;
@@ -113,11 +114,11 @@ int				ant_scout(t_pf *pf)
 	while (pf->xant > 0)
 	{
 		ft_memset(&i, 0, sizeof(t_bindex));
-		bchr(&i, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen);
+		barr_chr(&i, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen);
 		ft_memcpy(&n, &i, sizeof(t_bindex));
 		n.cccc >>= 1;
 		n.x += 1;
-		if (bchr(&n, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen) == 1)
+		if (barr_chr(&n, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen) == 1)
 		{
 			if (ant_multi(pf, &i, &n) == MALLOC_ERROR)
 				return (MALLOC_ERROR);
@@ -127,7 +128,7 @@ int				ant_scout(t_pf *pf)
 			if (ant_move(pf, &i) == MALLOC_ERROR)
 				return (MALLOC_ERROR);
 		}
-		if (i.x == pf->end)
+		if (i.x == pf->end_index)
 			ant_end(pf);
 		else
 			pf->ant = pf->ant->next;

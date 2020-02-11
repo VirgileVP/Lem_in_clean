@@ -1,4 +1,4 @@
-#include "lem_in.h"
+#include "lemin.h"
 #include "check_error.h"
 
 int		    free_temp_line(char *temp, char * line, int ret)

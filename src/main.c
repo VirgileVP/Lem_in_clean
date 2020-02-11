@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "lemin.h"
 
 /*
 ** print_read:
@@ -41,7 +41,7 @@ int		data_init(t_anthill *data, int nb_room, int nb_lemin)
 		return(-1);
 	ft_bzero(data->room_data, sizeof(t_room) * nb_room);
 	data->room_data[0].nb_ant = nb_lemin;
-	data->total_ant = nb_lemin;
+	data->nb_ant = nb_lemin;
 	if (!(data->matrix = (t_ul **)malloc(sizeof(t_ul *) * nb_room)))
 		return(-1);
 	while (count < nb_room)

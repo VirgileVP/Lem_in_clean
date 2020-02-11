@@ -11,7 +11,14 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "pahtfinding.h"
+#include "pathfinding.h"
+
+static	void	rmap_del(t_ant *ant)
+{
+	/*
+	MISSING FCTN
+	*/
+}
 
 void			ant_kill(t_pf *pf)
 {
