@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:06:30 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 12:33:21 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:37:09 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -104,6 +104,7 @@ static int		ant_multi(t_pf *pf, t_bindex *i, t_bindex *n)
 		ant_end(pf);
 	else
 		pf->ant = pf->ant->next;
+	return (1);
 }
 
 int				ant_scout(t_pf *pf)

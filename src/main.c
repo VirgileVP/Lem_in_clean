@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:58:22 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 10:07:40 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:36:42 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,10 @@ int		data_init(t_anthill *data, int nb_room, int nb_lemin)
 		return(-1);
 	while (count < nb_room)
 	{
-		if(!(data->matrix[count] = (t_ul *)ft_memalloc(sizeof(t_ul) * (nb_room / (sizeof(t_ul) * 8)))))
+		data->xlen = nb_room / 64;
+		if (nb_room % 64 != 0)
+			data->xlen += 1;
+		if(!(data->matrix[count] = (t_ul *)ft_memalloc(sizeof(t_ul) * data->xlen)))
 			return(-1);
 		count += 1;
 	}

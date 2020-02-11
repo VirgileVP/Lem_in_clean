@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 09:41:11 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 13:13:41 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:32:42 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,6 @@ int				rseek(t_anthill *ah, t_room *rdata, char *p)
 	size_t			n;
 
 	n = 0;
-	//while (rdata[n] != NULL)
 	while (n < ah->nb_room)
 	{
 		if (namecmp(rdata[n].name, p) == 0)

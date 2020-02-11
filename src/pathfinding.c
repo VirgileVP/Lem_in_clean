@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:05:53 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 12:31:04 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:37:36 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,7 +56,7 @@ int				pathfinding(t_anthill *ah, t_roadset **rs)
 	int				ret;
 
 	if (!(pf = pf_init(ah)) ||
-			(ret = ant_scout(pf, ah)) == MALLOC_ERROR)
+			(ret = ant_scout(pf)) == MALLOC_ERROR)
 		return (MALLOC_ERROR);
 	if (ret == NO_PATH)
 		return (ret);

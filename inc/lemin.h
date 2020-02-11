@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 13:02:07 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:36:17 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,7 @@ typedef struct			s_anthill
 {
 	struct s_room		*room_data;
 	t_ul				**matrix;
+	size_t				xlen;
 	size_t				nb_room;
 	size_t				nb_ant;
 	int					start;	
