@@ -33,10 +33,10 @@ SRC = 	main.c \
 		multipath.c\
 		oneshot.c\
 		parse_tool.c\
-		parse.c\
-		pathfinding.c\
 		print_path.c\
 		unipath.c\
+		pathfinding.c\
+		parse.c\
 		eval.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
