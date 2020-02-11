@@ -1,21 +1,6 @@
 #include "lemin.h"
 
 /*
-** how_much_road :
-** calcul nb of road in the roadset
-*/
-
-static int		how_much_road(t_roadset *roads)
-{
-	int		nb;
-
-	nb = 0;
-	while (roads[nb].t)
-		nb++;
-	return (nb + 1);
-}
-
-/*
 ** fill_remaining_ant :
 ** fill int *remaining_ant with the number of ant in each road
 */
@@ -26,7 +11,7 @@ static int		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_ro
 
 	count = 0;
 	if (!(remaining_ants = malloc(sizeof(int) * nb_road)))
-		return (1);
+		return (-1);
 	while (roads[count].t)
 	{
 		remaining_ants[count] = roads[count].nb_ant;
@@ -144,8 +129,8 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 
 	count = 0;
 	nb_road = how_much_road(roads);
-	if (fill_remaining_ants(roads, remaining_ants, nb_road) == 1)
-		return (1);
+	if (fill_remaining_ants(roads, remaining_ants, nb_road) == -1)
+		return (-1);
 	while (total_ant(remaining_ants) > 0)
 	{
 		count = 0;

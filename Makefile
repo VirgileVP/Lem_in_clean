@@ -26,17 +26,17 @@ SRC = 	main.c \
 		ant_dup.c\
 		ant_kill.c\
 		ant_scout.c\
-		barr.c\
+		barr.c\ 
 		bf.c\
 		check_error_utils.c\
 		check_error.c\
 		multipath.c\
 		oneshot.c\
 		parse_tool.c\
-		print_path.c\
+		resolve_tool.c\
 		unipath.c\
-		pathfinding.c\
 		parse.c\
+		pathfinding.c\
 		eval.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))

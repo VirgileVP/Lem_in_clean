@@ -31,7 +31,6 @@ static void		update_roads_rooms( t_anthill *anthill, t_roadset *roads, int room_
 		roads[0].nb_ant = 0;
 }
 
-
 int			all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 {
 	int		count_room;
