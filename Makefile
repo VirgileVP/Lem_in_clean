@@ -6,7 +6,7 @@
 #    By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2020/02/03 13:23:29 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/11 09:25:06 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,19 +20,18 @@ OBJ_DIR		=	obj
 INC_DIR		=	inc
 
 SRC_NAME	=	main.c\
-				check_error.c\
-				parse.c\
-				room_dup.c\
-				room.c\
-				ant_conver.c\
+				ant_convert.c\
 				ant_dup.c\
 				ant_kill.c\
 				ant_scout.c\
 				barr.c\
 				bf.c\
+				check_error.c\
+				check_error_utils.c\
 				eval.c\
+				parse.c\
+				parse_tool.c\
 				pathfinding.c
-
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\
 				check_error.h\
