@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 09:38:06 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 14:54:20 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:08:20 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -103,7 +103,7 @@ static enum e_flag	parse_room(t_anthill *ah, char **entry, size_t y,
 	return (ROOM);
 }
 
-enum e_flag		(const *parse_fct[])(char **, t_prs *, size_t) = {
+enum e_flag		(*const parse_fct[])(t_anthill *, char **, size_t, t_prs *) = {
 	&parse_room,
 	&parse_tunnel
 };
@@ -112,7 +112,7 @@ enum e_flag		(const *parse_fct[])(char **, t_prs *, size_t) = {
 int					parse_map(t_anthill *ah, char **entry)
 {
 	enum e_flag		ret;
-	t_prs			*prs;
+	t_prs			prs;
 	size_t			y;
 
 
@@ -120,9 +120,12 @@ int					parse_map(t_anthill *ah, char **entry)
 	y = 0;
 	while (ret >= ROOM && ret <= TUNNEL)
 	{
-		ret = (*parse_fct[ret])(ah, entry, y, &prs);
+		ret = parse_fct[ret](ah, entry, y, &prs);
 		y += 1;
 	}
 	if (ret < STOP)
-		return (ret);
+		return (-1);
+	else if (ret == START_END_CONNECTED)
+		return (2);
+	return (1);
 }

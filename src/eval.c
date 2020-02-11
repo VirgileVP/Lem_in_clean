@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 12:17:11 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 12:17:20 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:02:09 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ static void		eval_fill(int ant, t_rclass *rc, t_pf *pf)
 		j = 0;
 		while (j < i)
 		{
-			while (rc->trep[j] + pf->end[j].len - 2 < max)
+			while (rc->trep[j] + pf->end[j].len - 2 < rc->tvalue)
 			{
 				rc->trep[j] += 1;
 				ant -= 1;
@@ -53,4 +53,5 @@ int				eval(t_pf *pf, t_rclass *rc)
 		rc->blen = rc->tlen;
 		rc->bvalue = rc->tlen;
 	}
+	return (1);
 }
