@@ -3,131 +3,119 @@
 /*                                                              /             */
 /*   parse.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 14:02:10 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 08:50:33 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/04 09:38:06 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/10 13:20:47 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static void			tabtok(char **entry)
-{
-	size_t				y;
-	size_t				x;
-
-	y = 0;
-	while (entry[y] != NULL)
-	{
-		x = 0;
-		while (entry[y][x] != '\0')
-		{
-			if (entry[y][x] == ' ' || entry[y][x] == '-')
-				entry[y][x] = -1;
-			x += 1;
-		}
-		y += 1;
-	}
-}
-
-static char			*ntoken(char *chain, size_t n)
-{
-	char				*p;
-
-	p = chain;
-	if (p == NULL || *p == '\0')
-		return (NULL);
-	while (n > 0)
-	{
-		p = ft_strchr(p, -1);
-		if (p == NULL)
-			return (NULL);
-		p += 1;
-		n -= 1;
-	}
-	return (p);
-}
-
-static enum flags	parse_room(char *entry,
-		t_anthill *ah,
-		t_room *rdata,
-		t_ul **matrix __attribute__ ((unused)))
-{
-	static int			flag = 0;
-	static int			prev = 0;
-	int					i;
-
-	i = 0;
-	if (entry[0] == '#')
-	{
-		if (entry[2] == 's')
-			flag = START;
-		else if (entry[2] == 'e')
-			flag = END;
-		return (PROCEED);
-	}
-	i = prev + 1;
-	if (!(rdata[i].name = ft_strdup(ntoken(entry, 0))))
-		return (MALLOC_ERROR);
-	rdata[i].x = ft_atoi(ntoken(entry, 1));
-	rdata[i].y = ft_atoi(ntoken(entry, 2));
-	if (flag != 0)
-	{
-		if (flag == START)
-			ah->start = i;
-		else if (flag == END)
-			ah->end = i;
-		flag = 0;
-	}
-	return (room_dup(rdata, i));
-}
-
-static enum flags		parse_tunnel(char *entry,
-		t_anthill *ah,
-		t_room *rdata,
-		t_ul **matrix)
-{
-	int					x;
-	int					xn;
-	int					y;
-	int					yn;
-	t_ul				cccc;
-
-	if ((x = room_seek(ntoken(entry, 0), rdata, ah)) == -1 ||
-			(y = room_seek(ntoken(entry, 1), rdata, ah)) == -1)
-		return (STOP);
-	cccc = BZERO >> (x % (sizeof(t_ul) * 8));
-	xn = x / (sizeof(t_ul) * 8);
-	yn = y / (sizeof(t_ul) * 8);
-	matrix[y][xn] |= cccc;
-	cccc = BZERO >> (y % (sizeof(t_ul) * 8));
-	matrix[x][yn] |= cccc; 
-	return (PROCEED);
-}
-
-enum flags				(*const parse_fct[])(char *, t_anthill *, t_room *, int **) = {
-	&parse_room,
-	&parse_tunnel
+const char			g_white_space[256] = {
+	1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0
 };
 
-int						parse(char **entry, t_anthill *ah, t_room *rdata)
+static void			parse_tok(char **entry, t_prs *prs, size_t y)
 {
-	enum status 			status;
-	enum flags				ret;
-	int						i;
+	size_t			x;
 
-	status = ROOM;
-	i = 0;
-	tabtok(entry);
-	while ((ret = parse_fct[status](entry[i], ah, rdata, ah->matrix)) != STOP)
+	x = 0;
+	prs->n = 0;
+	while (entry[y][x] != '\0' && prs->n < 3)
 	{
-		i += 1;
-		if (ret == MALLOC_ERROR || ret == DUP_ERROR)
-			return (-1);
-		if (status == ROOM && ntoken(entry[i], 2) == NULL)
-			status = TUNNEL;
+		if (g_white_space[entry[y][x]] == 0)
+		{
+			prs->p[prs->n] = &entry[y][x];
+			prs->len[prs->n] = 0;
+			while (g_white_space[entry[y][x]] == 0)
+			{
+				prs->len[prs->n] += 1;
+				x += 1;
+			}
+			prs->n += 1;
+		}
+		else
+			x += 1;
 	}
-	return (1);
+}
+
+static enum e_flag	parse_tunnel(t_anthill *ah, char **entry, size_t y,
+		t_prs *prs)
+{
+	size_t			x;
+	size_t			y;
+
+	if ((x = rseek(ah->rdata, prs->p[0])) < 0 ||
+			(y = rseek(ah->rdata, prs->p[1])) < 0)
+		return (STOP);
+	if ((x == ah->start && y == ah->end) ||
+			(x == ah->end && y == ah->start))
+		return (START_END_CONNECTED);
+	ah->matrix[x][y / 64] |= BINIT >> (y % 64);
+	ah->matrix[y][x / 64] |= BINIT >> (x % 64);
+	if (entry[y] == NULL)
+		return (STOP);
+	parse_tok(entry, prs, y);
+	if (prs->n == 2)
+		return (TUNNEL);
+	else
+		return (STOP);
+}
+
+static enum e_flag	parse_room(t_anthill *ah, char **entry, size_t y,
+		t_prs *prs)
+{
+	static size_t	n = 0;
+
+	if (entry[y][0] == '#')
+	{
+		if (ft_strcmp(entry[y], "##start") == 0)
+			ah->start = n;
+		else if (ft_strcmp(entry[y], "##end") == 0)
+			ah->end = n;
+	}
+	else
+	{
+		parse_tok(entry, prs, y);
+		if (prs->n == 2 && (ah->start == -1 || ah->end == -1))
+			return (START_END_UNDEFINIED);
+		else if (prs->n == 2)
+			return (TUNNEL);
+		ah->rdata[n].name = prs->p[0];
+		ah->rdata[n].x = ft_atoi(prs->p[1]);
+		ah->rdata[n].y = ft_atoi(prs->p[2]);
+		if (rdup_check(ah->rdata, n) == DUPLICATE)
+			return (DUPLICATE);
+		n += 1;
+	}
+	return (ROOM);
+}
+
+int					parse_map(t_anthill *ah, char **entry)
+{
+	enum e_flag		ret;
+	t_prs			*prs;
+	size_t			y;
+
+	ret = ROOM;
+	y = 0;
+	while (ret >= ROOM && ret <= TUNNEL)
+	{
+		ret = parse_fct[ret](ah, entry, y, &prs);
+		y += 1;
+	}
+	if (ret < STOP)
+		return (ret);
 }

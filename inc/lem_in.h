@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:51:45 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 09:01:07 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 13:02:07 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,8 +19,8 @@
 typedef struct			s_room
 {
 	char				*name;
-	int					x;
-	int					y;
+	char				*x;
+	char				*y;
 	size_t				nb_ant;
 }						t_room;
 

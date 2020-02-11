@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   room.c                                           .::    .:/ .      .::   */
+/*   parsing.h                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/17 14:38:02 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 14:25:24 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/04 09:37:39 by zseignon     #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/10 13:30:37 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parse.h"
+#ifndef PARSE_H
+# define PARSE_H
 
-int			room_seek(char *name, t_room *rdata, t_anthill *ah)
+# include "lem_in.h"
+
+# define BINIT				0x8000000000000000UL
+
+typedef struct			s_prs
 {
-	int			y;
+	char				*p[3];
+	size_t				len[3];
+	size_t				n;
+}						t_prs;
 
-	y = 0;
-	while (y < ah->nb)
-	{
-		if (ft_strcmp(rdata[y].name) == 0)
-			return (y);
-	}
-	return (-1);
-}
-
-int			room_dup(t_room *rdata, int i, t_anthill *ah, int max)
+enum					e_flag
 {
-}
+	DUPLICATE = -4,
+	START_END_UNDEFINIED = -3,
+	MALLOC_ERROR = -2,
+	STOP = -1,
+	ROOM = 0,
+	TUNNEL = 1,
+	START_END_CONNECTED = 2
+};
+
+enum e_flag				rdup_check(t_room *rdata, size_t n);
+
+#endif
