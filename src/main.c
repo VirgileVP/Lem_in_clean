@@ -80,7 +80,9 @@ int				main(int argc __attribute__ ((unused)),
 {
 	t_anthill	data;
 	t_read_room	read;
+	int			parse_ret;
 
+	parse_ret = 0;
 	ft_bzero(&read, sizeof(t_read_room));
 	ft_bzero(&data, sizeof(t_anthill));
 	if (read_error(&read) == -1)
@@ -88,9 +90,17 @@ int				main(int argc __attribute__ ((unused)),
 	print_read(&read);
 	if (data_init(&data, read.nb_room, ft_atoi(read.room[0])) == -1)
 		main_free(&data, &read, 0);
-	if (parse(&read.room[1], &data, data.room_data) == -1)
+	parse_ret = parse(&read.room[1], &data, data.room_data);
+	if (parse_ret == -1)
 		main_free(&data, &read, 1);
-	/*CALL PATH_FINDING FUNCTION*/
+	else if (parse_ret == 2)
+	{
+		oneshot(&data);
+		main_free(&data, &read, 0);
+	}
+	if (pathfinding(&data, &roadset) != 1)
+		main_free(&data, &read, 0)
+	which_resolution(&data, &roadset);
 	main_free(&data, &read, 0);
 	return (0);
 }

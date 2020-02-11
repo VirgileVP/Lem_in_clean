@@ -59,6 +59,9 @@ int						parse(char **entry, t_anthill *ah, t_room *rdata);
 int						read_error(t_read_room *pars);
 int						pathfinding(t_anthill *ah, t_roadset **rs);
 void					print_path(int ant, char *room);
+int						how_much_road(t_roadset *roads);
+int						which_resolution(t_anthill *anthill, t_roadset *roads);
+
 
 
 #endif

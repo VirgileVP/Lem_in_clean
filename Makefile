@@ -33,7 +33,7 @@ SRC = 	main.c \
 		multipath.c\
 		oneshot.c\
 		parse_tool.c\
-		print_path.c\
+		resolve_tool.c\
 		unipath.c\
 		parse.c\
 		pathfinding.c\
