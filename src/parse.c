@@ -113,7 +113,7 @@ int					parse_map(t_anthill *ah, char **entry)
 	y = 0;
 	while (ret >= ROOM && ret <= TUNNEL)
 	{
-		ret = parse_fct[ret](ah, entry, y, &prs);
+		ret = parse_fct[ret](ah, entry, y, &prs); //PARSE_FCT MISSING
 		y += 1;
 	}
 	if (ret < STOP)

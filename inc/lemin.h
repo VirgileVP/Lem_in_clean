@@ -20,8 +20,8 @@
 typedef struct			s_room
 {
 	char				*name;
-	char				*x;
-	char				*y;
+	int					x;
+	int					y;
 	size_t				nb_ant;
 }						t_room;
 
