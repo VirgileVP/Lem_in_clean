@@ -6,7 +6,7 @@
 #    By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2020/02/11 09:25:06 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/11 10:50:26 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -31,7 +31,11 @@ SRC_NAME	=	main.c\
 				eval.c\
 				parse.c\
 				parse_tool.c\
-				pathfinding.c
+				pathfinding.c\
+				multipath.c\
+				oneshot.c\
+				print_path.c\
+				unipath.c
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	lem_in.h\
 				check_error.h\
@@ -53,7 +57,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(LIB_FLAGS) $< -o $@
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INC)
-	@if test ! -d $(OBJ_DIR); then $(MKDIRP) $(OBJ_DIR); fi
+	if test ! -d $(OBJ_DIR); then $(MKDIRP) $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) $(INC_FLAG) -c $< -o $@
 
 
