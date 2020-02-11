@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:05:53 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 11:49:35 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 12:31:04 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,8 +33,8 @@ static t_pf		*pf_init(t_anthill *ah)
 	pf->ant->barr[i.xn] |= i.cccc;
 	pf->end = NULL;
 	pf->xend = 0;
-	pf->start = ah->start;
-	pf->end = ah->end;
+	pf->start_index = ah->start;
+	pf->end_index = ah->end;
 	pf->matrix = ah->matrix;
 	pf->xlen = ah->xlen;
 	pf->lemin = ah->nb_ant;

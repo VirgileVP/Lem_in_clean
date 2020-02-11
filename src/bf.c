@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:11:50 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 12:51:56 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:25:05 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,25 +19,27 @@ static int		rclass_convert(t_rclass *rc, t_roadset **rs, t_pf *pf)
 	size_t			x;
 	t_rlink			*tmp;
 
-	if (!(*rs = (t_roadset *)malloc(sizeof(t_roadset) * rc->blen)))
+	if (!(*rs = (t_roadset *)malloc(sizeof(t_roadset) * rc->blen + 1)))
 		return (MALLOC_ERROR);
 	y = 0;
 	while (y < rc->blen)
 	{
 		(*rs)[y].len = pf->end[rc->best[y]].len;
-			if (!((*rs)[y].t = (t_rdata *)malloc(sizeof(int) * (*rs)[y].len)))
+		if (!((*rs)[y].t = (t_rdata *)malloc(sizeof(t_rdata) * (*rs)[y].len)))
 				return (MALLOC_ERROR);
 		x = 0;
 		tmp = pf->end[rc->best[y]].root;
 		while (x < (*rs)[y].len)
 		{
 			(*rs)[y].t[x].n = tmp->n;
+			(*rs)[y].t[x].ant_index = 0;
 			x += 1;
 			tmp = tmp->next;
 		}
-		//(*rs)[y].ant = rc->rep[y];
+		(*rs)[y].nb_ant = rc->brep[y];
 		y += 1;
 	}
+	(*rs)[y].t = NULL;
 	return (1);
 }
 

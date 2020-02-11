@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 09:38:06 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 13:20:47 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:21:16 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,11 @@ const char			g_white_space[256] = {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0
+};
+
+enum e_flag			(const *g_parse_fct)(char **, t_prs *prs, size_t y)[] = {
+	&parse_room,
+	&parse_tunnel
 };
 
 static void			parse_tok(char **entry, t_prs *prs, size_t y)
@@ -54,17 +59,17 @@ static void			parse_tok(char **entry, t_prs *prs, size_t y)
 static enum e_flag	parse_tunnel(t_anthill *ah, char **entry, size_t y,
 		t_prs *prs)
 {
-	size_t			x;
-	size_t			y;
+	size_t			i;
+	size_t			j;
 
-	if ((x = rseek(ah, ah->room_data, prs->p[0])) < 0 ||
-			(y = rseek(ah, ah->room_data, prs->p[1])) < 0)
+	if ((i = rseek(ah, ah->room_data, prs->p[0])) < 0 ||
+			(j = rseek(ah, ah->room_data, prs->p[1])) < 0)
 		return (STOP);
-	if ((x == ah->start && y == ah->end) ||
-			(x == ah->end && y == ah->start))
+	if ((i == ah->start && j == ah->end) ||
+			(i == ah->end && j == ah->start))
 		return (START_END_CONNECTED);
-	ah->matrix[x][y / 64] |= BINIT >> (y % 64);
-	ah->matrix[y][x / 64] |= BINIT >> (x % 64);
+	ah->matrix[i][j / 64] |= BINIT >> (y % 64);
+	ah->matrix[j][i / 64] |= BINIT >> (x % 64);
 	if (entry[y] == NULL)
 		return (STOP);
 	parse_tok(entry, prs, y);
@@ -113,7 +118,7 @@ int					parse_map(t_anthill *ah, char **entry)
 	y = 0;
 	while (ret >= ROOM && ret <= TUNNEL)
 	{
-		ret = parse_fct[ret](ah, entry, y, &prs); //PARSE_FCT MISSING
+		ret = g_parse_fct[ret](ah, entry, y, &prs);
 		y += 1;
 	}
 	if (ret < STOP)

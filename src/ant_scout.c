@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:06:30 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 11:47:32 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 12:33:21 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,8 +33,8 @@ static void		ant_end(t_pf *pf)
 	}
 	else
 	{
-		//tmp->next = pf->end;
-		//tmp->prev = pf->prev;
+		tmp->next = pf->end;
+		tmp->prev = pf->end->prev;
 		pf->end->prev->next = tmp;
 		pf->end->prev = tmp;
 		pf->end = tmp;
