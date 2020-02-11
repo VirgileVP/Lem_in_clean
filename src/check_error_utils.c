@@ -1,10 +1,11 @@
 #include "lemin.h"
 #include "check_error.h"
 
-int		    free_temp_line(char *temp, char * line, int ret)
+int		    free_temp_line(char *temp, char *line, int ret)
 {
-	ft_strdel(&temp);
+	ft_strdel(&temp);//	ft_putstr("free_line\n");
 	ft_strdel(&line);
+	//ft_putstr("free_ok\n");
 	return (ret);
 }
 
@@ -28,27 +29,6 @@ int			count_space(char *line)
 		index++;
 	}
 	return (count);
-}
-
-/*
-** check_definition:
-**
-** run check_room and check_tubes
-*/
-
-int		    check_definition
-(t_read_room *pars, t_check_bad_order *order, int index)
-{
-	if (nmatch(pars->room[index], "* * *") == 1)
-	{
-		if (check_room(pars->room[index], order->tube_pars) == -1)
-			return (-1);
-		pars->nb_room++;
-	}
-	else if (nmatch(pars->room[index], "*-*") == 1
-    && check_tubes(pars->room[index]) == -1)
-		return (-1);
-	return (0);
 }
 
 /*
@@ -76,6 +56,29 @@ int			check_room(char *line, int tube_pars)
 		return (-1);
 	free(split);
 	return (1);
+}
+
+/*
+** check_definition:
+**
+** run check_room and check_tubes
+*/
+
+int		    check_definition
+(t_read_room *pars, t_check_bad_order *order, int index)
+{
+	ft_putstr("in check_definition\n");
+	if (nmatch(pars->room[index], "* * *") == 1)
+	{
+		if (check_room(pars->room[index], order->tube_pars) == -1)
+			return (-1);
+		pars->nb_room++;
+	}
+	else if (nmatch(pars->room[index], "*-*") == 1
+    && check_tubes(pars->room[index]) == -1)
+		return (-1);
+	ft_putstr("END check_definition\n\n");
+	return (0);
 }
 
 /*

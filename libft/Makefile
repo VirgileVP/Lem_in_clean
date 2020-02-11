@@ -87,7 +87,8 @@ SRC_NAME	=	ft_atoi.c\
 				ft_data_cat.c\
 				ft_data_free.c\
 				ft_read_free.c\
-				nmatch.c
+				nmatch.c\
+				get_next_line.c
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	libft.h

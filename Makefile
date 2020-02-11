@@ -26,7 +26,7 @@ SRC = 	main.c \
 		ant_dup.c\
 		ant_kill.c\
 		ant_scout.c\
-		barr.c\ 
+		barr.c\
 		bf.c\
 		check_error_utils.c\
 		check_error.c\

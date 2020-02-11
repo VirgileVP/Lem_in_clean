@@ -1,6 +1,6 @@
 #include "lemin.h"
 
-void		one_shot(t_anthill *anthill)
+void		oneshot(t_anthill *anthill)
 {
 	int		count;
 

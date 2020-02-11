@@ -29,6 +29,7 @@ typedef struct			s_read_room
 {
 	char				**room;
 	int					nb_room;
+	int					nb_line;
 }						t_read_room;
 
 typedef struct			s_anthill
@@ -55,12 +56,15 @@ typedef struct			s_roadset
 	int					nb_ant;		//number of ant to send
 }						t_roadset;
 
-int						parse(char **entry, t_anthill *ah, t_room *rdata);
+int						parse_map(t_anthill *ah, char **entry);
 int						read_error(t_read_room *pars);
 int						pathfinding(t_anthill *ah, t_roadset **rs);
 void					print_path(int ant, char *room);
 int						how_much_road(t_roadset *roads);
 int						which_resolution(t_anthill *anthill, t_roadset *roads);
+int						multi_path(t_anthill *anthill, t_roadset *roads);
+int						all_ant_one_path(t_anthill *anthill, t_roadset *roads);
+void					oneshot(t_anthill *anthill);
 
 
 

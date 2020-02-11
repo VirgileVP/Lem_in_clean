@@ -134,4 +134,15 @@ t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int						nmatch(char *s1, char *s2);
 size_t					ft_count_words(char *s, char c);
 
+
+typedef struct			s_gnl
+{
+	struct s_gnl		*next;
+	char				*actual;
+	char				*temp;
+	int					current_fd;
+}						t_gnl;
+
+int				get_next_line(int fd, char **line);
+
 #endif
