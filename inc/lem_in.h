@@ -40,12 +40,18 @@ typedef struct			s_anthill
 	int					end;
 }						t_anthill;
 
+typedef struct			s_rdata
+{
+	int					n;			//room index
+	int					ant_index;	//ant index
+}						t_rdata;
+
 typedef struct			s_roadset
 {
-	int					*t;
-	size_t				len;
-	int					ant;
-}						t_roadset;
+	t_rdata				*t;
+	size_t				len;		//size of the road
+	int					nb_ant;		//number of ant to send
+}						t_roadset
 
 int						parse(char **entry, t_anthill *ah, t_room *rdata);
 int						read_error(t_read_room *pars);
