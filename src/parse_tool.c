@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parsing.h"
 
 static int		namecmp(const char *s1, const char *s2)
 {
@@ -23,14 +23,15 @@ static int		namecmp(const char *s1, const char *s2)
 	return (ft_memcmp(s1, s2, ss1 <= ss2 ? ss1 : ss2));
 }
 
-int				rseek(t_room *rdata, char *p)
+int				rseek(t_anthill *ah, t_room *rdata, char *p)
 {
 	size_t			n;
 
 	n = 0;
-	while (rdata[n] != NULL)
+	//while (rdata[n] != NULL)
+	while (n < ah->nb_room)
 	{
-		if (namecmp(rdata[n], p) == 0)
+		if (namecmp(rdata[n].name, p) == 0)
 			return ((int)n);
 		n += 1;
 	}
@@ -44,7 +45,7 @@ enum e_flag		rdup_check(t_room *rdata, size_t n)
 	y = 0;
 	while (y < n)
 	{
-		if (namecmp(rdata[y], rdata[n]) != 0 ||
+		if (namecmp(rdata[y].name, rdata[n].name) != 0 ||
 				(rdata[y].x == rdata[n].x && rdata[y].y == rdata[n].y))
 			return (DUPLICATE);
 		y += 1;

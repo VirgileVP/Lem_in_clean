@@ -7,7 +7,7 @@ void		one_shot(t_anthill *anthill)
 	count = 1;
 	while(count <= anthill->nb_ant)
 	{
-		print_path(count, anthill->room_data[end].name);
+		print_path(count, anthill->room_data[anthill->end].name);
 		if (count == anthill->nb_ant)
 			ft_putchar('\n');
 		else

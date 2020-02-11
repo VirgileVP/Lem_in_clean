@@ -38,4 +38,7 @@ enum					e_flag
 
 enum e_flag				rdup_check(t_room *rdata, size_t n);
 
+int						rseek(t_anthill *ah, t_room *rdata, char *p);
+
+
 #endif

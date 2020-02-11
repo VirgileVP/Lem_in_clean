@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parsing.h"
 
 const char			g_white_space[256] = {
 	1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -57,8 +57,8 @@ static enum e_flag	parse_tunnel(t_anthill *ah, char **entry, size_t y,
 	size_t			x;
 	size_t			y;
 
-	if ((x = rseek(ah->rdata, prs->p[0])) < 0 ||
-			(y = rseek(ah->rdata, prs->p[1])) < 0)
+	if ((x = rseek(ah, ah->room_data, prs->p[0])) < 0 ||
+			(y = rseek(ah, ah->room_data, prs->p[1])) < 0)
 		return (STOP);
 	if ((x == ah->start && y == ah->end) ||
 			(x == ah->end && y == ah->start))
@@ -93,10 +93,10 @@ static enum e_flag	parse_room(t_anthill *ah, char **entry, size_t y,
 			return (START_END_UNDEFINIED);
 		else if (prs->n == 2)
 			return (TUNNEL);
-		ah->rdata[n].name = prs->p[0];
-		ah->rdata[n].x = ft_atoi(prs->p[1]);
-		ah->rdata[n].y = ft_atoi(prs->p[2]);
-		if (rdup_check(ah->rdata, n) == DUPLICATE)
+		ah->room_data[n].name = prs->p[0];
+		ah->room_data[n].x = ft_atoi(prs->p[1]);
+		ah->room_data[n].y = ft_atoi(prs->p[2]);
+		if (rdup_check(ah->room_data, n) == DUPLICATE)
 			return (DUPLICATE);
 		n += 1;
 	}

@@ -49,7 +49,7 @@ int				eval(t_pf *pf, t_rclass *rc)
 		free(rc->best);
 		free(rc->brep);
 		rc->best = ft_memdup(rc->tmp, sizeof(int) * rc->tlen);
-		rc->brep = ft_memdup(tc->trep, sizeof(int) * rc->tlen);
+		rc->brep = ft_memdup(rc->trep, sizeof(int) * rc->tlen);
 		rc->blen = rc->tlen;
 		rc->bvalue = rc->tlen;
 	}

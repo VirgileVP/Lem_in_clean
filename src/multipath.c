@@ -1,18 +1,18 @@
 #include "lemin.h"
 
 /*
-** nb_road :
+** how_much_road :
 ** calcul nb of road in the roadset
 */
 
-static int		nb_road(t_roadset *roads)
+static int		how_much_road(t_roadset *roads)
 {
 	int		nb;
 
 	nb = 0;
-	while (roads[nb])
-		nb ++;
-	return (nb + 1)
+	while (roads[nb].t)
+		nb++;
+	return (nb + 1);
 }
 
 /*
@@ -20,16 +20,16 @@ static int		nb_road(t_roadset *roads)
 ** fill int *remaining_ant with the number of ant in each road
 */
 
-static int		fill_remaining_ants(t_roadset *road, int *remaining_ants, int nb_road)
+static int		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_road)
 {
 	int		count;
 
 	count = 0;
-	if (!(remaining_ants = malloc(sizeof(int) * nb_road)));
+	if (!(remaining_ants = malloc(sizeof(int) * nb_road)))
 		return (1);
-	while (road[count])
+	while (roads[count].t)
 	{
-		remaining_ants[count] = road[count]->nb_ants;
+		remaining_ants[count] = roads[count].nb_ant;
 		count++;
 	}
 	return (0);
@@ -83,57 +83,57 @@ static int	which_ant(int *remaining_ants, int road_index)
 ** if start == 1, move 1st ant out start room
 */
 
-static int	is_starting(t_rdata *road_data, int index, int *remaining_ants, t_anthill *anthill)
+static int	is_starting(t_roadset *roads, int index, int *remaining_ants, t_anthill *anthill)
 {
 	int		count;
 	int		start;
 
 	count = 0;
 	start = 1;
-	while (road_data[count])
+	while (count < roads[index].len)
 	{
-		if (road_data[count].ant_index != 0)
+		if (roads[index].t[count].ant_index != 0)
 			start = 0;
 		count++;
 	}
 	if (start == 1)
 	{
-	    road[index]->t[1].ant_index = which_ant(remaining_ants, index) + 1;
-		print_path(roads[index]->t[1].ant_index, anthill->room_data[roads[index]->t[1].ant_index].name);
+	    roads[index].t[1].ant_index = which_ant(remaining_ants, index) + 1;
+		print_path(roads[index].t[1].ant_index, anthill->room_data[roads[index].t[1].ant_index].name);
 	}
 	return (start);
 }
 
-/* 
+/*
 ** update_roads_rooms :
 ** browse all room in a road, move ants and print step;
 */
 
-static void	update_roads_rooms( t_anthill *anthill, t_roadsset *roads, int *remaining_ants, int index)
+static void	update_roads_rooms( t_anthill *anthill, t_roadset *roads, int *remaining_ants, int index)
 {
 	int		count;
 
 	count = 0;
-	if (is_starting(road[index]->t, index, remaining_ants, anthill) == 1);
-		return (0);
-	while (roads[index]->t[count])
+	if (is_starting(roads, index, remaining_ants, anthill) == 1)
+		return;
+	while (count < roads[index].len)
 	{
-		if (roads[index]->t[count].ant_index != 0)
+		if (roads[index].t[count].ant_index != 0)
 		{
-			roads[index]->t[count].ant_index++;
-			print_path(roads[index]->t[count].ant_index, anthill->room_data[roads[index]->t[count].ant_index].name);
-			if (roads[index]->t[count].ant_index != which_ant(remaining_ants, count + 1) && index != nb_road(roads) - 1)
+			roads[index].t[count].ant_index++;
+			print_path(roads[index].t[count].ant_index, anthill->room_data[roads[index].t[count].ant_index].name);
+			if (roads[index].t[count].ant_index != which_ant(remaining_ants, count + 1) && index != how_much_road(roads) - 1)
 				ft_putchar(' ');
-			if (roads[index]->t[count].ant_index == 2 && roads[index]->t[count + 1].ant_index == 0)
+			if (roads[index].t[count].ant_index == 2 && roads[index].t[count + 1].ant_index == 0)
 			{
-				roads[index]->t[count + 1].ant_index = 1;
+				roads[index].t[count + 1].ant_index = 1;
 				break;
 			}
 		}
 		count++;
 	}
-	if (roads[index]->t[roads[index]->len - 1] == which_ant(remaining_ants, count + 1))
-		roads[index]->nb_ant = 0;
+	if (roads[index].t[roads[index].len - 1].ant_index == which_ant(remaining_ants, count + 1))
+		roads[index].nb_ant = 0;
 }
 
 int			multi_path(t_anthill *anthill, t_roadset *roads)
@@ -143,15 +143,15 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 	int		*remaining_ants;
 
 	count = 0;
-	nb_road = nb_road(roads);
-	if (fill_remaining_ants(road, remaining_ants, nb_road) == 1);
+	nb_road = how_much_road(roads);
+	if (fill_remaining_ants(roads, remaining_ants, nb_road) == 1)
 		return (1);
 	while (total_ant(remaining_ants) > 0)
 	{
 		count = 0;
 		while (count < nb_road)
 		{
-			if (roads[count].nb_ants != 0)
+			if (roads[count].nb_ant != 0)
 				update_roads_rooms(anthill, roads, remaining_ants, count);
 			count++;
 		}

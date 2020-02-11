@@ -30,14 +30,14 @@ SRC = 	main.c \
 		bf.c\
 		check_error_utils.c\
 		check_error.c\
-		eval.c\
 		multipath.c\
 		oneshot.c\
 		parse_tool.c\
 		parse.c\
 		pathfinding.c\
 		print_path.c\
-		unipath.c
+		unipath.c\
+		eval.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))

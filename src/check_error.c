@@ -81,9 +81,8 @@ int						check_error(t_read_room *pars)
 	{
 		if (pars->room[index][0] == ' ' || pars->room[index][0] == 'L')
 			return (-1);
-		if (pars->room[index][0] == '#')
-			if (check_sharp(pars, index, order) == -1)
-				return (-1);
+		if (pars->room[index][0] == '#' && check_sharp(pars, index, order) == -1)
+			return (-1);
 		else if (check_definition(pars, order, index) == -1)
 			return (-1);
 		else

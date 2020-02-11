@@ -57,5 +57,7 @@ typedef struct			s_roadset
 int						parse(char **entry, t_anthill *ah, t_room *rdata);
 int						read_error(t_read_room *pars);
 int						pathfinding(t_anthill *ah, t_roadset **rs);
+void					print_path(int ant, char *room);
+
 
 #endif
