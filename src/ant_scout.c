@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:06:30 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 14:37:09 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 11:31:51 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,6 +50,7 @@ static int		ant_move(t_pf *pf, t_bindex *i)
 	pf->ant->r->n = i->x;
 	pf->ant->len += 1;
 	pf->ant->barr[i->xn] |= i->cccc;
+//	printf("move done\n");
 	return (1);
 }
 
@@ -115,24 +116,31 @@ int				ant_scout(t_pf *pf)
 	while (pf->xant > 0)
 	{
 		ft_memset(&i, 0, sizeof(t_bindex));
-		barr_chr(&i, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen);
-		ft_memcpy(&n, &i, sizeof(t_bindex));
-		n.cccc >>= 1;
-		n.x += 1;
-		if (barr_chr(&n, pf->matrix[pf->ant->r->n], pf->ant->barr, pf->xlen) == 1)
-		{
-			if (ant_multi(pf, &i, &n) == MALLOC_ERROR)
-				return (MALLOC_ERROR);
-		}
+		if (barr_chr(&i, pf->matrix[pf->ant->r->n],
+				pf->ant->barr, pf->xlen) == 0)
+			ant_kill(pf);
 		else
 		{
-			if (ant_move(pf, &i) == MALLOC_ERROR)
-				return (MALLOC_ERROR);
+//			printf("connextion found\n");
+			ft_memcpy(&n, &i, sizeof(t_bindex));
+			n.cccc >>= 1;
+			n.x += 1;
+			if (barr_chr(&n, pf->matrix[pf->ant->r->n],
+						pf->ant->barr, pf->xlen) == 1)
+			{
+				if (ant_multi(pf, &i, &n) == MALLOC_ERROR)
+					return (MALLOC_ERROR);
+			}
+			else
+			{
+				if (ant_move(pf, &i) == MALLOC_ERROR)
+					return (MALLOC_ERROR);
+			}
+			if (i.x == pf->end_index)
+				ant_end(pf);
+			else
+				pf->ant = pf->ant->next;
 		}
-		if (i.x == pf->end_index)
-			ant_end(pf);
-		else
-			pf->ant = pf->ant->next;
 	}
 	if (pf->xend == 0)
 		return (NO_PATH);

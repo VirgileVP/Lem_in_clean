@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:11:50 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 14:25:05 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 11:12:14 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,11 +24,11 @@ static int		rclass_convert(t_rclass *rc, t_roadset **rs, t_pf *pf)
 	y = 0;
 	while (y < rc->blen)
 	{
-		(*rs)[y].len = pf->end[rc->best[y]].len;
+		(*rs)[y].len = pf->tend[rc->best[y]].len;
 		if (!((*rs)[y].t = (t_rdata *)malloc(sizeof(t_rdata) * (*rs)[y].len)))
 				return (MALLOC_ERROR);
 		x = 0;
-		tmp = pf->end[rc->best[y]].root;
+		tmp = pf->tend[rc->best[y]].root;
 		while (x < (*rs)[y].len)
 		{
 			(*rs)[y].t[x].n = tmp->n;
@@ -63,13 +63,13 @@ static int		bf(t_pf *pf, t_rclass *rclass, int i)
 	check = 1;
 	while (n < pf->xend)
 	{
-		if (barr_cmp(pf->end[n].barr, pf->end[n].barr, pf->xlen) == 1)
+		if (barr_cmp(pf->tend[n].barr, pf->tend[n].barr, pf->xlen) == 1)
 		{
 			check = 0;
 			rclass->tmp[i] = n;
-			barr_add(pf->end[n].barr, pf->end[n].barr, pf->xlen);
+			barr_add(pf->tend[n].barr, pf->end[n].barr, pf->xlen);
 			bf(pf, rclass, i + 1);
-			barr_remove(pf->end[n].barr, rclass->barr, pf->xlen);
+			barr_remove(pf->tend[n].barr, rclass->barr, pf->xlen);
 		}
 		n += 1;
 	}

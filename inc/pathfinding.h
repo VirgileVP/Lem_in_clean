@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/18 10:00:05 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 13:30:37 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 11:13:35 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,6 +64,7 @@ typedef struct				s_pf
 	struct s_ant			*ant;
 	size_t					xant;
 	struct s_ant			*end;
+	struct s_ant			*tend;
 	size_t					xend;
 	int						start_index;
 	int						end_index;
@@ -73,6 +74,7 @@ typedef struct				s_pf
 }							t_pf;
 
 void						ant_kill(t_pf *pf);
+void						end_kill(t_pf *pf);
 int							ant_dup(t_pf *pf);
 int							ant_scout(t_pf *pf);
 int							ant_convert(t_pf *pf);
