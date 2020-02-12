@@ -111,9 +111,9 @@ int				main(int argc __attribute__ ((unused)),
 		oneshot(&data);
 		main_free(&data, &read, 0);
 	}
-//	if (pathfinding(&data, &roadset) != 1)
-//		main_free(&data, &read, 0);
-//	which_resolution(&data, roadset);
+	if (pathfinding(&data, &roadset) != 1)
+		main_free(&data, &read, 0);
+	which_resolution(&data, roadset);
 	main_free(&data, &read, 0);
 	return (0);
 }

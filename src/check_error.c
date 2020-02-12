@@ -124,7 +124,6 @@ int						read_error(t_read_room *pars)
 	}
 	if (ret == 0)
 		return (free_temp_line(temp, line, -1));
-	printf("coucou\n\n");
 	if (!(pars->room = ft_strsplit(temp, '\n')) || check_error(pars) == -1)
 		return (-1);
 	ft_strdel(&temp);
