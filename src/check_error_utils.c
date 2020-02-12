@@ -3,9 +3,8 @@
 
 int		    free_temp_line(char *temp, char *line, int ret)
 {
-	ft_strdel(&temp);//	ft_putstr("free_line\n");
-	ft_strdel(&line);
-	//ft_putstr("free_ok\n");
+	ft_memdel((void**)&temp);
+	ft_memdel((void**)&line);
 	return (ret);
 }
 
@@ -67,7 +66,6 @@ int			check_room(char *line, int tube_pars)
 int		    check_definition
 (t_read_room *pars, t_check_bad_order *order, int index)
 {
-	ft_putstr("in check_definition\n");
 	if (nmatch(pars->room[index], "* * *") == 1)
 	{
 		if (check_room(pars->room[index], order->tube_pars) == -1)
@@ -77,7 +75,6 @@ int		    check_definition
 	else if (nmatch(pars->room[index], "*-*") == 1
     && check_tubes(pars->room[index]) == -1)
 		return (-1);
-	ft_putstr("END check_definition\n\n");
 	return (0);
 }
 

@@ -105,12 +105,15 @@ int						read_error(t_read_room *pars)
 {
 	char				*temp;
 	char				*line;
+	int					ret;
 
 	if (!(temp = ft_strnew(0)))
 		return (-1);
+	ret = 0;
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
+		ret = (ft_strcmp(line, "\0") == 0)? 0 : 1;
 		if (!(temp = ft_strjoin(temp, line)))
 			return (free_temp_line(temp, line, -1));
 		if (!(temp = ft_strjoin(temp, "\n")))
@@ -119,12 +122,11 @@ int						read_error(t_read_room *pars)
 		pars->nb_line++;
 		line = NULL;
 	}
+	if (ret == 0)
+		return (free_temp_line(temp, line, -1));
+	printf("coucou\n\n");
 	if (!(pars->room = ft_strsplit(temp, '\n')) || check_error(pars) == -1)
-	{
-		ft_memdel((void**)pars);
-		ft_strdel(&temp);
 		return (-1);
-	}
 	ft_strdel(&temp);
 	return (0);
 }
