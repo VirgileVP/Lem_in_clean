@@ -2,10 +2,15 @@
 
 void	print_path(int ant, char *room)
 {
+	int	count;
+
+	count = 0;
 	ft_putchar('L');
 	ft_putnbr(ant);
 	ft_putchar('-');
-	ft_putstr(room);
+	while(room[count] != ' ')
+		count++;
+	write(1, room, count);
 }
 
 /*
@@ -18,10 +23,9 @@ int		how_much_road(t_roadset *roads)
 	int		nb;
 
 	nb = 0;
-	//printf("|%d|\n", roads[nb].t[0].n);
 	while (roads[nb].t)
 		nb++;
-	//printf("\nhow_much_road = %d\n", nb);
+	//printf("\nRoadset contain %d roads\n", nb);
 	return (nb + 1);
 }
 
