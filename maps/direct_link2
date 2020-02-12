@@ -1,0 +1,16 @@
+100000
+##start
+salle1 1 2
+salle2 4 5
+salle3 5 6
+salle4 7 6
+salle5 4 3
+salle6 7 9
+##end
+salle7 3 6
+salle1-salle2
+salle2-salle3
+salle1-salle4
+salle4-salle5
+salle5-salle6
+salle1-salle7

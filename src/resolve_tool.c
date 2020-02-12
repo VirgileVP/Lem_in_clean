@@ -18,8 +18,10 @@ int		how_much_road(t_roadset *roads)
 	int		nb;
 
 	nb = 0;
+	//printf("|%d|\n", roads[nb].t[0].n);
 	while (roads[nb].t)
 		nb++;
+	//printf("\nhow_much_road = %d\n", nb);
 	return (nb + 1);
 }
 
