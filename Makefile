@@ -6,7 +6,7 @@
 #    By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/09 13:35:26 by zseignon     #+#   ##    ##    #+#        #
-#    Updated: 2020/02/11 10:50:26 by zseignon    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/12 07:13:28 by zseignon    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -48,6 +48,7 @@ $(NAME):$(OBJ) $(LIB)
 	$(CC) $(CFLAGS) -L libft -l ft $^ -o $@
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
+	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) $(INCLUDES) -c $^ -o $@
 
 $(LIB):
@@ -55,10 +56,11 @@ $(LIB):
 
 clean:
 		make clean -C libft
+		rm -rf $(OBJ_DIR)
 
 fclean:clean
 		make fclean -C libft
-		rm -rf $(OBJ)
+		rm -rf $(OBJ_DIR)
 		rm -f $(NAME)
 
 re:fclean
