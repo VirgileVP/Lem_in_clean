@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:58:22 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 11:56:47 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:43:43 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,7 +83,7 @@ void			main_free(t_anthill *data, t_read_room *read, int reason)
 	}
 	if (reason == 1)
 		ft_putendl("ERROR");
-	exit (1);
+	exit(1);
 }
 
 int				main(int argc __attribute__ ((unused)),
@@ -113,8 +113,7 @@ int				main(int argc __attribute__ ((unused)),
 	}
 	if (pathfinding(&data, &roadset) != 1)
 		main_free(&data, &read, 0);
-	printf("%d", roadset[0].nb_ant);
 	which_resolution(&data, roadset);
-	main_free(&data, &read, 0);
+//	main_free(&data, &read, 0);
 	return (0);
 }

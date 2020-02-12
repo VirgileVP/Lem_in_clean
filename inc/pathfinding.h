@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/18 10:00:05 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 11:13:35 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:11:07 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,8 +18,8 @@
 
 # define BINIT				0x8000000000000000UL
 
-# define MALLOC_ERROR		-2
-# define NO_PATH			-1
+# define MALLOC_ERROR		-1
+# define NO_PATH			-2
 # define STOP				0
 # define CONTINUE			1
 
