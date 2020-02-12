@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:58:22 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 09:47:14 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 10:53:04 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,6 +51,8 @@ int		data_init(t_anthill *data, int nb_room, int nb_lemin)
 			return(-1);
 		count += 1;
 	}
+	data->start = -1;
+	data->end = -1;
 	data->nb_room = nb_room;
 	return (1);
 }
@@ -98,7 +100,7 @@ int				main(int argc __attribute__ ((unused)),
 	if (read_error(&read) == -1)
 		main_free(&data, &read, 1);
 	print_read(&read);
-	ft_putstr("after print_read\n");
+//	ft_putstr("after print_read\n");
 	if (data_init(&data, read.nb_room, ft_atoi(read.room[0])) == -1)
 		main_free(&data, &read, 0);
 	parse_ret = parse_map(&data, &read.room[1]);

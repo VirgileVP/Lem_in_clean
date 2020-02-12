@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 09:38:06 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 09:58:27 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 10:51:52 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 const char			g_white_space[256] = {
 	1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -44,7 +44,7 @@ static void			parse_tok(char **entry, t_prs *prs, size_t y)
 				prs->len[prs->n] += 1;
 				x += 1;
 			}
-			printf("%zu | prs->p[%zu] = \"%s\"\n", y, prs->n, prs->p[prs->n]);
+	//		printf("%zu | prs->p[%zu] = \"%s\"\n", y, prs->n, prs->p[prs->n]);
 			prs->n += 1;
 		}
 		else
@@ -126,12 +126,12 @@ int					parse_map(t_anthill *ah, char **entry)
 	}
 	if (ret < STOP)
 	{
-		if (ret == DUPLICATE)
-			ft_putstr("duplicate error\n");
-		if (ret == START_END_UNDEFINIED)
-			ft_putstr("start and end not defined\n");
-		if (ret == MALLOC_ERROR)
-			ft_putstr("malloc_error\n");
+//		if (ret == DUPLICATE)
+//			ft_putstr("duplicate error\n");
+//		if (ret == START_END_UNDEFINIED)
+//			ft_putstr("start and end not defined\n");
+//		if (ret == MALLOC_ERROR)
+//			ft_putstr("malloc_error\n");
 		return (-1);
 	}
 	else if (ret == START_END_CONNECTED)

@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 09:41:11 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 09:49:52 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 10:52:05 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,11 +42,11 @@ enum e_flag		rdup_check(t_room *rdata, size_t n)
 	size_t			y;
 
 	y = 0;
-	printf("name[n] = \"%s\" | %d | %d\n", rdata[n].name, rdata[n].x, rdata[n].y);
+//	printf("name[n] = \"%s\" | %d | %d\n", rdata[n].name, rdata[n].x, rdata[n].y);
 	while (y < n)
 	{
-		printf("name[y] = \"%s\"\n", rdata[y].name);
-		if (namecmp(rdata[y].name, rdata[n].name) != 0 ||
+//		printf("name[y] = \"%s\" | %d | %d\n", rdata[y].name, rdata[y].x, rdata[y].y);
+		if (namecmp(rdata[y].name, rdata[n].name) == 0 ||
 				(rdata[y].x == rdata[n].x && rdata[y].y == rdata[n].y))
 			return (DUPLICATE);
 		y += 1;
