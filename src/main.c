@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/09 13:58:22 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 14:36:42 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 09:47:14 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,6 @@ void			print_read(t_read_room *read)
 	while (read->room[index])
 	{
 		ft_putendl(read->room[index]);
-		ft_putchar('\n');
 		index++;
 	}
 }
@@ -37,12 +36,10 @@ int		data_init(t_anthill *data, int nb_room, int nb_lemin)
 	int			count;
 
 	count = 0;
-	if (!(data->room_data = (t_room *)malloc(sizeof(t_room) * nb_room)))
+	if (!(data->room_data = (t_room *)ft_memalloc(sizeof(t_room) * nb_room)))
 		return(-1);
-	ft_bzero(data->room_data, sizeof(t_room) * nb_room);
-	data->room_data[0].nb_ant = nb_lemin;
 	data->nb_ant = nb_lemin;
-	if (!(data->matrix = (t_ul **)malloc(sizeof(t_ul *) * nb_room)))
+	if (!(data->matrix = (t_ul **)ft_memalloc(sizeof(t_ul *) * nb_room)))
 		return(-1);
 	while (count < nb_room)
 	{
@@ -68,8 +65,20 @@ int		data_init(t_anthill *data, int nb_room, int nb_lemin)
 
 void			main_free(t_anthill *data, t_read_room *read, int reason)
 {
-	ft_memdel((void**)&data);
-	ft_memdel((void**)&read);
+	size_t			y;
+
+	y = 0;
+	if (data->room_data)
+		free(data->room_data);
+	if (data->matrix)
+	{
+		while (y < data->nb_room)
+		{
+			free(data->matrix[y]);
+			y += 1;
+		}
+		free(data->matrix);
+	}
 	if (reason == 1)
 		ft_putendl("ERROR");
 	exit (1);
@@ -84,15 +93,15 @@ int				main(int argc __attribute__ ((unused)),
 	int			parse_ret;
 
 	parse_ret = 0;
-	ft_bzero(&read, sizeof(t_read_room));
-	ft_bzero(&data, sizeof(t_anthill));
+	ft_memset(&read, 0, sizeof(t_read_room));
+	ft_memset(&data, 0, sizeof(t_anthill));
 	if (read_error(&read) == -1)
 		main_free(&data, &read, 1);
 	print_read(&read);
 	ft_putstr("after print_read\n");
 	if (data_init(&data, read.nb_room, ft_atoi(read.room[0])) == -1)
 		main_free(&data, &read, 0);
-	parse_ret = parse_map(&data, read.room);
+	parse_ret = parse_map(&data, &read.room[1]);
 	if (parse_ret == -1)
 		main_free(&data, &read, 1);
 	else if (parse_ret == 2)
@@ -100,9 +109,9 @@ int				main(int argc __attribute__ ((unused)),
 		oneshot(&data);
 		main_free(&data, &read, 0);
 	}
-	if (pathfinding(&data, &roadset) != 1)
-		main_free(&data, &read, 0);
-	which_resolution(&data, roadset);
+//	if (pathfinding(&data, &roadset) != 1)
+//		main_free(&data, &read, 0);
+//	which_resolution(&data, roadset);
 	main_free(&data, &read, 0);
 	return (0);
 }
