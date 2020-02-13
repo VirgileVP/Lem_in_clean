@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 09:37:39 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 13:30:37 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 08:31:37 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,9 @@
 
 # include "lemin.h"
 
-# define BINIT				0x8000000000000000UL
+# define BINIT			0x8000000000000000UL
+
+extern const char		g_white_space[256];
 
 typedef struct			s_prs
 {
