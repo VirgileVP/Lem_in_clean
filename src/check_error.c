@@ -8,7 +8,7 @@
 ** Check if the first line is the ants number
 */
 
-int						first_line(char **room)
+int						first_line(char **room, t_read_room *pars)
 {
 	int					index;
 
@@ -21,6 +21,7 @@ int						first_line(char **room)
 		return (-1);
 	if (ft_is_strdigit(room[index]) != 1)
 		return (-1);
+	pars->decla_nb_ant = 1;
 	index++;
 	return (index);
 }
@@ -76,11 +77,13 @@ int						check_error(t_read_room *pars)
 	order.tube_pars = 0;
 	order.start = 0;
 	order.end = 0;
-	index = first_line(pars->room);
+	index = first_line(pars->room, pars);
 	if (index == -1)
 		return (-1);
 	while (index < pars->nb_line)
 	{
+		if (ft_is_strdigit(pars->room[index]) == 1 && pars->decla_nb_ant == 1)
+			return (-1);
 		if (pars->room[index][0] == ' ' || pars->room[index][0] == 'L')
 			return (-1);
 		if (pars->room[index][0] == '#'

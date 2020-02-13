@@ -57,6 +57,7 @@ void			print_read(t_read_room *read)
 		ft_putendl(read->room[index]);
 		index++;
 	}
+	ft_putchar('\n');
 }
 
 int		data_init(t_anthill *data, int nb_room, int nb_lemin)
@@ -127,8 +128,6 @@ int				main(int argc __attribute__ ((unused)),
 	ft_memset(&data, 0, sizeof(t_anthill));
 	if (read_error(&read) == -1)
 		main_free(&data, &read, 1);
-	print_read(&read);
-	//	ft_putstr("after print_read\n");
 	if (data_init(&data, read.nb_room, ft_atoi(read.room[0])) == -1)
 		main_free(&data, &read, 0);
 	parse_ret = parse_map(&data, &read.room[1]);
@@ -138,16 +137,15 @@ int				main(int argc __attribute__ ((unused)),
 	}
 	else if (parse_ret == 2)
 	{
+		print_read(&read);
 		oneshot(&data);
 		main_free(&data, &read, 0);
 	}
-//	print_data(&data);
 	if (pathfinding(&data, &roadset) != 1)
 	{
-		printf("pathfinding failed\n");
 		main_free(&data, &read, 0);
 	}
-//	printf("ok\n");
+	print_read(&read);
 	which_resolution(&data, roadset);
 //	main_free(&data, &read, 0);
 	return (0);

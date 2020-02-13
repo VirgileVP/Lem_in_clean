@@ -28,6 +28,7 @@ typedef struct			s_room
 typedef struct			s_read_room
 {
 	char				**room;
+	int					decla_nb_ant;
 	int					nb_room;
 	int					nb_line;
 }						t_read_room;

@@ -81,7 +81,7 @@ t_roadset *roads, int room_index)
 
 int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 {
-	ft_putstr("\nUNIPATH\n\n");
+	// ft_putstr("\nUNIPATH\n\n");
 	int			count_room;
 	int			begin;
 
@@ -104,7 +104,7 @@ int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 		{
 			roads[0].t[1].ant_index = 1;
 			print_path(roads[0].t[1].ant_index,
-			anthill->room_data[roads[0].t[1].ant_index].name);
+			anthill->room_data[roads[0].t[1].n].name);
 			ft_putchar('\n');
 		}
 	}
