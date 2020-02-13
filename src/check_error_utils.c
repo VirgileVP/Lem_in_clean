@@ -1,7 +1,7 @@
 #include "lemin.h"
 #include "check_error.h"
 
-int		    free_temp_line(char *temp, char *line, int ret)
+int			free_temp_line(char *temp, char *line, int ret)
 {
 	ft_memdel((void**)&temp);
 	ft_memdel((void**)&line);
@@ -43,7 +43,7 @@ int			check_room(char *line, int tube_pars)
 
 	count = 0;
 	if (count_space(line) != 2 && ft_count_words(line, ' ') != 3
-    && tube_pars == 0)
+	&& tube_pars == 0)
 		return (-1);
 	if (!(split = ft_strsplit(line, ' ')))
 		return (-1);
@@ -63,8 +63,8 @@ int			check_room(char *line, int tube_pars)
 ** run check_room and check_tubes
 */
 
-int		    check_definition
-(t_read_room *pars, t_check_bad_order *order, int index)
+int			check_definition(t_read_room *pars,
+t_check_bad_order *order, int index)
 {
 	if (nmatch(pars->room[index], "* * *") == 1)
 	{
@@ -73,7 +73,7 @@ int		    check_definition
 		pars->nb_room++;
 	}
 	else if (nmatch(pars->room[index], "*-*") == 1
-    && check_tubes(pars->room[index]) == -1)
+	&& check_tubes(pars->room[index]) == -1)
 		return (-1);
 	return (0);
 }

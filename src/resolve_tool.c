@@ -25,8 +25,7 @@ int		how_much_road(t_roadset *roads)
 	nb = 0;
 	while (roads[nb].t)
 		nb++;
-	//printf("\nRoadset contain %d roads\n", nb);
-	return (nb + 1);
+	return (nb);
 }
 
 /*
@@ -36,15 +35,15 @@ int		how_much_road(t_roadset *roads)
 
 int		which_resolution(t_anthill *anthill, t_roadset *roads)
 {
-	if (how_much_road(roads) > 1)
+	int	nb_road;
+
+	nb_road = how_much_road(roads);
+	if (nb_road > 1)
 	{
 		if (multi_path(anthill, roads) == -1)
 			return (-1);
 	}
-	else
-	{
-		if (all_ant_one_path(anthill, roads) == -1)
-			return (-1);
-	}
+	else if (all_ant_one_path(anthill, roads) == -1)
+		return (-1);
 	return (0);
 }
