@@ -1,23 +1,24 @@
 50
 ##start
-A 1 10
-B 2 9
-C 3 8
-D 4 7
-E 5 6
-F 6 5
-I 7 4
-J 8 3
-K 9 2
+salle1 2 5
+salle2 3 6
+salle3 4 4
+salle4 5 4
+salle5 9 4
+salle6 7 9
+salle7 8 4
+salle8 6 5
+salle9 4 5
 ##end
-M 10 1
-A-B
-A-D
-D-E
-A-E
-E-F
-B-I
-I-J
-J-D
-J-K
-B-C
+salle10 5 9
+salle1-salle2
+salle1-salle4
+salle4-salle5
+salle1-salle5
+salle5-salle6
+salle2-salle7
+salle7-salle8
+salle8-salle4
+salle8-salle9
+salle2-salle3
+salle3-salle10

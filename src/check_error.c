@@ -55,7 +55,8 @@ int index, t_check_bad_order *order)
 					return (-1);
 				pars->nb_room++;
 			}
-			return (-1);
+			else
+				return (-1);
 		}
 	}
 	return (0);

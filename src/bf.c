@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:11:50 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 10:23:01 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 13:18:29 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -108,9 +108,9 @@ static int		bf(t_pf *pf, t_rclass *rclass, int i)
 		{
 			check = 0;
 			rclass->tmp[i] = n;
-			barr_add(pf->tend[n].barr, rclass->barr, pf->xlen);
+			barr_add(rclass->barr, pf->tend[n].barr, pf->xlen);
 			bf(pf, rclass, i + 1);
-			barr_remove(pf->tend[n].barr, rclass->barr, pf->xlen);
+			barr_remove(rclass->barr, pf->tend[n].barr, pf->xlen);
 		}
 		n += 1;
 	}

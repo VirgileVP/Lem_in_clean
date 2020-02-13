@@ -6,19 +6,16 @@
 ** fill int *remaining_ant with the number of ant in each road
 */
 
-static int		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_road)
+static void		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_road)
 {
 	int		count;
 
 	count = 0;
-	if (!(remaining_ants = malloc(sizeof(int) * nb_road)))
-		return (-1);
-	while (roads[count].t)
+	while (count < nb_road)
 	{
 		remaining_ants[count] = roads[count].nb_ant;
 		count++;
 	}
-	return (0);
 }
 
 /*
@@ -27,14 +24,14 @@ static int		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_ro
 ** calcul total ant in int *remaining_ants
 */
 
-static int		total_ant(int *remaining_ants)
+static int		total_ant(int *remaining_ants, int nb_road)
 {
 	int		count;
 	int		ret;
 
 	count = 0;
 	ret = 0;
-	while (remaining_ants[count])
+	while (count < nb_road)
 	{
 		ret += remaining_ants[count];
 		count++;
@@ -114,7 +111,7 @@ static void	update_roads_rooms( t_anthill *anthill, t_roadset *roads, int *remai
 			print_path(roads[index].t[count].ant_index, anthill->room_data[roads[index].t[count].ant_index].name);
 			if (roads[index].t[count].ant_index != which_ant(remaining_ants, count + 1) && index != how_much_road(roads) - 1)
 				ft_putchar(' ');
-			if (roads[index].t[count].ant_index == 2 && roads[index].t[count + 1].ant_index == 0)
+			if (roads[index].t[count].ant_index == 2 && count + 1 < roads[index].len && roads[index].t[count + 1].ant_index == 0)
 			{
 				roads[index].t[count + 1].ant_index = 1;
 				break;
@@ -135,9 +132,10 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 
 	count = 0;
 	nb_road = how_much_road(roads);
-	if (fill_remaining_ants(roads, remaining_ants, nb_road) == -1)
+	if (!(remaining_ants = malloc(sizeof(int) * nb_road)))
 		return (-1);
-	while (total_ant(remaining_ants) > 0)
+	fill_remaining_ants(roads, remaining_ants, nb_road);
+	while (total_ant(remaining_ants, nb_road) > 0)
 	{
 		count = 0;
 		while (count < nb_road)
