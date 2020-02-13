@@ -1,6 +1,6 @@
 #include "lemin.h"
 
-void		print_road_status(t_roadset *roads, int road)
+static void		print_road_status(t_roadset *roads, int road)
 {
 	int		count;
 

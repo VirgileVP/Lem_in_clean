@@ -1,9 +1,0 @@
-ant_scout.c : line 36/37
-
-ant_dup.c : unused fonction
-
-ant_kill.c : rmap_del() missing
-
-bf.c : line 38
-
-parse_tools: line 31 j'ai modif dis moi ce que tu en penses

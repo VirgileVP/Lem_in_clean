@@ -128,10 +128,7 @@ int				main(int argc __attribute__ ((unused)),
 	if (read_error(&read) == -1)
 		main_free(&data, &read, 1);
 	print_read(&read);
-<<<<<<< HEAD
 	//	ft_putstr("after print_read\n");
-=======
->>>>>>> f5674e6541461c59b107166e4f0fe662d0448746
 	if (data_init(&data, read.nb_room, ft_atoi(read.room[0])) == -1)
 		main_free(&data, &read, 0);
 	parse_ret = parse_map(&data, &read.room[1]);
@@ -149,12 +146,8 @@ int				main(int argc __attribute__ ((unused)),
 	{
 		printf("pathfinding failed\n");
 		main_free(&data, &read, 0);
-<<<<<<< HEAD
 	}
 //	printf("ok\n");
-=======
-	ft_putstr("TESTING\n");
->>>>>>> f5674e6541461c59b107166e4f0fe662d0448746
 	which_resolution(&data, roadset);
 //	main_free(&data, &read, 0);
 	return (0);
