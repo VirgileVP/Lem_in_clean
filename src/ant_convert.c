@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/03 11:50:12 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:22:50 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 13:20:23 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,10 @@ int				ant_convert(t_pf *pf)
 	if (!(pf->tend = (t_ant *)malloc(sizeof(t_ant) * pf->xend)))
 		return (MALLOC_ERROR);
 	y = 0;
-	tmp1 = pf->end;
+	tmp1 = pf->end->prev;
 	while (y < pf->xend)
 	{
-		tmp2 = tmp1->next;
+		tmp2 = tmp1->prev;
 		ft_memcpy(&pf->tend[y], tmp1, sizeof(t_ant));
 		free(tmp1);
 		tmp1 = tmp2;

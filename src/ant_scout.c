@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:06:30 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 13:01:58 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 13:25:24 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -102,7 +102,7 @@ static void		ant_end(t_pf *pf)
 
 static int		ant_move(t_pf *pf, t_bindex *i)
 {
-	printf("-ant_move:%zu\n", i->x);
+//	printf("-ant_move:%zu\n", i->x);
 	if (i->x == pf->start_index)
 		ant_kill(pf);
 	else
@@ -113,7 +113,7 @@ static int		ant_move(t_pf *pf, t_bindex *i)
 		pf->ant->r->n = i->x;
 		pf->ant->r->next = NULL;
 		pf->ant->len += 1;
-		print_ant(pf->ant, pf->nb_room);
+//		print_ant(pf->ant, pf->nb_room);
 		if (i->x == pf->end_index)
 			ant_end(pf);
 		else
@@ -121,7 +121,7 @@ static int		ant_move(t_pf *pf, t_bindex *i)
 			pf->ant->barr[i->xn] |= i->cccc;
 			pf->ant = pf->ant->next;
 		}
-		printf("-ant_move-quit\n");
+//		printf("-ant_move-quit\n");
 	}
 	return (1);
 }
@@ -198,7 +198,7 @@ int				ant_scout(t_pf *pf)
 					return (MALLOC_ERROR);
 			}
 		}
-		print_xant(pf);
+//		print_xant(pf);
 	}
 	if (pf->xend == 0)
 		return (NO_PATH);
