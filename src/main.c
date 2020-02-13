@@ -100,12 +100,13 @@ int				main(int argc __attribute__ ((unused)),
 	if (read_error(&read) == -1)
 		main_free(&data, &read, 1);
 	print_read(&read);
-//	ft_putstr("after print_read\n");
 	if (data_init(&data, read.nb_room, ft_atoi(read.room[0])) == -1)
 		main_free(&data, &read, 0);
 	parse_ret = parse_map(&data, &read.room[1]);
 	if (parse_ret == -1)
+	{
 		main_free(&data, &read, 1);
+	}
 	else if (parse_ret == 2)
 	{
 		oneshot(&data);
@@ -113,6 +114,7 @@ int				main(int argc __attribute__ ((unused)),
 	}
 	if (pathfinding(&data, &roadset) != 1)
 		main_free(&data, &read, 0);
+	ft_putstr("TESTING\n");
 	which_resolution(&data, roadset);
 //	main_free(&data, &read, 0);
 	return (0);

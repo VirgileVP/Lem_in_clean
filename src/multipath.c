@@ -2,6 +2,7 @@
 
 /*
 ** fill_remaining_ant :
+**
 ** fill int *remaining_ant with the number of ant in each road
 */
 
@@ -22,6 +23,7 @@ static int		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_ro
 
 /*
 ** total_ant :
+**
 ** calcul total ant in int *remaining_ants
 */
 
@@ -42,6 +44,7 @@ static int		total_ant(int *remaining_ants)
 
 /*
 ** wish_ant :
+**
 ** return index of the last ant in the road_index-1 room()
 */
 
@@ -62,6 +65,7 @@ static int	which_ant(int *remaining_ants, int road_index)
 
 /*
 ** is_starting :
+**
 ** return start
 ** start = 1 if 1st cycle (all ant in start room)
 ** start = 0 if ant(s) is/are out start room
@@ -91,6 +95,7 @@ static int	is_starting(t_roadset *roads, int index, int *remaining_ants, t_anthi
 
 /*
 ** update_roads_rooms :
+**
 ** browse all room in a road, move ants and print step;
 */
 
@@ -123,6 +128,7 @@ static void	update_roads_rooms( t_anthill *anthill, t_roadset *roads, int *remai
 
 int			multi_path(t_anthill *anthill, t_roadset *roads)
 {
+	ft_putstr("\nMULTIPATH\n\n");
 	int		count;
 	int		nb_road;
 	int		*remaining_ants;

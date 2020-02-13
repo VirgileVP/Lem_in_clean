@@ -31,8 +31,8 @@ int						first_line(char **room)
 ** check lines begining with sharp
 */
 
-int						check_sharp
-(t_read_room *pars, int index, t_check_bad_order *order)
+int						check_sharp(t_read_room *pars,
+int index, t_check_bad_order *order)
 {
 	if (ft_strcmp(pars->room[index], "##start") == 0 ||
 	ft_strcmp(pars->room[index], "##end") == 0)
@@ -55,8 +55,7 @@ int						check_sharp
 					return (-1);
 				pars->nb_room++;
 			}
-			else
-				return (-1);
+			return (-1);
 		}
 	}
 	return (0);
@@ -83,7 +82,8 @@ int						check_error(t_read_room *pars)
 	{
 		if (pars->room[index][0] == ' ' || pars->room[index][0] == 'L')
 			return (-1);
-		if (pars->room[index][0] == '#' && check_sharp(pars, index, &order) == -1)
+		if (pars->room[index][0] == '#'
+		&& check_sharp(pars, index, &order) == -1)
 			return (-1);
 		else if (check_definition(pars, &order, index) == -1)
 			return (-1);
@@ -113,7 +113,7 @@ int						read_error(t_read_room *pars)
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
-		ret = (ft_strcmp(line, "\0") == 0)? 0 : 1;
+		ret = (ft_strcmp(line, "\0") == 0) ? 0 : 1;
 		if (!(temp = ft_strjoin(temp, line)))
 			return (free_temp_line(temp, line, -1));
 		if (!(temp = ft_strjoin(temp, "\n")))

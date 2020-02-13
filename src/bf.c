@@ -67,7 +67,7 @@ static int		rclass_convert(t_rclass *rc, t_roadset **rs, t_pf *pf)
 		y += 1;
 	}
 	(*rs)[y].t = NULL;
-//	print_roadset(*rs);
+	print_roadset(*rs);
 	return (1);
 }
 
