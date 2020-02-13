@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 13:23:46 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 11:24:03 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 13:25:57 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,7 +79,7 @@ int				ant_dup(t_pf *pf)
 	a->r = a->root;
 	if (rmap_cpy(pf, a) == MALLOC_ERROR)
 		return (MALLOC_ERROR);
-	print_dup(pf->ant, a, pf->nb_room);
+//	print_dup(pf->ant, a, pf->nb_room);
 	a->prev = pf->ant->prev;
 	a->next = pf->ant;
 	pf->ant->prev->next = a;

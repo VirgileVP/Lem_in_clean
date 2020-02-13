@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:08:47 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 11:31:44 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 13:26:13 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,7 +44,7 @@ void			ant_kill(t_pf *pf)
 	t_rlink			*tmp1;
 	t_rlink			*tmp2;
 
-	printf("ant_kill\n");
+//	printf("ant_kill\n");
 	a = pf->ant;
 	last = pf->ant->prev;
 	next = pf->ant->next;
@@ -62,5 +62,5 @@ void			ant_kill(t_pf *pf)
 	}
 	pf->xant -= 1;
 	free(a);
-	printf("ant_kill-quit\n");
+//	printf("ant_kill-quit\n");
 }

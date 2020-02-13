@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:05:53 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 10:02:59 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 13:14:46 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,9 +27,6 @@ static int		pf_init(t_pf *pf, t_anthill *ah)
 	pf->ant->len = 1;
 	pf->ant->prev = pf->ant;
 	pf->ant->next = pf->ant;
-	i.cccc = BINIT >> (ah->start % 64);
-	i.xn = ah->start / 64;
-	pf->ant->barr[i.xn] |= i.cccc;
 	pf->end = NULL;
 	pf->xant = 1;
 	pf->xend = 0;
