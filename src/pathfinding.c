@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:05:53 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:55:45 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 10:02:59 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,7 @@ static int		pf_init(t_pf *pf, t_anthill *ah)
 	pf->matrix = ah->matrix;
 	pf->xlen = ah->xlen;
 	pf->lemin = ah->nb_ant;
+	pf->nb_room = ah->nb_room;
 	pf->tend = NULL;
 	return (1);
 }

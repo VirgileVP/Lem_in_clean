@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:11:50 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:43:20 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 10:23:01 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,7 +67,7 @@ static int		rclass_convert(t_rclass *rc, t_roadset **rs, t_pf *pf)
 		y += 1;
 	}
 	(*rs)[y].t = NULL;
-//	print_roadset(*rs);
+	print_roadset(*rs);
 	return (1);
 }
 

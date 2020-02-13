@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/18 10:00:05 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:11:07 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 09:58:34 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,6 +71,7 @@ typedef struct				s_pf
 	t_ul					**matrix;
 	size_t					xlen;
 	size_t					lemin;
+	size_t					nb_room;
 }							t_pf;
 
 void						ant_kill(t_pf *pf);
