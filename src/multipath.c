@@ -108,9 +108,7 @@ static int	is_starting(t_roadset *roads, int road_index, int *remaining_ants, t_
 		if (road_index == 0)
 			roads[road_index].t[1].ant_index = 1;
 		else
-		{
 		    roads[road_index].t[1].ant_index = which_ant(roads, road_index) + 1;
-		}
 		//printf("\nanthill->room_data[%d].name\n",roads[road_index].t[1].n);
 		print_path(roads[road_index].t[1].ant_index, anthill->room_data[roads[road_index].t[1].n].name);
 		ft_putchar(' ');
@@ -159,7 +157,6 @@ static void	update_roads_rooms(t_anthill *anthill, t_roadset *roads, int *remain
 	{
 		if (roads[road_index].t[count].ant_index != 0)
 		{
-			//printf(" \\%d-%d, %d\\ ", count, road_index, roads[road_index].t[count - 1].ant_index);
 			if (roads[road_index].t[count].ant_index == which_ant(roads, road_index + 1))
 				roads[road_index].t[count].ant_index = 0;
 			else if (count == 1 || roads[road_index].t[count - 1].ant_index > 1)
@@ -192,7 +189,6 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 	fill_remaining_ants(roads, remaining_ants, nb_road);
 	while (total_ant(remaining_ants, nb_road) > 0)
 	{
-		//usleep(800000);
 		count = 0;
 		while (count < nb_road)
 		{

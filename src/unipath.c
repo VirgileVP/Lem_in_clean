@@ -69,14 +69,42 @@ t_roadset *roads, int room_index)
 			else if (roads[0].t[count].ant_index == roads[0].nb_ant - 1)
 				roads[0].t[count].ant_index++;
 		}
-		else if (roads[0].t[count].ant_index == 0 &&
-		(count == room_index || roads[0].t[count - 1].ant_index > 1))
+		else if (count == room_index || roads[0].t[count - 1].ant_index >= 1)
 			roads[0].t[count].ant_index++;
 		count++;
 	}
+	//print_road_status(roads, 0);
 	print_step(anthill, roads);
 	if (roads[0].t[roads[0].len - 1].ant_index == roads[0].nb_ant)
 		roads[0].nb_ant = 0;
+}
+
+int				solo_ant(t_anthill *anthill, t_roadset *roads)
+{
+	int			count;
+
+	count = 0;
+	roads[0].t[1].ant_index = 1;
+	while (roads[0].nb_ant == 1)
+	{
+		count = 0;
+		while (count < roads[0].len)
+		{
+			if (roads[0].t[count].ant_index == 1)
+			{
+				roads[0].t[count].ant_index = 0;
+				if (count + 1 < roads[0].len)
+					roads[0].t[count + 1].ant_index = 1;
+				else
+					roads[0].nb_ant = 0;
+				print_path(1, anthill->room_data[roads[0].t[count].n].name);
+				ft_putchar((count == roads[0].len - 1) ? '\n' : ' ');
+				break;
+			}
+			count++;
+		}
+	}
+	return (0);
 }
 
 int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
@@ -87,10 +115,11 @@ int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 
 	begin = 1;
 	count_room = 0;
+	if (roads[0].nb_ant == 1)
+		return (solo_ant(anthill, roads));
 	while (roads[0].nb_ant > 0)
 	{
 		count_room = 0;
-		print_road_status(roads, 0);
 		while (count_room < roads[0].len)
 		{
 			if (roads[0].t[count_room].ant_index != 0)
