@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 09:38:06 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/14 10:33:41 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/14 14:13:08 by zseignon         ###   ########lyon.fr   */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -128,7 +128,6 @@ int					parse_map(t_anthill *ah, char **entry)
 	ah->nb_room -= 2;
 	while (ret >= ROOM && ret <= TUNNEL)
 	{
-		printf("%s\n", entry[y]);
 		ret = parse_fct[ret](ah, entry, y, &prs);
 		y += 1;
 	}
