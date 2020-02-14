@@ -13,6 +13,20 @@ void	print_path(int ant, char *room)
 	write(1, room, count);
 }
 
+int		empty_road(t_roadset *roads, int road_index)
+{
+	int	count;
+
+	count = 0;
+	while (count < roads[road_index].len)
+	{
+		if (roads[road_index].t[count].ant_index != 0)
+			return (0);
+		count++;
+	}
+	return (1);
+}
+
 /*
 ** how_much_road :
 ** calcul nb of road in the roadset

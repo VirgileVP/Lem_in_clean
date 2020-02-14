@@ -62,6 +62,7 @@ int						read_error(t_read_room *pars);
 int						pathfinding(t_anthill *ah, t_roadset **rs);
 void					print_path(int ant, char *room);
 int						how_much_road(t_roadset *roads);
+int						empty_road(t_roadset *roads, int road_index);
 int						which_resolution(t_anthill *anthill, t_roadset *roads);
 int						multi_path(t_anthill *anthill, t_roadset *roads);
 int						all_ant_one_path(t_anthill *anthill, t_roadset *roads);

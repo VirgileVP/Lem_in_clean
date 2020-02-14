@@ -79,7 +79,7 @@ t_roadset *roads, int room_index)
 		roads[0].nb_ant = 0;
 }
 
-int				solo_ant(t_anthill *anthill, t_roadset *roads)
+static int		solo_ant(t_anthill *anthill, t_roadset *roads)
 {
 	int			count;
 

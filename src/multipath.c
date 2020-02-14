@@ -5,7 +5,7 @@ static void		print_road_status(t_roadset *roads, int road)
 	int		count;
 
 	count = 0;
-	printf("Rooms : ");
+	printf("\nRooms : ");
 	while (count < roads[road].len)
 	{
 		printf("|%d|", roads[road].t[count].n);
@@ -18,7 +18,7 @@ static void		print_road_status(t_roadset *roads, int road)
 		printf("|%d|", roads[road].t[count].ant_index);
 		count++;
 	}
-	printf("\n\n");
+	printf("\n");
 }
 
 /*
@@ -122,7 +122,7 @@ static int	is_starting(t_roadset *roads, int road_index, int *remaining_ants, t_
 ** print the new road status
 */
 
-static void		print_step(t_anthill *anthill, int *remaining_ants, t_roadset *roads, int road_index)
+static void		print_step(t_anthill *anthill, t_roadset *roads, int road_index, int *remaining_ants)
 {
 	int			count;
 
@@ -131,13 +131,47 @@ static void		print_step(t_anthill *anthill, int *remaining_ants, t_roadset *road
 	{
 		if (roads[road_index].t[count].ant_index != 0)
 		{
-			//printf("roads[%d].t[%d].ant_index = %d, roads[%d].t[%d].n = %d\n", road_index, count, roads[road_index].t[count].ant_index, road_index, count, roads[road_index].t[count].n);
 			print_path(roads[road_index].t[count].ant_index, anthill->room_data[roads[road_index].t[count].n].name);
-			//if (roads[road_index].t[count - 1].ant_index != 0 || (road_index < how_much_road(roads) && roads[road_index].nb_ant > 0))
+			if (road_index < how_much_road(roads) - 1 && count > 1)
 				ft_putchar(' ');
 		}
 		count--;
 	}
+}
+
+/*
+** solo_ant :
+**
+** if an ant is solo in a road, move it simply
+*/
+
+static void		solo_ant(t_anthill *anthill, t_roadset *roads, int road_index, int *remaining_ants)
+{
+	int			count;
+	int			actual_ant;
+
+	count = 0;
+	actual_ant = which_ant(roads, road_index) + 1;
+	if (empty_road(roads, road_index) == 1)
+		roads[road_index].t[1].ant_index = actual_ant;
+	else
+	{
+		while (count < roads[road_index].len)
+		{
+			if (roads[road_index].t[count].ant_index == actual_ant)
+			{
+				roads[road_index].t[count].ant_index = 0;
+				if (count + 1 < roads[road_index].len)
+					roads[road_index].t[count + 1].ant_index = actual_ant;
+				break;
+			}
+			count++;
+		}
+	}
+	if (remaining_ants[road_index] > 0)
+		print_step(anthill, roads, road_index, remaining_ants);
+	if (count == roads[road_index].len - 1)
+		remaining_ants[road_index] = 0;
 }
 
 /*
@@ -168,11 +202,10 @@ static void	update_roads_rooms(t_anthill *anthill, t_roadset *roads, int *remain
 			roads[road_index].t[count].ant_index = roads[road_index].t[count - 1].ant_index - 1;
 		count++;
 	}
-	print_step(anthill, remaining_ants, roads, road_index);
+	if (remaining_ants[road_index] >= 1)
+		print_step(anthill, roads, road_index, remaining_ants);
 	if (roads[road_index].t[roads[road_index].len - 1].ant_index == which_ant(roads, road_index + 1))
-	{	
 		remaining_ants[road_index] = 0;
-	}
 }
 
 int			multi_path(t_anthill *anthill, t_roadset *roads)
@@ -192,7 +225,9 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 		count = 0;
 		while (count < nb_road)
 		{
-			if (roads[count].nb_ant != 0)
+			if (remaining_ants[count] == 1)
+				solo_ant(anthill, roads, count, remaining_ants);
+			else if (remaining_ants[count] > 1)
 				update_roads_rooms(anthill, roads, remaining_ants, count);
 			count++;
 		}
