@@ -6,7 +6,7 @@
 /*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 11:06:30 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 13:25:24 by zseignon    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/14 10:18:41 by zseignon    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -113,12 +113,15 @@ static int		ant_move(t_pf *pf, t_bindex *i)
 		pf->ant->r->n = i->x;
 		pf->ant->r->next = NULL;
 		pf->ant->len += 1;
-//		print_ant(pf->ant, pf->nb_room);
 		if (i->x == pf->end_index)
+		{
+//			print_ant(pf->ant, pf->nb_room);
 			ant_end(pf);
+		}
 		else
 		{
 			pf->ant->barr[i->xn] |= i->cccc;
+//			print_ant(pf->ant, pf->nb_room);
 			pf->ant = pf->ant->next;
 		}
 //		printf("-ant_move-quit\n");
@@ -128,24 +131,27 @@ static int		ant_move(t_pf *pf, t_bindex *i)
 
 static int		barr_chr(t_bindex *i, t_ul *t, t_ul *u, size_t len)
 {
+	if (i->cccc == 0)
+	{
+		i->cccc = BINIT;
+		i->xn += 1;
+		i->x = i->xn * 64;
+	}
 	while (i->xn < len)
 	{
 		if (t[i->xn] != 0)
 		{
-			if (i->cccc == 0)
-			{
-				i->x = i->xn * 64;
-				i->cccc = BINIT;
-			}
 			while (i->cccc != 0)
 			{
-				if (!(i->cccc & u[i->xn]) && (i->cccc & t[i->xn]))
+				if ((t[i->xn] & i->cccc) && !(u[i->xn] & i->cccc))
 					return (1);
 				i->cccc >>= 1;
 				i->x += 1;
 			}
+			i->cccc = BINIT;
 		}
 		i->xn += 1;
+		i->x = i->xn * 64;
 	}
 	return (0);
 }
@@ -178,6 +184,7 @@ int				ant_scout(t_pf *pf)
 	while (pf->xant > 0)
 	{
 		ft_memset(&i, 0, sizeof(t_bindex));
+		i.cccc = BINIT;
 		if (barr_chr(&i, pf->matrix[pf->ant->r->n],
 					pf->ant->barr, pf->xlen) == 0)
 			ant_kill(pf);
