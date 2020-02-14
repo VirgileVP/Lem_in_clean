@@ -5,13 +5,13 @@ static void		print_road_status(t_roadset *roads, int road)
 	int		count;
 
 	count = 0;
-	printf("Rooms : ");
+	printf("Road %2d | Rooms : ", road);
 	while (count < roads[road].len)
 	{
 		printf("|%d|", roads[road].t[count].n);
 		count++;
 	}
-	printf("\nAnts  : ");
+	printf("\n          Ants  : ");
 	count = 0;
 	while (count < roads[road].len)
 	{
@@ -81,7 +81,7 @@ t_roadset *roads, int room_index)
 
 int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 {
-	// ft_putstr("\nUNIPATH\n\n");
+	ft_putstr("\nUNIPATH\n\n");
 	int			count_room;
 	int			begin;
 
@@ -90,6 +90,7 @@ int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 	while (roads[0].nb_ant > 0)
 	{
 		count_room = 0;
+		print_road_status(roads, 0);
 		while (count_room < roads[0].len)
 		{
 			if (roads[0].t[count_room].ant_index != 0)
