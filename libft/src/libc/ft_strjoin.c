@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:54 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2018/10/06 13:35:38 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/10 08:22:40 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
+#include "typedef.h"
+#include "libc.h"
 
-# include <string.h>
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*ret;
+	size_t	ss1;
+	size_t	ss2;
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	ss1 = ft_strlen(s1);
+	ss2 = ft_strlen(s2);
+	if (!(ret = ft_strnew(ss1 + ss2)))
+		return (NULL);
+	ft_memcpy(ret, s1, ss1);
+	ft_memcpy(&ret[ss1], s2, ss2);
+	return (ret);
+}

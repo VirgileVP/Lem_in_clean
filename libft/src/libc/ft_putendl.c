@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:54 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2018/10/06 17:53:40 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/10 08:34:18 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libc.h"
 
-# include <string.h>
-
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+void	ft_putendl(char const *s)
+{
+	ft_putstr(s);
+	ft_putchar('\n');
+}

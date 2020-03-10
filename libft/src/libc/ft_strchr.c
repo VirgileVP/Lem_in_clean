@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:54 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2018/10/08 11:34:45 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/10 08:35:29 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "typedef.h"
+#include "libc.h"
 
-# include <string.h>
+char		*ft_strchr(const char *s, int c)
+{
+	size_t		len;
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	len = ft_strlen(s);
+	if (c == 0)
+		return ((char *)&s[len]);
+	return ((char *)ft_memchr(s, c, len));
+}

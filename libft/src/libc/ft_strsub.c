@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:54 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2018/10/06 12:15:22 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/10 08:37:40 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "typedef.h"
+#include "libc.h"
 
-# include <string.h>
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
+{
+	unsigned int	i;
+	char			*str;
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	i = 0;
+	if (!(str = ft_strnew(len)) || !(s))
+		return (NULL);
+	while (i < len)
+	{
+		str[i] = s[start];
+		i++;
+		start++;
+	}
+	return (str);
+}

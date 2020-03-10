@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:54 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2018/10/06 12:00:47 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/10 08:37:09 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "typedef.h"
+#include "libc.h"
 
-# include <string.h>
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
+{
+	unsigned int	i;
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	i = 0;
+	if (!(s1) || !(s2))
+		return (0);
+	if (ft_strlen(s1) != ft_strlen(s2) && n != 0)
+		return (0);
+	while (s1[i] && s2[i] && i < n)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}

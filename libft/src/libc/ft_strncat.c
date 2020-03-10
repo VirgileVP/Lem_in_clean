@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:54 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2018/10/03 17:53:52 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/10 08:36:54 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "typedef.h"
+#include "libc.h"
 
-# include <string.h>
+char	*ft_strncat(char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+	unsigned int	j;
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	i = ft_strlen(s1);
+	j = 0;
+	if (n > i)
+	{
+		while (s2[j] && n--)
+			s1[i++] = s2[j++];
+		s1[i] = '\0';
+	}
+	else
+	{
+		while (s2[j] && n--)
+			s1[i++] = s2[j++];
+		while (s1[i])
+			s1[i++] = '\0';
+	}
+	return (s1);
+}

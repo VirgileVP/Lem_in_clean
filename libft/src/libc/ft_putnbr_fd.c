@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:54 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2018/10/06 18:10:52 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/10 08:34:32 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libc.h"
 
-# include <string.h>
+void		ft_putnbr_fd(int nb, int fd)
+{
+	static char		buffer[11];
+	int				i;
+	unsigned int	uval;
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	if (nb == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	uval = (nb < 0) ? -nb : nb;
+	i = 10;
+	while (1)
+	{
+		buffer[i] = uval % 10 + '0';
+		uval /= 10;
+		if (uval == 0)
+			break ;
+		i--;
+	}
+	if (nb < 0)
+		buffer[--i] = '-';
+	write(fd, buffer + i, 11 - i);
+}
