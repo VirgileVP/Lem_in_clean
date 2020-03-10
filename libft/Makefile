@@ -6,7 +6,7 @@
 #    By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 15:18:47 by zseignon          #+#    #+#              #
-#    Updated: 2020/03/10 09:37:40 by zseignon         ###   ########lyon.fr    #
+#    Updated: 2020/03/10 11:26:26 by zseignon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,18 +100,29 @@ LIBC_SRC_NAME			=	ft_atoi.c\
 							ft_strtrim.c
 LIBC_SRC				=	$(addprefix $(LIBC_SRC_DIR)/, $(LIBC_SRC_NAME))
 
+#	MISC_DECLARATION	########################################################
+MISC_SRC_DIR			=	$(SRC_DIR)/misc
+MISC_SRC_NAME			=	ft_count_words.c\
+							ft_is_strdigit.c\
+							ft_isspace.c\
+							get_next_line.c\
+							nmatch.c
+MISC_SRC				=	$(addprefix $(MISC_SRC_DIR)/, $(MISC_SRC_NAME))
+
 #	SRC_DECLARATION	############################################################
 SRC_NAME				=	$(FT_VECT_SRC_NAME)\
 							$(FT_MEMMAN_SRC_NAME)\
 							$(FT_CMP_SRC_NAME)\
 							$(FT_ERROR_SRC_NAME)\
-							$(LIBC_SRC_NAME)
+							$(LIBC_SRC_NAME)\
+							$(MISC_SRC_NAME)
 
 SRC						=	$(FT_VECT_SRC)\
 							$(FT_MEMMAN_SRC)\
 							$(FT_CMP_SRC)\
 							$(FT_ERROR_SRC)\
-							$(LIBC_SRC)
+							$(LIBC_SRC)\
+							$(MISC_SRC)
 
 #	OBJ_DECLARATION	############################################################
 OBJ_NAME				=	$(SRC_NAME:.c=.o)
@@ -125,7 +136,8 @@ INC_NAME				=	ft_cmp.h\
 							ft_vector.h\
 							libft.h\
 							typedef.h\
-							libc.h
+							libc.h\
+							misc.h
 INC						=	$(addprefix $(INC_DIR)/, $(INC_NAME))
 INC_FLAG				=	-I$(INC_DIR)
 
@@ -157,6 +169,11 @@ $(OBJ_DIR)/%.o : $(FT_ERROR_SRC_DIR)/%.c $(INC)
 
 #	LIBC_COMPILATION	########################################################
 $(OBJ_DIR)/%.o : $(LIBC_SRC_DIR)/%.c $(INC)
+	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
+	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
+
+#	MISC_COMPILATION	########################################################
+$(OBJ_DIR)/%.o : $(MISC_SRC_DIR)/%.c $(INC)
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
 
