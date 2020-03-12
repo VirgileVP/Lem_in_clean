@@ -6,7 +6,7 @@
 #    By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 13:35:26 by zseignon          #+#    #+#              #
-#    Updated: 2020/03/12 13:14:02 by zseignon         ###   ########lyon.fr    #
+#    Updated: 2020/03/12 13:19:37 by zseignon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,13 +57,13 @@ WAY_SRC_NAME	=	way_ant_dispatch.c\
 					way_set.c
 WAY_SRC			=	$(addprefix $(WAY_SRC_DIR)/, $(WAY_SRC_NAME))
 
-SRC_NAME		=	main.c\
-					$(GRAPH_SRC_NAME)\
+SRC_NAME		=	$(GRAPH_SRC_NAME)\
 					$(PARSE_SRC_NAME)\
 					$(PRINT_SRC_NAME)\
 					$(QUEUE_SRC_NAME)\
 					$(SOLVE_SRC_NAME)\
-					$(WAY_SRC_NAME)
+					$(WAY_SRC_NAME)\
+					main.c
 
 OBJ_DIR			=	obj
 OBJ_NAME		=	$(SRC_NAME:.c=.o)
@@ -82,7 +82,7 @@ LIBFLAGS		=	-Llibft/ -lft
 all:$(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(LIBFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $(LIBFLAGS) $(OBJ) -o $@
 
 $(OBJ_DIR)/%.o: $(GRAPH_SRC_DIR)/%.c $(INC_NAME)
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
