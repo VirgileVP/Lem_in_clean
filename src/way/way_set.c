@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   way_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 14:06:55 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2020/03/11 17:02:52 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/12 09:34:51 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "way.h"
 
-# include <string.h>
+void		way_set_init(t_way_set *restrict self, t_uint max_way)
+{
+	self->ways = (t_way *)ft_malloc(sizeof(t_way) * max_way);
+	self->moves = 0;
+}
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647	
-# define UINT_MIN	0
-# define UINT_MAX	4294967296
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+void		way_set_del(t_way_set *restrict self)
+{
+	ft_free(self->ways);
+}

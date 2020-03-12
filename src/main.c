@@ -1,55 +1,46 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <zseignon@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/09 13:58:22 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 13:28:24 by zseignon    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/12 10:29:24 by zseignon         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
+//----------------PRINT-FUNCTION-----------------------------------------------
 /*
- ** print_read:
- **
- ** print the map
- */
-
-static void		print_data(t_anthill *ah)
+static void		print_roadset(t_roadset *rs, t_anthill *ah)
 {
-	for (size_t n = 0; n < ah->nb_room; n++)
+	size_t			y;
+	size_t			x;
+
+	y = 0;
+	printf("ROADSET");
+	while (rs[y].t != NULL)
 	{
-		t_ul			cccc = 0x8000000000000000UL;
-		size_t		x = 0;
-		size_t		xn = 0;
-
-		printf("rdata[%zu] = %s\t|", n, ah->room_data[n].name);
-		for (size_t x = 0; x < ah->nb_room; x += 1)
+		x = 0;
+		printf("PATH N'%zu [%zu]: |", rs[y].len, y);
+		fflush(stdout);
+		while (x < rs[y].len)
 		{
-
-			if (ah->matrix[n][xn] & cccc)
-				printf("1|");
-			else
-				printf("0|");
-			cccc >>= 1;
-			if (cccc == 0)
-			{
-				cccc = 0x8000000000000000UL;
-				xn += 1;
-			}
+			write(1, ah->room_data[rs[y].t[x].n].name, (t_ul)ft_strchr(ah->room_data[rs[y].t[x].n].name, ' ') - (t_ul)ah->room_data[rs[y].t[x].n].name);
+			write(1, "|", 1);
+			x += 1;
 		}
+		y += 1;
 		printf("\n");
 	}
-
 }
+*/
+//-----------------------------------------------------------------------------
 
-void			print_read(t_read_room *read)
+static void		print_read(t_read_room *read)
 {
-	int			index;
+	int				index;
 
 	index = 0;
 	while (read->room[index])
@@ -60,93 +51,72 @@ void			print_read(t_read_room *read)
 	ft_putchar('\n');
 }
 
-int		data_init(t_anthill *data, int nb_room, int nb_lemin)
+static void		data_init(t_anthill *data, int nb_room, int nb_lemin)
 {
-	int			count;
+	int				n;
+	t_node			node;
 
-	count = 0;
-	if (!(data->room_data = (t_room *)ft_memalloc(sizeof(t_room) * nb_room)))
-		return(-1);
-	data->nb_ant = nb_lemin;
-	if (!(data->matrix = (t_ul **)ft_memalloc(sizeof(t_ul *) * nb_room)))
-		return(-1);
-	while (count < nb_room)
-	{
-		data->xlen = nb_room / 64;
-		if (nb_room % 64 != 0)
-			data->xlen += 1;
-		if(!(data->matrix[count] =
-					(t_ul *)ft_memalloc(sizeof(t_ul) * data->xlen)))
-			return(-1);
-		count += 1;
-	}
+	n = 0;
+	vect_init(&data->farm, sizeof(t_node), nb_room);
+	data->room_data = ft_malloc(sizeof(t_room) * nb_room);
 	data->start = -1;
 	data->end = -1;
+	data->nb_ant = nb_lemin;
 	data->nb_room = nb_room;
-	return (1);
-}
-
-/*
- ** main_free:
- **
- ** free allocated struc in main function
- ** reason == 1 -> free because error
- ** reason == 0 -> free because end program
- */
-
-void			main_free(t_anthill *data, t_read_room *read, int reason)
-{
-	size_t			y;
-
-	y = 0;
-	if (data->room_data)
-		free(data->room_data);
-	if (data->matrix)
+	ft_bzero(&node, sizeof(t_node));
+	while (n < nb_room)
 	{
-		while (y < data->nb_room)
-		{
-			free(data->matrix[y]);
-			y += 1;
-		}
-		free(data->matrix);
+		vect_init(&node.connect, sizeof(t_connect), 5);
+		vect_add(data->farm, &node);
+		n++;
 	}
-	if (reason == 1)
-		ft_putendl("ERROR");
-	exit(1);
 }
 
-int				main(int argc __attribute__ ((unused)),
-		char *argv[] __attribute__ ((unused)))
+static void		graph_init(t_graph *restrict graph, t_anthill *restrict ah)
 {
-	t_anthill	data;
-	t_read_room	read;
-	t_roadset	*roadset;
-	int			parse_ret;
+	t_size		n;
 
-	parse_ret = 0;
-	ft_memset(&read, 0, sizeof(t_read_room));
+	n = 0;
+	graph->nodes = (t_node **)ft_malloc(sizeof(t_node *));
+	while (n < ah->nb_ant)
+	{
+		graph->nodes[n] = (t_node *)vect(&ah->farm, n);
+		n++;
+	}
+	graph->size = ah->nb_room;
+	graph->end = ah->end;
+	graph->start = ah->start;
+}
+
+int				main(void)
+{
+	t_anthill		data;
+	t_read_room		read;
+	t_roadset		*roadset;
+	int				ret;
+	t_graph			graph;
+
+	ft_memman_init();
 	ft_memset(&data, 0, sizeof(t_anthill));
-	if (read_error(&read) == -1)
-		main_free(&data, &read, 1);
-	if (data_init(&data, read.nb_room, ft_atoi(read.room[0])) == -1)
-		main_free(&data, &read, 0);
-	parse_ret = parse_map(&data, &read.room[1]);
-	if (parse_ret == -1)
+	ft_memset(&read, 0, sizeof(t_read_room));
+	if (read_error(&read) == 1)
 	{
-		main_free(&data, &read, 1);
+		data_init(&data, read.nb_room, ft_atoi(read.room[0]));
+		ret = parse_map(&data, &read.room[1]);
+		if (ret == 2)
+		{
+			print_read(&read);
+			oneshot(&data);
+		}
+		else
+		{
+			graph_init(&graph, &data);
+			if ((roadset = solve(&graph, data.nb_ant)))
+				which_resolution(&data, roadset);
+		}
 	}
-	else if (parse_ret == 2)
-	{
-		print_read(&read);
-		oneshot(&data);
-		main_free(&data, &read, 0);
-	}
-	if (pathfinding(&data, &roadset) != 1)
-	{
-		main_free(&data, &read, 0);
-	}
-	print_read(&read);
-	which_resolution(&data, roadset);
-//	main_free(&data, &read, 0);
+	else
+		write(1, "Error\n", 6);
+	ft_memman_clean();
 	return (0);
 }

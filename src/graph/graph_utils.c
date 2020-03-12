@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   graph_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 14:06:55 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2020/03/11 16:59:35 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/12 10:20:18 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "pathfinding.h"
 
-# include <string.h>
+void		graph_reset_state(t_graph *restrict graph)
+{
+	t_size		n;
+	t_node		*node;
 
-# define PTR_SIZE	8
-
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647	
-# define UINT_MIN	0
-# define UINT_MAX	4294967296
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	n = 0;
+	while (n < graph->size)
+	{
+		node = graph_node(graph, n);
+		node->in_new_way = 0;
+		node->in_queue = 0;
+		node->marked = 0;
+		node->weight = 0;
+		node->parent = 0;
+	}
+	graph_node(graph, graph->start)->separate = 0;
+	graph_node(graph, graph->end)->separate = 0;
+}

@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   graph_access.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 14:59:57 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 14:06:55 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2020/03/10 13:13:10 by zseignon          #+#    #+#             */
+/*   Updated: 2020/03/12 09:37:35 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "graph.h"
 
-# include <string.h>
+t_node			*graph_node(t_graph *restrict graph, t_uint index)
+{
+	return (graph->nodes[index]);
+}
 
-# define PTR_SIZE	8
+t_connect 		*graph_connect(t_vect *restrict self, t_uint dst)
+{
+	t_connect	*connect;
+	t_size		n;
 
-# define FD_STDIN	0
-# define FD_STROUT	1
-# define FD_STDERR	2
-
-# define INT_MIN	-2147483648
-# define INT_MAX	2147483647	
-# define UINT_MIN	0
-# define UINT_MAX	4294967296
-
-# include "ft_vector.h"
-# include "typedef.h"
-# include "ft_error.h"
-# include "ft_memman.h"
-# include "ft_cmp.h"
-# include "libc.h"
-
-#endif
+	n = 0;
+	while ((connect = (t_connect *)vect(self, n))->dst != dst)
+		n++;
+	return (connect);
+}

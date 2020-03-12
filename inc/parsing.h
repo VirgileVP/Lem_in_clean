@@ -1,18 +1,17 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   parsing.h                                        .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: zseignon <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/04 09:37:39 by zseignon     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 08:31:37 by zseignon    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zseignon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/20 13:26:36 by zseignon          #+#    #+#             */
+/*   Updated: 2020/02/20 13:35:47 by zseignon         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include "lemin.h"
 
@@ -39,8 +38,6 @@ enum					e_flag
 };
 
 enum e_flag				rdup_check(t_room *rdata, size_t n);
-
 int						rseek(t_anthill *ah, t_room *rdata, char *p);
-
 
 #endif
