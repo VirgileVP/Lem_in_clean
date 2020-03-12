@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:47 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 13:44:44 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:43:21 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void			parse_tok(char **entry, t_prs *prs, size_t y)
 	prs->n = 0;
 	while (entry[y][x] != '\0' && prs->n < 3)
 	{
-		if (g_white_space[entry[y][x]] == 0)
+		if (g_white_space[(int)entry[y][x]] == 0)
 		{
 			prs->p[prs->n] = &entry[y][x];
 			prs->len[prs->n] = 0;
-			while (g_white_space[entry[y][x]] == 0)
+			while (g_white_space[(int)entry[y][x]] == 0)
 			{
 				prs->len[prs->n] += 1;
 				x += 1;
@@ -55,13 +55,13 @@ static void			connect_set(t_anthill *ah, int n1, int n2)
 	t_node			*node;
 	t_connect		connect;
 
-	connect.state = 1;
-	node = (t_node *)vat(ah->farm, n1);
+	connect.state = CONNECT_POSITIVE;
+	node = (t_node *)vect(&ah->farm, n1);
 	connect.dst = n2;
-	vpush(node->connect, (t_byte *)&connect);
-	node = (t_node *)vat(ah->farm, n2);
+	vect_add(&node->connect, &connect);
+	node = (t_node *)vect(&ah->farm, n2);
 	connect.dst = n1;
-	vpush(node->connect, (t_byte *)&connect);
+	vect_add(&node->connect, &connect);
 }
 
 static enum e_flag	parse_tunnel(t_anthill *ah, char **entry, size_t y,

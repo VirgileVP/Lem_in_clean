@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolve_tool.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vveyrat- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:41:16 by vveyrat-          #+#    #+#             */
-/*   Updated: 2020/03/10 11:41:20 by vveyrat-         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:51:16 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_path(int ant, char *room)
 
 int		empty_road(t_roadset *roads, int road_index)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while (count < roads[road_index].len)

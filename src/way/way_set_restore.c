@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:45:44 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 08:54:00 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:11:05 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,14 @@ static void	way_qsort(t_way *restrict t, t_uint bot, t_uint top)
 	}
 }
 
-static void	way_add(t_way_set *restrict set, t_vect *restrict way,
-t_size way_index)
+static void	way_add(t_way_set *restrict set, t_vect *restrict way, t_uint way_index)
 {
 	t_size		n;
 
 	n = 0;
 	while (n < way->xitem)
 	{
-		set->ways->node_index[n] = *(t_uint *)vect(way, n);
+		set->ways[way_index].node_index[n] = *(t_uint *)vect(way, n);
 		n++;
 	}
 }
@@ -87,7 +86,7 @@ t_uint xway, t_uint lemin)
 	iter_init(&iter, graph_node(graph, graph->start), ITER_FORBIDDEN);
 	while ((connect = iter_next(&iter)))
 	{
-		way_find(graph, &way, connect->dst);
+		way_find(graph, &way, graph_node(graph, connect->dst));
 		way_add(set, &way, way_index);
 		vect_clean(&way);
 		way_index++;

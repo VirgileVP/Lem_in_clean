@@ -6,15 +6,20 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:07:29 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 09:45:20 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:53:23 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPH_H
 # define GRAPH_H
 
+# include "libft.h"
 # include "typedef.h"
 # include "queue.h"
+
+/*
+**	NODE
+*/
 
 # define MARKED_OUT			0
 # define MARKED_IN			1
@@ -38,8 +43,9 @@ typedef struct			s_node_data
 	int					weight;
 }						t_node_data;
 
-void					node_bypass(t_graph *restrict graph, t_queue *restrict queue);
-void					node_mark(t_node *restrict node, int state, int weight, t_uint parent);
+/*
+**	CONNECT
+*/
 
 # define CONNECT_POSITIVE	1
 # define CONNECT_NEGATIVE	-1
@@ -59,8 +65,9 @@ typedef struct			s_connect_data
 	t_connect *restrict dst_src;
 }						t_connect_data;
 
-t_connect_data			*graph_connect_data(t_graph *graph, t_uint src, t_uint dst, t_connect *data);
-void					graph_connect_reverse(t_connect_data *connect);
+/*
+**	GRAPH
+*/
 
 typedef struct			s_graph
 {
@@ -73,9 +80,18 @@ typedef struct			s_graph
 
 t_node					*graph_node(t_graph *restrict graph, t_uint index);
 t_connect				*graph_connect(t_vect *restrict self, t_uint dst);
-void					graph_reset_state(t_graph restrict *graph);
+void					graph_reset_state(t_graph *restrict graph);
 void					graph_del(t_graph *graph);
 
+void					node_bypass(t_graph *restrict graph, t_queue *restrict queue);
+void					node_mark(t_node *restrict node, int state, int weight, t_uint parent);
+
+t_connect_data			*graph_connect_data(t_graph *restrict graph, t_uint src, t_uint dst, t_connect *data);
+void					graph_connect_reverse(t_connect_data *connect);
+
+/*
+**	ITER
+*/
 
 # define ITER_ALL			0
 # define ITER_ALLOWED		1

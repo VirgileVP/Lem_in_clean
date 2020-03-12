@@ -6,16 +6,14 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:51:45 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 10:21:20 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:56:54 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LEMIN_H
 # define LEMIN_H
 
 # include "libft.h"
-# include "pathfinding.h"
 # include "graph.h"
 
 typedef __uint32_t		t_uint;
@@ -35,12 +33,6 @@ typedef struct			s_room
 	int					x;
 	int					y;
 }						t_room;
-
-typedef struct			s_connect
-{
-	int					dst;
-	t_uint				state : 1;
-}						t_connect;
 
 typedef struct			s_anthill
 {
@@ -74,5 +66,6 @@ int						which_resolution(t_anthill *anthill, t_roadset *roads);
 int						multi_path(t_anthill *anthill, t_roadset *roads);
 int						all_ant_one_path(t_anthill *anthill, t_roadset *roads);
 void					oneshot(t_anthill *anthill);
+t_roadset				*solve(t_graph *restrict graph, t_uint lemin);
 
 #endif

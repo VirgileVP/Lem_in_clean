@@ -6,11 +6,11 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 16:59:35 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 10:20:18 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:37:08 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pathfinding.h"
+#include "graph.h"
 
 void		graph_reset_state(t_graph *restrict graph)
 {

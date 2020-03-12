@@ -6,14 +6,15 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:25:03 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/11 13:28:39 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:59:36 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef QUEUE_H
 # define QUEUE_H
 
-# include "graph.h"
+# include "typedef.h"
+# include "libft.h"
 
 typedef struct				s_item_lst
 {

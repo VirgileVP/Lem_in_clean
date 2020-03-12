@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   multipath.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vveyrat- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:36:30 by vveyrat-          #+#    #+#             */
-/*   Updated: 2020/03/10 11:36:38 by vveyrat-         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:50:10 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
+/*
 static void		print_road_status(t_roadset *roads, int road)
 {
 	int		count;
@@ -32,7 +32,7 @@ static void		print_road_status(t_roadset *roads, int road)
 	}
 	printf("\n");
 }
-
+*/
 /*
 ** fill_remaining_ants :
 **
@@ -102,9 +102,9 @@ static int	which_ant(t_roadset *roads, int road_index)
 ** if start == 1, move 1st ant out start room
 */
 
-static int	is_starting(t_roadset *roads, int road_index, int *remaining_ants, t_anthill *anthill)
+static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 {
-	int		count;
+	size_t	count;
 	int		start;
 
 	count = 0;
@@ -134,7 +134,7 @@ static int	is_starting(t_roadset *roads, int road_index, int *remaining_ants, t_
 ** print the new road status
 */
 
-static void		print_step(t_anthill *anthill, t_roadset *roads, int road_index, int *remaining_ants)
+static void		print_step(t_anthill *anthill, t_roadset *roads, int road_index)
 {
 	int			count;
 
@@ -159,7 +159,7 @@ static void		print_step(t_anthill *anthill, t_roadset *roads, int road_index, in
 
 static void		solo_ant(t_anthill *anthill, t_roadset *roads, int road_index, int *remaining_ants)
 {
-	int			count;
+	size_t		count;
 	int			actual_ant;
 
 	count = 0;
@@ -181,7 +181,7 @@ static void		solo_ant(t_anthill *anthill, t_roadset *roads, int road_index, int 
 		}
 	}
 	if (remaining_ants[road_index] > 0)
-		print_step(anthill, roads, road_index, remaining_ants);
+		print_step(anthill, roads, road_index);
 	if (count == roads[road_index].len - 1)
 		remaining_ants[road_index] = 0;
 }
@@ -194,10 +194,10 @@ static void		solo_ant(t_anthill *anthill, t_roadset *roads, int road_index, int 
 
 static void	update_roads_rooms(t_anthill *anthill, t_roadset *roads, int *remaining_ants, int road_index)
 {
-	int		count;
+	size_t	count;
 
 	count = 0;
-	if (is_starting(roads, road_index, remaining_ants, anthill) == 1)
+	if (is_starting(roads, road_index, anthill) == 1)
 		return;
 	while (count < roads[road_index].len)
 	{
@@ -215,7 +215,7 @@ static void	update_roads_rooms(t_anthill *anthill, t_roadset *roads, int *remain
 		count++;
 	}
 	if (remaining_ants[road_index] >= 1)
-		print_step(anthill, roads, road_index, remaining_ants);
+		print_step(anthill, roads, road_index);
 	if (roads[road_index].t[roads[road_index].len - 1].ant_index == which_ant(roads, road_index + 1))
 		remaining_ants[road_index] = 0;
 }

@@ -6,16 +6,15 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:07:08 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/11 13:56:32 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:00:56 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graph.h"
 
-static queue_insert(t_queue *restrict queue, t_node_data data)
+static void			queue_insert(t_queue *restrict queue, t_node_data data)
 {
 	t_item_lst		*cur;
-	t_item_lst		*next;
 
 	if (queue->xitem == 0 ||
 	((t_node_data *)queue->head->mem)->weight >= data.weight)
@@ -67,12 +66,12 @@ static void			weight_change(t_queue *restrict queue, t_uint item,
 	queue_insert(queue, *tmp);
 }
 
-static void			node_check(t_vect *restrict queue, t_node_data src,
+static void			node_check(t_queue *restrict queue, t_node_data src,
 							t_connect_data connect)
 {
 	t_node_data		tmp;
 
-	tmp = tmp = data_set(src, connect);
+	tmp = data_set(src, connect);
 	if (connect.dst->marked == 0)
 	{
 		queue_insert(queue, tmp);

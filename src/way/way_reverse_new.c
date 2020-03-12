@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:51:47 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 08:49:51 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:08:35 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void			way_reverse_new(t_graph *restrict graph)
 	while (pos != graph->start)
 	{
 		connect.dst = graph_node(graph, connect.src->parent);
-		connect.src_dst = graph_connect(connect.src, connect.src->parent);
-		connect.dst_src = graph_connect(connect.dst, pos);
+		connect.src_dst = graph_connect(&connect.src->connect, connect.src->parent);
+		connect.dst_src = graph_connect(&connect.dst->connect, pos);
 		if (connect.dst->separate && connect.dst->sep_type == MARKED_OUT &&
 			connect.src_dst->state == CONNECT_POSITIVE)
 		{

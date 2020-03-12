@@ -6,16 +6,16 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 08:22:44 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 08:48:06 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:06:27 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pathfinding.h"
+#include "way.h"
 
 void		way_ant_dispatch(t_way_set *restrict set, t_uint lemin)
 {
-	int		i;
-	int		j;
+	t_size	i;
+	t_size	j;
 
 	i = 0;
 	while (lemin > 0)

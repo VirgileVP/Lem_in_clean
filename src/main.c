@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 10:29:24 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:13:41 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		data_init(t_anthill *data, int nb_room, int nb_lemin)
 	while (n < nb_room)
 	{
 		vect_init(&node.connect, sizeof(t_connect), 5);
-		vect_add(data->farm, &node);
+		vect_add(&data->farm, &node);
 		n++;
 	}
 }
@@ -78,7 +78,7 @@ static void		graph_init(t_graph *restrict graph, t_anthill *restrict ah)
 
 	n = 0;
 	graph->nodes = (t_node **)ft_malloc(sizeof(t_node *));
-	while (n < ah->nb_ant)
+	while (n < (t_size)ah->nb_ant)
 	{
 		graph->nodes[n] = (t_node *)vect(&ah->farm, n);
 		n++;

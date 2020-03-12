@@ -6,11 +6,11 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:17:00 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/11 13:53:02 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:01:15 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pathfinding.h"
+#include "graph.h"
 
 void		node_mark(t_node *restrict node, t_int state,
 						t_int weight, t_uint parent)

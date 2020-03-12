@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   unipath.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vveyrat- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:38:45 by vveyrat-          #+#    #+#             */
-/*   Updated: 2020/03/10 11:38:48 by vveyrat-         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 12:52:45 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
+/*
 static void		print_road_status(t_roadset *roads, int road)
 {
 	int		count;
@@ -32,7 +32,7 @@ static void		print_road_status(t_roadset *roads, int road)
 	}
 	printf("\n\n");
 }
-
+*/
 /*
 ** print_step :
 **
@@ -67,7 +67,7 @@ static void		print_step(t_anthill *anthill, t_roadset *roads)
 static void		update_roads_rooms(t_anthill *anthill,
 t_roadset *roads, int room_index)
 {
-	int			count;
+	size_t			count;
 
 	count = room_index;
 	while (count < roads[0].len)
@@ -76,12 +76,12 @@ t_roadset *roads, int room_index)
 		{
 			if (roads[0].t[count].ant_index == roads[0].nb_ant)
 				roads[0].t[count].ant_index = 0;
-			else if (count == room_index || roads[0].t[count - 1].ant_index > 1)
+			else if ((int)count == room_index || roads[0].t[count - 1].ant_index > 1)
 				roads[0].t[count].ant_index++;
 			else if (roads[0].t[count].ant_index == roads[0].nb_ant - 1)
 				roads[0].t[count].ant_index++;
 		}
-		else if (count == room_index || roads[0].t[count - 1].ant_index >= 1)
+		else if ((int)count == room_index || roads[0].t[count - 1].ant_index >= 1)
 			roads[0].t[count].ant_index++;
 		count++;
 	}
@@ -93,7 +93,7 @@ t_roadset *roads, int room_index)
 
 static int		solo_ant(t_anthill *anthill, t_roadset *roads)
 {
-	int			count;
+	size_t			count;
 
 	count = 0;
 	roads[0].t[1].ant_index = 1;
@@ -132,7 +132,7 @@ int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 	while (roads[0].nb_ant > 0)
 	{
 		count_room = 0;
-		while (count_room < roads[0].len)
+		while (count_room < (int)roads[0].len)
 		{
 			if (roads[0].t[count_room].ant_index != 0)
 			{
