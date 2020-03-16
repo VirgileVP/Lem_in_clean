@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:00:46 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:27:26 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 15:00:30 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,16 @@
 **	ft_memory_manager.c
 */
 
+# include <stdio.h>
+void			ft_memman_check(void);
+
 void			ft_memman_init(void);
 void			*ft_memman_malloc(t_size size);
-void			*ft_memman_realloc(void *ptr, t_size size);
 void			ft_memman_free(void *restrict ptr);
 void			ft_memman_clean(void);
 
-/*
-**	ft_alloc.c
-*/
-
 void			*ft_malloc(t_size size);
-void			*ft_realloc(void *restrict ptr, t_size size);
-void			*ft_re_alloc(void *restrict ptr, t_size size);
-void			*ft_re_alloc_n(void *restrict ptr, t_size oldsize, t_size newsize);
+void			*ft_nomm_realloc(void *ptr, t_size oldsize, t_size newsize);
 void			ft_free(void *restrict ptr);
 
 #endif

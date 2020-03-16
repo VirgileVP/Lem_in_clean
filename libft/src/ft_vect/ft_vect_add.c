@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vect_add.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:01:03 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/05 15:01:23 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 13:23:52 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void		*vect_add_i(t_vect *restrict self, void *item, t_size i)
 	if (self->xitem == self->max_item)
 		vect_extend(self, 1);
 	tmp = vect(self, i);
-	ft_memmove(tmp + self->item_size, tmp, ((self->xitem)++ - i) * self->xitem);
+	ft_memmove(tmp + self->item_size, tmp, ((self->xitem) - i) * self->xitem);
+	self->xitem++;
 	return (ft_memcpy(tmp, item, self->item_size));	
 }
 

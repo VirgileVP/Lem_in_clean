@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 15:18:47 by zseignon          #+#    #+#              #
-#    Updated: 2020/03/12 13:24:30 by zseignon         ###   ########lyon.fr    #
+#    Updated: 2020/03/16 13:36:18 by zdebugs          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					=	libft.a
 
 CC						=	gcc
-CFLAGS					=	-O3 -march=native -Wall -Werror -Wextra
+CFLAGS					=	-O3 -march=native -Wall -Wextra
 
 SRC_DIR					=	src
 OBJ_DIR					=	obj
@@ -31,7 +31,9 @@ FT_VECT_SRC				=	$(addprefix $(FT_VECT_SRC_DIR)/, $(FT_VECT_SRC_NAME))
 #	FT_MEMORY_MANAGEMENT_DECLARATION	########################################
 FT_MEMMAN_SRC_DIR		=	$(SRC_DIR)/ft_memman
 FT_MEMMAN_SRC_NAME		=	ft_memory_manager.c\
-							ft_alloc.c
+							ft_malloc.c\
+							ft_nomm_realloc.c\
+							ft_free.c
 FT_MEMMAN_SRC			=	$(addprefix $(FT_MEMMAN_SRC_DIR)/, $(FT_MEMMAN_SRC_NAME))
 
 #	FT_CMP_DECLARATION	########################################################
@@ -43,15 +45,6 @@ FT_CMP_SRC				=	$(addprefix $(FT_CMP_SRC_DIR)/, $(FT_CMP_SRC_NAME))
 FT_ERROR_SRC_DIR		=	$(SRC_DIR)/ft_error
 FT_ERROR_SRC_NAME		=	ft_error.c
 FT_ERROR_SRC			=	$(addprefix $(FT_ERROR_SRC_DIR)/, $(FT_ERROR_SRC_NAME))
-
-#	MISC_DECLARATION		####################################################
-MISC_SRC_DIR			=	$(SRC_DIR)/misc
-MISC_SRC_NAME			=	ft_count_words.c\
-							ft_is_strdigit.c\
-							ft_isspace.c\
-							get_next_line.c\
-							nmatch.c
-MISC_SRC				=	$(addprefix $(FT_ERROR_SRC_DIR)/, $(FT_ERROR_SRC_NAME))
 
 #	LIBC_DECLARATION	########################################################
 LIBC_SRC_DIR			=	$(SRC_DIR)/libc
@@ -114,15 +107,13 @@ SRC_NAME				=	$(FT_VECT_SRC_NAME)\
 							$(FT_MEMMAN_SRC_NAME)\
 							$(FT_CMP_SRC_NAME)\
 							$(FT_ERROR_SRC_NAME)\
-							$(LIBC_SRC_NAME)\
-							$(MISC_SRC_NAME)
+							$(LIBC_SRC_NAME)
 
 SRC						=	$(FT_VECT_SRC)\
 							$(FT_MEMMAN_SRC)\
 							$(FT_CMP_SRC)\
 							$(FT_ERROR_SRC)\
-							$(LIBC_SRC)\
-							$(MISC_SRC)
+							$(LIBC_SRC)
 
 #	OBJ_DECLARATION	############################################################
 OBJ_NAME				=	$(SRC_NAME:.c=.o)
@@ -143,40 +134,40 @@ INC_FLAG				=	-I$(INC_DIR)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar -rc $(NAME) $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
 	ranlib $(NAME)
+
+test: $(NAME)
+	$(CC) $(CFLAGS) $(INC_FLAG) -c -o test.o test.c
+	$(CC) $(CFLAGS) -L./ -lft test.o -o a.out
+	./a.out
 
 #	FT_VECTOR_COMPILATION	####################################################
 $(OBJ_DIR)/%.o: $(FT_VECT_SRC_DIR)/%.c $(INC)
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
-	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
+	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	FT_MEMORY_MANAGEMENT_COMPILATION	########################################
 $(OBJ_DIR)/%.o : $(FT_MEMMAN_SRC_DIR)/%.c $(INC)
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
-	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
+	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	FT_CMP_COMPILATION	########################################################
 $(OBJ_DIR)/%.o : $(FT_CMP_SRC_DIR)/%.c $(INC)
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
-	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
+	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	FT_ERROR_COMPILATION	####################################################
 $(OBJ_DIR)/%.o : $(FT_ERROR_SRC_DIR)/%.c $(INC)
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
-	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
-
-#	MISC_COMPILATION	########################################################
-$(OBJ_DIR)/%.o : $(MISC_SRC_DIR)/%.c $(INC)
-	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
-	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
+	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	LIBC_COMPILATION	########################################################
 $(OBJ_DIR)/%.o : $(LIBC_SRC_DIR)/%.c $(INC)
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
-	$(CC) $(CFLAGS) $(INC_FLAG) -c -o $@ $<
-
-.PHONY: clean fclean re
+	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
+	
+.PHONY: test clean fclean re
 
 clean:
 	rm -rf $(OBJ_DIR)

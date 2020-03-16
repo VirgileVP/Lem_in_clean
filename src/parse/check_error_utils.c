@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_error_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/16 13:48:07 by zdebugs           #+#    #+#             */
+/*   Updated: 2020/03/16 13:48:16 by zdebugs          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lemin.h"
 #include "check_error.h"
+#include "misc.h"
 
 int			free_temp_line(char *temp, char *line, int ret)
 {
@@ -53,7 +66,7 @@ int			check_room(char *line, int tube_pars)
 		return (-1);
 	if (ft_is_strdigit(split[1]) != 1 || ft_is_strdigit(split[2]) != 1)
 		return (-1);
-	free(split);
+	ft_free(split);
 	return (1);
 }
 

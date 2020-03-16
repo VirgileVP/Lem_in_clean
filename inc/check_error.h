@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:54:16 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 12:56:26 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 13:47:20 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECK_ERROR_H
 # define CHECK_ERROR_H
+
+# include "misc.h"
 
 typedef struct		s_check_bad_order
 {

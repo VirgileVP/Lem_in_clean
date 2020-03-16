@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:00:11 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:36:58 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/13 09:21:05 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		ft_memman_init(void)
 	g_mem_manager.xitem = 0;
 }
 
-void		*ft_memman_malloc(t_size size)
+void			*ft_memman_malloc(t_size size)
 {
 	void	*tmp;
 	t_size	oldsize;
@@ -32,54 +32,38 @@ void		*ft_memman_malloc(t_size size)
 	if (g_mem_manager.xitem == g_mem_manager.max_item)
 	{
 		oldsize = g_mem_manager.max_item;
-		g_mem_manager.max_item += g_mem_manager.max_item < MM_MAX_INDENT ? g_mem_manager.max_item : MM_MAX_INDENT;
-		if (!(g_mem_manager.mem = ft_re_alloc_n(g_mem_manager.mem, oldsize * PTR_SIZE, g_mem_manager.max_item * PTR_SIZE)))
+		g_mem_manager.max_item += ((g_mem_manager.max_item <
+			MM_MAX_INDENT) ? g_mem_manager.max_item : MM_MAX_INDENT);
+		tmp = ft_nomm_realloc(g_mem_manager.mem, oldsize * PTR_SIZE,
+								g_mem_manager.max_item * PTR_SIZE);
+		if (!tmp)
 			ft_error_free_exit(ERR_MEMALLOC_MSG, MEMERR_CODE);
+		g_mem_manager.mem = tmp;
 	}
-	if (!(tmp = malloc(size)))
+	tmp = malloc(size);
+	if (!tmp)
 		ft_error_free_exit(ERR_MEMALLOC_MSG, MEMERR_CODE);
 	vect_add(&g_mem_manager, &tmp);
 	return (tmp);
 }
 
-void		*ft_memman_realloc(void *ptr, t_size size)
+void			ft_memman_free(void *restrict ptr)
 {
-	void	*tmp;
-
-	if ((tmp = vect_find_back(&g_mem_manager, ptr, ft_pcmp)))
-		vect_pop_p(&g_mem_manager, ptr);
-	if (!(tmp = ft_re_alloc(ptr, size)))
-	{
-		ft_memdel(&ptr);
-		ft_error_free_exit(ERR_MEMALLOC_MSG, MEMERR_CODE);
-	}
-	vect_add(&g_mem_manager, tmp);
-	return (tmp);
-}
-
-void		ft_memman_free(void *restrict ptr)
-{
-	void	*tmp;
+	void *tmp;
 
 	if (!(tmp = vect_find_back(&g_mem_manager, ptr, ft_pcmp)))
 	{
 		ft_error_print(ERR_MEMFREE_MSG);
 		return ;
 	}
-	(tmp == vect_top(&g_mem_manager)) ? vect_pop(&g_mem_manager) : vect_pop_p(&g_mem_manager, tmp);
-	free(tmp);
-	if (g_mem_manager.max_item > MM_INIT_SIZE && g_mem_manager.xitem < (g_mem_manager.max_item >> 1) - MM_MAX_INDENT)
-	{
-		if (!(tmp = ft_re_alloc_n(g_mem_manager.mem, g_mem_manager.xitem * PTR_SIZE, (g_mem_manager.max_item >> 1) - MM_MAX_INDENT)))
-			ft_error_free_exit(ERR_MEMALLOC_MSG, MEMERR_CODE);
-		g_mem_manager.mem = tmp;
-		g_mem_manager.max_item >>= 1;
-	}
+	(tmp == vect_top(&g_mem_manager)) ? vect_pop(&g_mem_manager) :
+										vect_pop_p(&g_mem_manager, tmp);
+	free(ptr);
 }
 
 void		ft_memman_clean(void)
 {
 	while (g_mem_manager.xitem > 0)
-		vect_pop(&g_mem_manager);
+		free(*(void **)vect_pop(&g_mem_manager));
 	free(g_mem_manager.mem);
 }

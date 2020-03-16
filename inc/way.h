@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   way.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 08:44:27 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 12:57:43 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 14:15:03 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct			s_way
 {
-	t_uint				*node_index;
+	t_uint *restrict	node_index;
 	t_size				len;
 	t_uint				ants;
 }						t_way;
@@ -31,8 +31,13 @@ typedef struct			s_way_set
 }						t_way_set;
 
 
+void					way_init(t_vect *restrict self);
+void					way_del(t_vect *restrict self);
+void					way_clean(t_vect *restrict self);
+
 void					way_set_init(t_way_set *restrict self, t_uint max_way);
 void					way_set_del(t_way_set *restrict self);
+
 void					way_reverse_new(t_graph *restrict graph);
 void					way_ant_dispatch(t_way_set *restrict set,
 		t_uint lemin);

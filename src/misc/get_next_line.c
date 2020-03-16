@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:18:02 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 11:19:03 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 11:42:53 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int				get_next_line(const int fd, char **line)
 			return (-1);
 		buffer[reading] = '\0';
 		list->actual = ft_strjoin(list->temp, buffer);
-		free(list->temp);
+		ft_free(list->temp);
 		list->temp = list->actual;
 	}
 	return (ft_last_check(list->actual, line));

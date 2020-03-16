@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:00:09 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:38:03 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 14:41:11 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void		vect_extend(t_vect *restrict self, t_size n)
 	{
 		self->max_item <<= 1;
 	}
-	self->mem = ft_re_alloc_n(self->mem, old_size * self->item_size, self->max_item * self->item_size);
+	self->mem = ft_nomm_realloc(self->mem, old_size * self->item_size, self->max_item * self->item_size);
 }
 
 void		vect_shrink(t_vect *restrict self, t_size reserve)
 {
-	self->mem = ft_re_alloc_n(self->mem, self->item_size * self->max_item, (self->xitem + reserve) * self->item_size);
+	self->mem = ft_nomm_realloc(self->mem, self->item_size * self->max_item, (self->xitem + reserve) * self->item_size);
 	self->max_item = (self->xitem + reserve);
 }

@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   way_set_restore.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:45:44 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 13:11:05 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 15:01:19 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "way.h"
 
-static void	way_swap(t_way *w1, t_way *w2)
+static void	way_swap(
+	t_way *w1,
+	t_way *w2
+	)
 {
 	t_way		*tmp;
 	
@@ -21,7 +24,11 @@ static void	way_swap(t_way *w1, t_way *w2)
 	w2 = tmp;
 }
 
-static void	way_qsort(t_way *restrict t, t_uint bot, t_uint top)
+static void	way_qsort(
+	t_way *restrict t,
+	t_uint bot,
+	t_uint top
+	)
 {
 	t_uint		i;
 	t_uint		j;
@@ -45,25 +52,40 @@ static void	way_qsort(t_way *restrict t, t_uint bot, t_uint top)
 	}
 }
 
-static void	way_add(t_way_set *restrict set, t_vect *restrict way, t_uint way_index)
+static void	way_add(
+	t_way *dst,
+	t_vect *restrict way
+	)
 {
 	t_size		n;
+	static t_uint	way_index = 0;
 
 	n = 0;
+	dst->node_index = ft_malloc(sizeof(t_uint) * way->xitem);
+	printf("WAY[%d]=|", way_index);
 	while (n < way->xitem)
 	{
-		set->ways[way_index].node_index[n] = *(t_uint *)vect(way, n);
+		dst->node_index[n] = *(t_uint *)vect(way, n);
+		printf("%d|", dst->node_index[n]);
 		n++;
 	}
+	dst->ants = 0;
+	dst->len = way->xitem;
+	printf("\nlen = %ld\n", dst->len);
 }
 
-static void	way_find(t_graph *restrict graph, t_vect *restrict way, t_node *node)
+static void	way_find(
+	t_graph *restrict graph,
+	t_vect *restrict way,
+	t_uint node
+	)
 {
 	t_iter				iter;
 	t_connect *restrict	tmp;
 
-	vect_add(way, node);
-	iter_init(&iter, node, ITER_FORBIDDEN);
+	vect_add(way, &graph->start);
+	vect_add(way, &node);
+	iter_init(&iter, graph_node(graph, node), ITER_FORBIDDEN);
 	while (*(t_uint *)vect_top(way) != graph->end)
 	{
 		tmp = iter_next(&iter);
@@ -72,8 +94,12 @@ static void	way_find(t_graph *restrict graph, t_vect *restrict way, t_node *node
 	}
 }
 
-void		way_set_restore(t_way_set *restrict set, t_graph *restrict graph,
-t_uint xway, t_uint lemin)
+void		way_set_restore(
+	t_way_set *restrict set,
+	t_graph *restrict graph,
+	t_uint xway,
+	t_uint lemin
+	)
 {
 	t_iter				iter;
 	t_vect				way;
@@ -81,18 +107,18 @@ t_uint xway, t_uint lemin)
 	t_connect 			*connect;
 	
 	way_index = 0;
-	vect_init(&way, sizeof(t_uint), 256);
+	way_init(&way);
 	way_set_init(set, xway);
 	iter_init(&iter, graph_node(graph, graph->start), ITER_FORBIDDEN);
 	while ((connect = iter_next(&iter)))
 	{
-		way_find(graph, &way, graph_node(graph, connect->dst));
-		way_add(set, &way, way_index);
-		vect_clean(&way);
+		way_find(graph, &way, connect->dst);
+		way_add(&set->ways[way_index], &way);
+		way_clean(&way);
 		way_index++;
 	}
 	set->xway = way_index;
-	ft_free(way.mem);
+	way_del(&way);
 	way_qsort(set->ways, 0, set->xway - 1);
 	way_ant_dispatch(set, lemin);
 }

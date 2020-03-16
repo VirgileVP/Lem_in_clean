@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:51:45 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 12:56:54 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 13:47:13 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "graph.h"
+# include "misc.h"
 
 typedef __uint32_t		t_uint;
 typedef __int32_t		t_int;

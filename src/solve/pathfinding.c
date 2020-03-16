@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:58:45 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 13:02:14 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 15:07:03 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ t_roadset			*solve(t_graph *graph, t_uint lemin)
 			break ;
 		graph_reset_state(graph);
 	}
-	return (prev.ways > 0 ? roadset_convert(&prev) : NULL);
+	return (prev.xway > 0 ? roadset_convert(&prev) : NULL);
 }

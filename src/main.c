@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 13:13:41 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 15:06:42 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 //----------------PRINT-FUNCTION-----------------------------------------------
-/*
+
 static void		print_roadset(t_roadset *rs, t_anthill *ah)
 {
 	size_t			y;
 	size_t			x;
 
 	y = 0;
-	printf("ROADSET");
+	printf("ROADSET\n");
 	while (rs[y].t != NULL)
 	{
 		x = 0;
-		printf("PATH N'%zu [%zu]: |", rs[y].len, y);
+		printf("PATH[%zu][%zu]: |", y, rs[y].len);
 		fflush(stdout);
 		while (x < rs[y].len)
 		{
@@ -35,7 +35,7 @@ static void		print_roadset(t_roadset *rs, t_anthill *ah)
 		printf("\n");
 	}
 }
-*/
+
 //-----------------------------------------------------------------------------
 
 static void		print_read(t_read_room *read)
@@ -72,13 +72,16 @@ static void		data_init(t_anthill *data, int nb_room, int nb_lemin)
 	}
 }
 
-static void		graph_init(t_graph *restrict graph, t_anthill *restrict ah)
+static void		graph_init(
+	t_graph *restrict graph,
+	t_anthill *restrict ah
+	)
 {
 	t_size		n;
 
 	n = 0;
-	graph->nodes = (t_node **)ft_malloc(sizeof(t_node *));
-	while (n < (t_size)ah->nb_ant)
+	graph->nodes = (t_node **)ft_malloc(sizeof(t_node *) * ah->nb_room);
+	while (n < (t_size)ah->nb_room)
 	{
 		graph->nodes[n] = (t_node *)vect(&ah->farm, n);
 		n++;
@@ -113,6 +116,7 @@ int				main(void)
 			graph_init(&graph, &data);
 			if ((roadset = solve(&graph, data.nb_ant)))
 				which_resolution(&data, roadset);
+			print_roadset(roadset, &data);
 		}
 	}
 	else

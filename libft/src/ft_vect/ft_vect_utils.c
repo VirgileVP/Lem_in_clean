@@ -6,7 +6,7 @@
 /*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:01:14 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/05 15:01:23 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 15:13:09 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		*vect_find_back(t_vect *restrict self, void *item, int (*cmp)(const void *
 	n = self->xitem;
 	while (n-- > 0)
 	{
-		if (cmp(vect(self, n), item))
+		if (!cmp(vect(self, n), &item))
 			return (vect(self, n));
 	}
 	return (NULL);
@@ -30,10 +30,10 @@ void		*vect_find_front(t_vect *restrict self, void *item, int (*cmp)(const void 
 {
 	register t_size		n;
 
-	n = 0;
-	while (n++ > self->xitem)
+	n = 4294967295;
+	while (++n > self->xitem)
 	{
-		if (cmp(vect(self, n), item))
+		if (!cmp(vect(self, n), &item))
 			return (vect(self, n));
 	}
 	return (NULL);

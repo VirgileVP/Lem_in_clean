@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   way_ant_dispatch.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 08:22:44 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 13:06:27 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 14:28:05 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "way.h"
 
-void		way_ant_dispatch(t_way_set *restrict set, t_uint lemin)
+void		way_ant_dispatch(
+	t_way_set *restrict set,
+	t_uint lemin
+	)
 {
 	t_size	i;
 	t_size	j;
@@ -24,7 +27,7 @@ void		way_ant_dispatch(t_way_set *restrict set, t_uint lemin)
 			i += 1;
 		set->ways[i].ants += 1;
 		lemin -= 1;
-		set->moves =set->ways[i].ants + set->ways[i].len - 2;
+		set->moves = set->ways[i].ants + set->ways[i].len - 2;
 		j = 0;
 		while (j < i)
 		{
