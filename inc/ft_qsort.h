@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graph_utils.c                                      :+:      :+:    :+:   */
+/*   ft_qsort.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 16:59:35 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/17 10:10:28 by zdebugs          ###   ########lyon.fr   */
+/*   Created: 2020/03/17 11:15:28 by zdebugs           #+#    #+#             */
+/*   Updated: 2020/03/17 11:18:15 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graph.h"
+#ifndef FT_QSORT_H
+# define FT_QSORT_H
 
-void		graph_reset_state(t_graph *restrict graph)
-{
-	t_size		n;
-	t_node		*node;
+# include "typedef.h"
 
-	n = 0;
-	while (n < graph->size)
-	{
-		node = graph_node(graph, n);
-		node->in_new_way = 0;
-		node->in_queue = 0;
-		node->marked = 0;
-		node->weight = 0;
-		node->parent = 0;
-		n++;
-	}
-	graph_node(graph, graph->start)->separate = 0;
-	graph_node(graph, graph->end)->separate = 0;
-}
+void        ft_qsort(
+    void *restrict mem,
+    t_size left,
+    t_size right,
+    int (*cmp)(const void *, const void *)
+);
+
+#endif

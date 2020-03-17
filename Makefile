@@ -6,7 +6,7 @@
 #    By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 13:35:26 by zseignon          #+#    #+#              #
-#    Updated: 2020/03/16 14:05:52 by zdebugs          ###   ########lyon.fr    #
+#    Updated: 2020/03/17 11:18:40 by zdebugs          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ QUEUE_SRC		=	$(addprefix $(QUEUE_SRC_DIR)/, $(QUEUE_SRC_NAME))
 SOLVE_SRC_DIR	=	$(SRC_DIR)/solve
 SOLVE_SRC_NAME	=	node_bypass.c\
 					node_mark.c\
-					pathfinding.c
+					pathfinding.c\
+					ft_qsort.c
 SOLVE_SRC		=	$(addprefix $(SOLVE_SRC_DIR)/, $(SOLVE_SRC_NAME))
 
 WAY_SRC_DIR		=	$(SRC_DIR)/way
@@ -86,7 +87,8 @@ INC_NAME		=	inc/check_error.h\
 					inc/queue.h\
 					inc/solve.h\
 					inc/way.h\
-					inc/misc.h
+					inc/misc.h\
+					inc/ft_qsort.h
 INCFLAGS		=	-Iinc/ -Ilibft/inc/
 LIBFLAGS		=	-Llibft/ -lft
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipath.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:36:30 by vveyrat-          #+#    #+#             */
-/*   Updated: 2020/03/12 12:50:10 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 15:22:12 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ int			multi_path(t_anthill *anthill, t_roadset *roads)
 
 	count = 0;
 	nb_road = how_much_road(roads);
-	if (!(remaining_ants = malloc(sizeof(int) * nb_road)))
+	if (!(remaining_ants = ft_malloc(sizeof(int) * nb_road)))
 		return (-1);
 	fill_remaining_ants(roads, remaining_ants, nb_road);
 	while (total_ant(remaining_ants, nb_road) > 0)

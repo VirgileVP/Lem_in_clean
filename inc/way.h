@@ -6,7 +6,7 @@
 /*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 08:44:27 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 14:15:03 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/17 11:22:37 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void					way_ant_dispatch(t_way_set *restrict set,
 		t_uint lemin);
 void					way_set_restore(t_way_set *restrict set,
 		t_graph *restrict graph, t_uint xway, t_uint lemin);
+int						way_cmp(const void *p1, const void *p2);
 
 #endif

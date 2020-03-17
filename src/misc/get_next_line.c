@@ -6,7 +6,7 @@
 /*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:18:02 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 11:42:53 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 15:21:23 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_gnl	*ft_initialize(int fd)
 {
 	t_gnl			*new;
 
-	if (!(new = (t_gnl*)malloc(sizeof(*new))))
+	if (!(new = (t_gnl*)ft_malloc(sizeof(*new))))
 		return (NULL);
 	new->next = NULL;
 	new->actual = NULL;

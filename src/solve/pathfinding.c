@@ -6,7 +6,7 @@
 /*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:58:45 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 15:07:03 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/17 12:09:18 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_roadset	*roadset_convert(t_way_set *restrict set)
 	while (n < set->xway)
 	{
 		x = 0;
-		rs->t = (t_rdata *)ft_malloc(set->ways[n].len);
+		rs[n].t = (t_rdata *)ft_malloc(sizeof(t_rdata) * set->ways[n].len);
 		while (x < set->ways[n].len)
 		{
 			rs[n].t[x].n = set->ways[n].node_index[x];
@@ -35,8 +35,26 @@ static t_roadset	*roadset_convert(t_way_set *restrict set)
 		n++;
 	}
 	rs[n].t = NULL;
-	way_set_del(set);
+	//way_set_del(set);
 	return (rs);
+}
+
+__attribute__ ((unused))static void			queue_print(t_queue *restrict self)
+{
+	t_item_lst		*tmp;
+	t_size			n;
+
+	tmp = self->head;
+	n = 0;
+	printf("queue[%ld] = |", self->xitem);
+	while (n < self->xitem)
+	{
+		printf("%d|", ((t_node_data *)tmp->mem)->self);
+		tmp = tmp->next;
+		n++;
+	}
+	printf("\n");
+	fflush(stdout);
 }
 
 static int		pathfinding(t_graph *restrict graph)
@@ -73,19 +91,22 @@ t_roadset			*solve(t_graph *graph, t_uint lemin)
 	xway = 0;
 	while (pathfinding(graph) == 1)
 	{
+		printf("pathfinding _ok\n");
 		xway++;
 		way_set_restore(&tmp, graph, xway, lemin);
 		if (tmp.moves < min_moves)
 		{
+//			min_moves < UINT_MAX ? way_set_del(&prev) : 0;
 			min_moves = tmp.moves;
-			way_set_del(&prev);
 			prev = tmp;
 		}
 		else
-			way_set_del(&tmp);
+//			way_set_del(&tmp);
 		if (tmp.moves > min_moves || xway == max_way)
 			break ;
 		graph_reset_state(graph);
+		printf("loop[%d] __ok\n", xway);
 	}
+	printf("rs _enter\n");
 	return (prev.xway > 0 ? roadset_convert(&prev) : NULL);
 }

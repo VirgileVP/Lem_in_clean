@@ -1,20 +1,20 @@
-23
+3
 ##start
-salle1 0 0
-salle2 1 1
-salle3 2 2
+START 1 1
 ##end
-salle4 3 3
-salle5 4 4
-salle6 5 5
-salle7 6 6
-salle8 7 7
-salle1-salle2
-salle2-salle3
-salle3-salle4
-salle2-salle7
-salle7-salle8
-salle8-salle4
-salle1-salle5
-salle5-salle6
-salle6-salle3
+END 2 2
+C1 3 3
+C2 4 4
+A1 5 5
+A2 6 6
+B1 7 7
+B2 8 8
+START-C1
+C1-A1
+A1-A2
+A2-END
+START-B1
+B1-B2
+B2-C2
+C2-END
+C1-C2

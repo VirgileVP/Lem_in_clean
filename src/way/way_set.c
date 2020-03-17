@@ -6,7 +6,7 @@
 /*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:02:52 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 14:11:19 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/17 11:53:58 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void		way_set_init(t_way_set *restrict self, t_uint max_way)
 void		way_set_del(t_way_set *restrict self)
 {
 	ft_memdel((void **)&self->ways);
+	self->xway = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue_add.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 09:21:01 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/11 11:30:19 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/17 09:58:44 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void				queue_add_head(t_queue *restrict self, void *item)
 	new = (self->xcache > 0 ? queue_cache_pop(self) : queue_lst_new(self));
 	ft_memcpy(new->mem, item, self->item_size);
 	new->next = self->head;
+	if (self->xitem == 1)
+		self->tail = self->head;
 	self->head = new;
 	(self->xitem)++;
 }

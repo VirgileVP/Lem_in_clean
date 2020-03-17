@@ -6,14 +6,14 @@
 /*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 15:06:42 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/17 11:56:33 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 //----------------PRINT-FUNCTION-----------------------------------------------
 
-static void		print_roadset(t_roadset *rs, t_anthill *ah)
+__attribute__ ((unused))static void		print_roadset(t_roadset *rs, t_anthill *ah)
 {
 	size_t			y;
 	size_t			x;
@@ -91,11 +91,52 @@ static void		graph_init(
 	graph->start = ah->start;
 }
 
+__attribute__ ((unused))static void		graph_test(t_graph *restrict graph)
+{
+	t_size		n;
+	t_size		x;
+
+	n = 0;
+	while (n < graph->size)
+	{
+		x = 0;
+		printf(
+			"node[%ld]:\n\
+			in_new_way = %d\n\
+			in_queue = %d\n\
+			marked = %d\n\
+			parent = %d\n\
+			sep_type = %d\n\
+			separate = %d\n\
+			weight = %d\n\
+			xconnect = %ld\n",
+			n,
+			graph->nodes[n]->in_new_way,
+			graph->nodes[n]->in_queue,
+			graph->nodes[n]->marked,
+			graph->nodes[n]->parent,
+			graph->nodes[n]->sep_type,
+			graph->nodes[n]->separate,
+			graph->nodes[n]->weight,
+			graph->nodes[n]->connect.xitem
+		);
+		while (x < graph->nodes[n]->connect.xitem)
+		{
+			printf(
+				"\t\t\t\t->%d\n",
+				((t_connect *)vect(&(graph->nodes[n]->connect), x))->dst
+			);
+			x++;
+		}
+		n++;
+	}
+}
+
 int				main(void)
 {
 	t_anthill		data;
 	t_read_room		read;
-	t_roadset		*roadset;
+	t_roadset		*roadset __attribute__ ((unused));
 	int				ret;
 	t_graph			graph;
 
@@ -104,6 +145,7 @@ int				main(void)
 	ft_memset(&read, 0, sizeof(t_read_room));
 	if (read_error(&read) == 1)
 	{
+		read.nb_room -= 2;
 		data_init(&data, read.nb_room, ft_atoi(read.room[0]));
 		ret = parse_map(&data, &read.room[1]);
 		if (ret == 2)
@@ -114,8 +156,8 @@ int				main(void)
 		else
 		{
 			graph_init(&graph, &data);
-			if ((roadset = solve(&graph, data.nb_ant)))
-				which_resolution(&data, roadset);
+			roadset = solve(&graph, data.nb_ant);
+		//	which_resolution(&data, roadset);
 			print_roadset(roadset, &data);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memory_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:00:11 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/13 09:21:05 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 15:27:38 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_bypass.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:07:08 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 13:00:56 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/17 10:02:13 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void			node_check(t_queue *restrict queue, t_node_data src,
 {
 	t_node_data		tmp;
 
+
 	tmp = data_set(src, connect);
 	if (connect.dst->marked == 0)
 	{
@@ -95,6 +96,24 @@ static void			node_check(t_queue *restrict queue, t_node_data src,
 			weight_change(queue, connect.src_dst->dst, tmp.weight);
 		
 	}
+}
+
+__attribute__ ((unused))static void			queue_print(t_queue *restrict self)
+{
+	t_item_lst		*tmp;
+	t_size			n;
+
+	tmp = self->head;
+	n = 0;
+	printf("queue[%ld] = |", self->xitem);
+	while (n < self->xitem)
+	{
+		printf("%d|", ((t_node_data *)tmp->mem)->self);
+		tmp = tmp->next;
+		n++;
+	}
+	printf("\n");
+	fflush(stdout);
 }
 
 void				node_bypass(t_graph *restrict graph, t_queue *restrict queue)
