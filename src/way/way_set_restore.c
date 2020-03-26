@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   way_set_restore.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:45:44 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/17 12:07:51 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 14:48:25 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,16 @@ static void	way_add(
 	)
 {
 	t_size		n;
-	static t_uint	way_index = 0;
 
 	n = 0;
 	dst->node_index = ft_malloc(sizeof(t_uint) * way->xitem);
-	printf("WAY[%d]=|", way_index);
 	while (n < way->xitem)
 	{
 		dst->node_index[n] = *(t_uint *)vect(way, n);
-		printf("%d|", dst->node_index[n]);
 		n++;
 	}
 	dst->ants = 0;
 	dst->len = way->xitem;
-	printf("\nlen = %ld\n", dst->len);
 }
 
 static void	way_find(
@@ -78,7 +74,6 @@ void		way_set_restore(
 	iter_init(&iter, graph_node(graph, graph->start), ITER_FORBIDDEN);
 	while ((connect = iter_next(&iter)))
 	{
-		printf("way_find __start\n");
 		way_find(graph, &way, connect->dst);
 		way_add(&set->ways[way_index], &way);
 		way_clean(&way);

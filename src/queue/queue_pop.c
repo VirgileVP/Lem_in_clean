@@ -3,49 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   queue_pop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 09:37:55 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/11 12:14:44 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 11:54:59 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "queue.h"
+#include "graph.h"
 
-static void			queue_cache_add(t_queue *restrict self, void *item)
+t_node_data				*queue_pop_head(t_queue *restrict self)
 {
-	if (self->xcache > 0)
-	{
-		self->cache_tail->next = item;
-		self->cache_tail = item;
-	}
+	t_node_data			*item;
+	t_qnode				*tmp;
+	
+	item = self->head->mem;
+	tmp = self->head;
+	if (self->xitem > 1)
+		self->head = self->head->next;
 	else
 	{
-		self->cache_head = item;
-		self->cache_tail = item;
+		self->head = NULL;
+		self->tail = NULL;
 	}
+	(self->xitem)--;
+	ft_free(tmp);
+	return (item);
 }
 
-void				*queue_pop_head(t_queue *restrict self)
+t_node_data				*queue_pop_after(t_queue *restrict self, t_qnode *cur)
 {
-	t_item_lst		*item;
+	t_qnode		*next;
+	t_node_data	*item;
 
-	item = self->head;
+	next = cur->next;
 	(self->xitem)--;
-	if (self->xitem > 0)
-		self->head = item->next;
-	queue_cache_add(self, item);
-	return (item->mem);
-}
-
-void				*queue_pop_after(t_queue *restrict self, t_item_lst *cur)
-{
-	t_item_lst		*item;
-
-	item = cur->next;
-	(self->xitem)--;
-	if (item == self->tail)
+	if (next == self->tail)
 		self->tail = cur;
-	queue_cache_add(self, item);
-	return (item->mem);
+	item = next->mem;
+	ft_free(next);
+	return (item);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/17 11:56:33 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 14:49:25 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,9 +156,8 @@ int				main(void)
 		else
 		{
 			graph_init(&graph, &data);
-			roadset = solve(&graph, data.nb_ant);
-		//	which_resolution(&data, roadset);
-			print_roadset(roadset, &data);
+			if ((roadset = solve(&graph, data.nb_ant)) != NULL)
+				which_resolution(&data, roadset);
 		}
 	}
 	else

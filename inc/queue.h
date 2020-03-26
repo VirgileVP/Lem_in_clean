@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 07:25:03 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 12:59:36 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 10:11:42 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,31 @@
 # include "typedef.h"
 # include "libft.h"
 
-typedef struct				s_item_lst
+typedef struct s_node_data	t_node_data;
+
+typedef struct				s_qnode
 {
 	void *restrict			mem;
-	struct s_item_lst		*next;
-}							t_item_lst;
+	struct s_qnode			*next;
+}							t_qnode;
 
 typedef struct				s_queue
 {
-	t_item_lst *restrict	head;
-	t_item_lst *restrict	tail;
-	t_item_lst *restrict	cache_head;
-	t_item_lst *restrict	cache_tail;
+	t_qnode *restrict		head;
+	t_qnode *restrict		tail;
 	t_size					xitem;
-	t_size					xcache;
-	t_size					item_size;
 }							t_queue;
 
-/*
-**	queue_base.c
-*/
-
-void						queue_init(t_queue *restrict self, t_size item_size);
+void						queue_init(t_queue *restrict self);
 void						queue_clean(t_queue *restrict self);
 void						queue_del(t_queue *restrict self);
 
-/*
-**	queue_add.c
-*/
+void						queue_add_head(t_queue *restrict self, t_node_data *item);
+void						queue_add_tail(t_queue *restrict self, t_node_data *item);
+void						queue_add_after(t_queue *restrict self, t_qnode *cur,
+	t_node_data *item);
 
-void						queue_add_head(t_queue *restrict self, void *item);
-void						queue_add_tail(t_queue *restrict self, void *item);
-void						queue_add_after(t_queue *restrict self, t_item_lst *cur, void *item);
-
-/*
-**	queue_pop.c
-*/
-
-void						*queue_pop_head(t_queue *restrict self);
-void						*queue_pop_after(t_queue *restrict self, t_item_lst *cur);
+t_node_data					*queue_pop_head(t_queue *restrict self);
+t_node_data					*queue_pop_after(t_queue *restrict self, t_qnode *cur);
 
 #endif

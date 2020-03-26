@@ -3,65 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   queue_add.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 09:21:01 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/17 09:58:44 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 11:54:04 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "queue.h"
+#include "graph.h"
 
-static t_item_lst	*queue_cache_pop(t_queue *restrict self)
+static t_qnode		*qnode_new(t_node_data *item)
 {
-	t_item_lst	*ret;
-
-	ret = self->cache_head;
-	(self->xcache)--;
-	if (self->xcache > 0)
-		self->cache_head = self->cache_head->next;
-	return (ret);
-}
-
-static t_item_lst	*queue_lst_new(t_queue *restrict self)
-{
-	t_item_lst	*new;
-
-	new = ft_malloc(sizeof(t_item_lst));
-	new->mem = ft_malloc(self->item_size);
+	t_qnode			*new;
+	
+	new = ft_malloc(sizeof(t_qnode));
+	new->mem = ft_malloc(sizeof(t_node_data));
+	new->next = NULL;
+	ft_memcpy(new->mem, item, sizeof(t_node_data));
 	return (new);
 }
 
-void				queue_add_head(t_queue *restrict self, void *item)
+void				queue_add_head(t_queue *restrict self, t_node_data *item)
 {
-	t_item_lst	*new;
+	t_qnode			*new;
 
-	new = (self->xcache > 0 ? queue_cache_pop(self) : queue_lst_new(self));
-	ft_memcpy(new->mem, item, self->item_size);
-	new->next = self->head;
-	if (self->xitem == 1)
-		self->tail = self->head;
-	self->head = new;
+	new = qnode_new(item);
+	if (self->xitem == 0)
+	{
+		self->head = new;
+		self->tail = new;
+	}
+	else
+	{
+		new->next = self->head;
+		self->head = new;
+	}
 	(self->xitem)++;
 }
 
-void				queue_add_tail(t_queue *restrict self, void *item)
+void				queue_add_tail(t_queue *restrict self, t_node_data *item)
 {
-	t_item_lst	*new;
+	t_qnode			*new;
 
-	new = (self->xcache > 0 ? queue_cache_pop(self) : queue_lst_new(self));
-	ft_memcpy(new->mem, item, self->item_size);
+	new = qnode_new(item);
 	self->tail->next = new;
 	self->tail = new;
 	(self->xitem)++;
 }
 
-void			queue_add_after(t_queue *restrict self, t_item_lst *cur, void *item)
+void				queue_add_after(t_queue *restrict self, t_qnode *cur,
+	t_node_data *item)
 {
-	t_item_lst		*new;
+	t_qnode			*new;
 
-	new = (self->xcache > 0 ? queue_cache_pop(self) : queue_lst_new(self));
-	ft_memcpy(new->mem, item, self->item_size);
+	new = qnode_new(item);
 	new->next = cur->next;
 	cur->next = new;
 	(self->xitem)++;
