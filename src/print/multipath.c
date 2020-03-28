@@ -11,28 +11,7 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
-/*
-static void		print_road_status(t_roadset *roads, int road)
-{
-	int		count;
 
-	count = 0;
-	printf("\nRooms : ");
-	while (count < roads[road].len)
-	{
-		printf("|%d|", roads[road].t[count].n);
-		count++;
-	}
-	printf("\nAnts  : ");
-	count = 0;
-	while (count < roads[road].len)
-	{
-		printf("|%d|", roads[road].t[count].ant_index);
-		count++;
-	}
-	printf("\n");
-}
-*/
 /*
 ** fill_remaining_ants :
 **
@@ -106,9 +85,11 @@ static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 {
 	size_t	count;
 	int		start;
+	int		nb_road;
 
 	count = 0;
 	start = 1;
+	nb_road = how_much_road(roads);
 	while (count < roads[road_index].len)
 	{
 		if (roads[road_index].t[count].ant_index != 0)
@@ -121,9 +102,9 @@ static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 			roads[road_index].t[1].ant_index = 1;
 		else
 		    roads[road_index].t[1].ant_index = which_ant(roads, road_index) + 1;
-		//printf("\nanthill->room_data[%d].name\n",roads[road_index].t[1].n);
 		print_path(roads[road_index].t[1].ant_index, anthill->room_data[roads[road_index].t[1].n].name);
-		//ft_putchar(' ');
+		if (road_index != nb_road - 1)
+			ft_putchar(' ');
 	}
 	return (start);
 }
@@ -136,23 +117,23 @@ static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 
 static void		print_step(t_anthill *anthill, t_roadset *roads, int road_index)
 {
-	int			count;
+	int			current_room;
 	int			nb_roads;
 
-	count = roads[road_index].len - 1;
+	current_room = roads[road_index].len - 1;
 	nb_roads = how_much_road(roads);
-	while (count >= 0)
+	while (current_room >= 0)
 	{
-		if (roads[road_index].t[count].ant_index != 0)
+		if (roads[road_index].t[current_room].ant_index != 0)
 		{
-			print_path(roads[road_index].t[count].ant_index, anthill->room_data[roads[road_index].t[count].n].name);
-			//if (road_index <= nb_roads - 1 && count > 1)
-			if (count >= 1 && road_index <= nb_roads)
-			{
+			print_path(roads[road_index].t[current_room].ant_index,
+			anthill->room_data[roads[road_index].t[current_room].n].name);
+			if (road_index != nb_roads - 1 ||
+			(roads[road_index].t[current_room - 1].ant_index != 0 &&
+			road_index == nb_roads - 1))
 				ft_putchar(' ');
-			}
 		}
-		count--;
+		current_room--;
 	}
 }
 
@@ -227,7 +208,6 @@ static void	update_roads_rooms(t_anthill *anthill, t_roadset *roads, int *remain
 
 int			multi_path(t_anthill *anthill, t_roadset *roads)
 {
-	ft_putstr("\nMULTIPATH\n\n");
 	int		count;
 	int		nb_road;
 	int		*remaining_ants;

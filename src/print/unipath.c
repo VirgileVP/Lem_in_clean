@@ -12,30 +12,6 @@
 
 #include "lemin.h"
 
-static void		print_road_status(t_roadset *roads, int road)
-{
-	int			count;
-
-	count = 0;
-	printf("Road %2d | Rooms : ", road);
-	while (count < roads[road].len)
-	{
-		printf("|%d|", roads[road].t[count].n);
-		fflush(stdout);
-		count++;
-	}
-	printf("\n          Ants  : ");
-	count = 0;
-	while (count < roads[road].len)
-	{
-		printf("|%d|", roads[road].t[count].ant_index);
-		fflush(stdout);
-		count++;
-	}
-	printf("\n");
-	fflush(stdout);
-}
-
 /*
 ** print_step :
 **
@@ -69,26 +45,26 @@ static void		print_step(t_anthill *anthill, t_roadset *roads)
 
 static void		update_roads_rooms(t_anthill *anthill, t_roadset *roads)
 {
-	size_t		curr_room;
+	size_t		current_room;
 
-	curr_room = roads[0].len - 1;
-	while (curr_room > 0)
+	current_room = roads[0].len - 1;
+	while (current_room > 0)
 	{
-		if (roads[0].t[curr_room].ant_index != 0)
+		if (roads[0].t[current_room].ant_index != 0)
 		{
-			if (roads[0].t[curr_room].ant_index < roads[0].nb_ant)
+			if (roads[0].t[current_room].ant_index < roads[0].nb_ant)
 			{
-				if (curr_room == 1)
-					roads[0].t[curr_room].ant_index++;
+				if (current_room == 1)
+					roads[0].t[current_room].ant_index++;
 			}
 			else
 			{
-				roads[0].t[curr_room].ant_index = 0;
+				roads[0].t[current_room].ant_index = 0;
 			}
-			if (curr_room < roads[0].len - 1)
-				roads[0].t[curr_room + 1].ant_index++;
+			if (current_room < roads[0].len - 1)
+				roads[0].t[current_room + 1].ant_index++;
 		}
-		curr_room--;
+		current_room--;
 	}
 	print_step(anthill, roads);
 	if (roads[0].t[roads[0].len - 1].ant_index == roads[0].nb_ant)
@@ -125,7 +101,6 @@ static int		solo_ant(t_anthill *anthill, t_roadset *roads)
 
 int				all_ant_one_path(t_anthill *anthill, t_roadset *roads)
 {
-	ft_putstr("\nUNIPATH\n\n");
 	int			begin;
 
 	begin = 1;
