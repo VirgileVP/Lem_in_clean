@@ -123,7 +123,7 @@ static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 		    roads[road_index].t[1].ant_index = which_ant(roads, road_index) + 1;
 		//printf("\nanthill->room_data[%d].name\n",roads[road_index].t[1].n);
 		print_path(roads[road_index].t[1].ant_index, anthill->room_data[roads[road_index].t[1].n].name);
-		ft_putchar(' ');
+		//ft_putchar(' ');
 	}
 	return (start);
 }
@@ -137,15 +137,20 @@ static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 static void		print_step(t_anthill *anthill, t_roadset *roads, int road_index)
 {
 	int			count;
+	int			nb_roads;
 
 	count = roads[road_index].len - 1;
+	nb_roads = how_much_road(roads);
 	while (count >= 0)
 	{
 		if (roads[road_index].t[count].ant_index != 0)
 		{
 			print_path(roads[road_index].t[count].ant_index, anthill->room_data[roads[road_index].t[count].n].name);
-			if (road_index < how_much_road(roads) - 1 && count > 1)
+			//if (road_index <= nb_roads - 1 && count > 1)
+			if (count >= 1 && road_index <= nb_roads)
+			{
 				ft_putchar(' ');
+			}
 		}
 		count--;
 	}

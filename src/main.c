@@ -157,7 +157,11 @@ int				main(void)
 		{
 			graph_init(&graph, &data);
 			if ((roadset = solve(&graph, data.nb_ant)) != NULL)
+			{
+				print_roadset(roadset, &data);
+				ft_putstr("\n\n\n");
 				which_resolution(&data, roadset);
+			}
 		}
 	}
 	else
