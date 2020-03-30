@@ -6,7 +6,7 @@
 /*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:07:08 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/26 14:47:27 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/30 11:53:39 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static void			weight_change(t_queue *restrict queue, t_uint item,
 	tmp = queue_pop_after(queue, cur);
 	tmp->weight = weight;
 	queue_insert(queue, *tmp);
+	ft_free(tmp);
 }
 
 static void			node_check(t_queue *restrict queue, t_node_data src,

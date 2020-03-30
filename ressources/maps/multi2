@@ -1,4 +1,4 @@
-25
+10
 ##start
 start 0 1
 AA 0 2
@@ -6,14 +6,15 @@ AB 0 3
 AC 0 4
 AD 0 5
 BA 1 1
-BC 1 2
-BD 1 3
-BE 1 4
-BF 1 5
-BG 1 6
+BB 1 2
+BC 1 3
+BD 1 4
+BE 1 5
+BF 1 6
+BG 1 7
 CA 2 1
 CB 2 2
-#end
+##end
 end 10 10
 start-AA
 AA-AB
@@ -31,4 +32,3 @@ BG-end
 start-CA
 CA-CB
 CB-end
-

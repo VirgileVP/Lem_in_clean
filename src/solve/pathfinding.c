@@ -6,7 +6,7 @@
 /*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:58:45 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/26 14:47:00 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/30 12:37:53 by zdebugs          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,12 @@ t_roadset			*solve(t_graph *graph, t_uint lemin)
 
 	min_moves = UINT_MAX;
 	max_way = graph_node(graph, graph->end)->connect.xitem;
+//	printf("max way = %d\n", max_way);
 	xway = 0;
+//	printf("pf __start\n");
 	while (pathfinding(graph) == 1)
 	{
+//		printf("pf __end\n");
 		xway++;
 		way_set_restore(&tmp, graph, xway, lemin);
 		if (tmp.moves < min_moves)
@@ -100,6 +103,7 @@ t_roadset			*solve(t_graph *graph, t_uint lemin)
 		if (tmp.moves > min_moves || xway == max_way)
 			break ;
 		graph_reset_state(graph);
+//		printf("pf __start\n");
 	}
 	return (prev.xway > 0 ? roadset_convert(&prev) : NULL);
 }
