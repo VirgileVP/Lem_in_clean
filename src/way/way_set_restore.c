@@ -15,6 +15,12 @@
 
 int			way_cmp(const void *p1, const void *p2)
 {
+	printf(
+		"%d - %d = %d\n",
+		(int)((t_way *)p1)->len,
+		(int)((t_way *)p2)->len,
+		(int)((t_way *)p1)->len - (int)((t_way *)p2)->len
+		);
 	return ((int)((t_way *)p1)->len - (int)((t_way *)p2)->len);
 }
 
@@ -81,6 +87,6 @@ void		way_set_restore(
 	}
 	set->xway = way_index;
 	way_del(&way);
-	ft_qsort(set->ways, 0, set->xway - 1, &way_cmp);
+	ft_qsort(set->ways, 0, set->xway - 1);
 	way_ant_dispatch(set, lemin);
 }

@@ -43,6 +43,5 @@ void					way_ant_dispatch(t_way_set *restrict set,
 		t_uint lemin);
 void					way_set_restore(t_way_set *restrict set,
 		t_graph *restrict graph, t_uint xway, t_uint lemin);
-int						way_cmp(const void *p1, const void *p2);
 
 #endif

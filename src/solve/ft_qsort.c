@@ -11,54 +11,41 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "way.h"
 
-static void	ft_swap(void *p1, void *p2)
+int			part(t_way *restrict way, int start, int end)
 {
-	void		*tmp;
+	int		i;
+	int		j;
+	t_way	tmp;
 
-	tmp = p1;
-	p1 = p2;
-	p2 = tmp;
-}
-
-static int	part(
-	void *restrict mem,
-	int left,
-	int right,
-	int (*cmp)(const void *, const void *)
-	)
-{
-	int      i;
-	int      j;
-
-	i = left;
-	j = left;
-	while (j < right)
+	i = start;
+	j = start;
+	while (j < end)
 	{
-		if (cmp(&((char *)mem)[i], &((char *)mem)[right]) < 0)
+		if (way[j].len < way[end].len)
 		{
-			ft_swap(&((char *)mem)[i], &((char *)mem)[j]);
+			ft_memcpy(&tmp, &way[i], sizeof(t_way));
+			ft_memcpy(&way[i], &way[j], sizeof(t_way));
+			ft_memcpy(&way[j], &tmp, sizeof(t_way));
 			i++;
 		}
 		j++;
 	}
-	ft_swap(&((char *)mem)[i], &((char *)mem)[right]);
-	return (i);
+		ft_memcpy(&tmp, &way[i], sizeof(t_way));
+		ft_memcpy(&way[i], &way[end], sizeof(t_way));
+		ft_memcpy(&way[end], &tmp, sizeof(t_way));
+		return (i);
 }
 
-void		ft_qsort(
-	void *restrict mem,
-	int left,
-	int right,
-	int (*cmp)(const void *, const void *)
-)
+void		ft_qsort(t_way *restrict way, int start, int end)
 {
-	int		mid;
+	int			mid;
 
-	if (left < right)
+	if (start < end)
 	{
-		mid = part(mem, left, right, cmp);
-		ft_qsort(mem, left, mid - 1, cmp);
-		ft_qsort(mem, mid + 1, right, cmp);
+		mid = part(way, start, end);
+		ft_qsort(way, start, mid - 1);
+		ft_qsort(way, mid + 1, end);
 	}
 }

@@ -18,8 +18,7 @@
 void        ft_qsort(
     void *restrict mem,
     t_size left,
-    t_size right,
-    int (*cmp)(const void *, const void *)
+    t_size right
 );
 
 #endif

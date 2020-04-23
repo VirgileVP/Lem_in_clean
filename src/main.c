@@ -162,7 +162,8 @@ int				main(void)
 			{
 				print_roadset(roadset, &data);
 				ft_putstr("\n\n\n");
-				which_resolution(&data, roadset);
+//				print_read(&read);
+//				which_resolution(&data, roadset);
 			}
 		}
 	}
