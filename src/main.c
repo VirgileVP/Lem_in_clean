@@ -156,14 +156,12 @@ int				main(void)
 		else
 		{
 			graph_init(&graph, &data);
-//			graph_test(&graph);
-//			printf("end = %s | %ld\n", data.room_data[graph.end].name, graph.nodes[graph.end]->connect.xitem);
 			if ((roadset = solve(&graph, data.nb_ant)) != NULL)
 			{
 				print_roadset(roadset, &data);
 				ft_putstr("\n\n\n");
 //				print_read(&read);
-//				which_resolution(&data, roadset);
+				which_resolution(&data, roadset);
 			}
 		}
 	}
