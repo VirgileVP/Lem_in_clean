@@ -59,6 +59,7 @@ static int		pathfinding(t_graph *restrict graph)
 	t_node		*end_node;
 	t_node_data	tmp;
 
+//	printf("\tpathfinding __start\n");
 	tmp.self = graph->start;
 	tmp.self = 0;
 	tmp.ptr = graph_node(graph, graph->start);
@@ -66,11 +67,14 @@ static int		pathfinding(t_graph *restrict graph)
 	queue_add_head(&queue, &tmp);
 	node_mark(tmp.ptr, 0, 0, 0);
 	end_node = graph_node(graph, graph->end);
+//	printf("\t\tnodebypass-loop __start\n");
 	while (end_node->marked == 0 && queue.xitem > 0)
-	node_bypass(graph, &queue);
+		node_bypass(graph, &queue);
+//	printf("\t\tnodebypass-loop __end\n");
 	queue_del(&queue);
 	if (end_node->marked == 1)
 		way_reverse_new(graph);
+//	printf("\tpathfinding __end\n");
 	return (end_node->marked);
 }
 
@@ -84,12 +88,10 @@ t_roadset			*solve(t_graph *graph, t_uint lemin)
 
 	min_moves = UINT_MAX;
 	max_way = graph_node(graph, graph->end)->connect.xitem;
-//	printf("max way = %d\n", max_way);
 	xway = 0;
-//	printf("pf __start\n");
+//	printf("pathfinding-loop __start\n");
 	while (pathfinding(graph) == 1)
 	{
-//		printf("pf __end\n");
 		xway++;
 		way_set_restore(&tmp, graph, xway, lemin);
 		if (tmp.moves < min_moves)
@@ -103,7 +105,7 @@ t_roadset			*solve(t_graph *graph, t_uint lemin)
 		if (tmp.moves > min_moves || xway == max_way)
 			break ;
 		graph_reset_state(graph);
-//		printf("pf __start\n");
 	}
+//	printf("pathfinding-loop __end\n");
 	return (prev.xway > 0 ? roadset_convert(&prev) : NULL);
 }

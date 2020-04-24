@@ -13,12 +13,12 @@
 #include "queue.h"
 #include "graph.h"
 
-t_node_data				*queue_pop_head(t_queue *restrict self)
+t_node_data				queue_pop_head(t_queue *restrict self)
 {
-	t_node_data			*item;
+	t_node_data			item;
 	t_qnode				*tmp;
-	
-	item = self->head->mem;
+
+	item = self->head->item;
 	tmp = self->head;
 	if (self->xitem > 1)
 		self->head = self->head->next;
@@ -32,16 +32,17 @@ t_node_data				*queue_pop_head(t_queue *restrict self)
 	return (item);
 }
 
-t_node_data				*queue_pop_after(t_queue *restrict self, t_qnode *cur)
+t_node_data				queue_pop_after(t_queue *restrict self, t_qnode *cur)
 {
 	t_qnode		*next;
-	t_node_data	*item;
+	t_node_data	item;
 
 	next = cur->next;
 	(self->xitem)--;
 	if (next == self->tail)
 		self->tail = cur;
-	item = next->mem;
+	cur->next = next->next;
+	item = next->item;
 	ft_free(next);
 	return (item);
 }

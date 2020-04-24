@@ -15,12 +15,11 @@
 
 # include "typedef.h"
 # include "libft.h"
-
-typedef struct s_node_data	t_node_data;
+# include "graph.h"
 
 typedef struct				s_qnode
 {
-	void *restrict			mem;
+	t_node_data 			item;
 	struct s_qnode			*next;
 }							t_qnode;
 
@@ -35,12 +34,15 @@ void						queue_init(t_queue *restrict self);
 void						queue_clean(t_queue *restrict self);
 void						queue_del(t_queue *restrict self);
 
-void						queue_add_head(t_queue *restrict self, t_node_data *item);
-void						queue_add_tail(t_queue *restrict self, t_node_data *item);
-void						queue_add_after(t_queue *restrict self, t_qnode *cur,
+void						queue_add_head(t_queue *restrict self,
 	t_node_data *item);
+void						queue_add_tail(t_queue *restrict self,
+	t_node_data *item);
+void						queue_add_after(t_queue *restrict self, 
+	t_qnode *cur, t_node_data *item);
 
-t_node_data					*queue_pop_head(t_queue *restrict self);
-t_node_data					*queue_pop_after(t_queue *restrict self, t_qnode *cur);
+t_node_data					queue_pop_head(t_queue *restrict self);
+t_node_data					queue_pop_after(t_queue *restrict self,
+	t_qnode *cur);
 
 #endif

@@ -54,7 +54,7 @@ static t_connect		*iter_next_positive(t_iter *restrict iter)
 
 	while ((connect = iter_next_all(iter)) && 
 			connect->state != CONNECT_POSITIVE)
-		continue ;
+			continue ;
 	return (connect);
 }
 

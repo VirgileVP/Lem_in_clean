@@ -15,6 +15,7 @@
 void		node_mark(t_node *restrict node, t_int state,
 						t_int weight, t_uint parent)
 {
+//	printf("\t\t\t\t\tnode_mark __start\n");
 	node->weight = weight;
 	node->marked = 1;
 	node->parent = parent;
@@ -25,4 +26,5 @@ void		node_mark(t_node *restrict node, t_int state,
 		else
 			node->sep_type = MARKED_IN;
 	}
+//	printf("\t\t\t\t\tnode_mark __end\n");
 }

@@ -20,23 +20,13 @@ void		queue_init(t_queue *restrict self)
 
 void		queue_clean(t_queue *restrict self)
 {
-	void		*tmp;
-
 	while (self->xitem > 0)
-	{
-		tmp = queue_pop_head(self);
-		ft_free(tmp);
-	}
+		queue_pop_head(self);
 	ft_bzero(self, sizeof(t_queue));
 }
 
 void		queue_del(t_queue *restrict self)
 {
-	void		*tmp;
-
 	while (self->xitem > 0)
-	{
-		tmp = queue_pop_head(self);
-		ft_free(tmp);
-	}
+		queue_pop_head(self);
 }

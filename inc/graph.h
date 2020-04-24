@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include "typedef.h"
-# include "queue.h"
+//# include "queue.h"
 
 /*
 **	NODE
@@ -78,15 +78,20 @@ typedef struct			s_graph
 	
 }						t_graph;
 
+typedef struct s_queue	t_queue;
+
 t_node					*graph_node(t_graph *restrict graph, t_uint index);
 t_connect				*graph_connect(t_vect *restrict self, t_uint dst);
 void					graph_reset_state(t_graph *restrict graph);
 void					graph_del(t_graph *graph);
 
-void					node_bypass(t_graph *restrict graph, t_queue *restrict queue);
-void					node_mark(t_node *restrict node, int state, int weight, t_uint parent);
+void					node_bypass(t_graph *restrict graph,
+	t_queue *restrict queue);
+void					node_mark(t_node *restrict node, int state, int weight,
+	t_uint parent);
 
-t_connect_data			*graph_connect_data(t_graph *restrict graph, t_uint src, t_uint dst, t_connect *data);
+t_connect_data			*graph_connect_data(t_graph *restrict graph, t_uint src,
+	t_uint dst, t_connect *data);
 void					graph_connect_reverse(t_connect_data *connect);
 
 /*

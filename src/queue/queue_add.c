@@ -18,9 +18,8 @@ static t_qnode		*qnode_new(t_node_data *item)
 	t_qnode			*new;
 	
 	new = ft_malloc(sizeof(t_qnode));
-	new->mem = ft_malloc(sizeof(t_node_data));
+	new->item = *item;
 	new->next = NULL;
-	ft_memcpy(new->mem, item, sizeof(t_node_data));
 	return (new);
 }
 
