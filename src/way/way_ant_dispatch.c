@@ -12,10 +12,7 @@
 
 #include "way.h"
 
-void		way_ant_dispatch(
-	t_way_set *restrict set,
-	t_uint lemin
-	)
+void		way_ant_dispatch(t_way_set *restrict set, t_uint lemin)
 {
 	t_size	i;
 	t_size	j;
@@ -31,7 +28,7 @@ void		way_ant_dispatch(
 		j = 0;
 		while (j < i)
 		{
-			while (lemin > 0 && 
+			while (lemin > 0 &&
 					set->ways[j].ants + set->ways[j].len - 2 < set->moves)
 			{
 				set->ways[j].ants += 1;

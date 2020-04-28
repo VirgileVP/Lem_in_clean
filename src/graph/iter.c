@@ -66,7 +66,7 @@ static t_connect		*(*g_iter_func[])(t_iter *restrict iter) = {
 	iter_next_positive
 };
 
-t_connect		*iter_next(t_iter *restrict iter)
+t_connect			*iter_next(t_iter *restrict iter)
 {
 	return (g_iter_func[iter->fct](iter));
 }

@@ -90,53 +90,30 @@ static void		graph_init(
 	graph->end = ah->end;
 	graph->start = ah->start;
 }
-
-__attribute__ ((unused))static void		graph_test(t_graph *restrict graph)
+/*
+static void		roadset_free(t_roadset *rs)
 {
-	t_size		n;
-	t_size		x;
+	int			i;
 
-	n = 0;
-	while (n < graph->size)
+	i = 0;
+	while (rs[i].t)
 	{
-		x = 0;
-		printf(
-			"node[%ld]:\n\
-			in_new_way = %d\n\
-			in_queue = %d\n\
-			marked = %d\n\
-			parent = %d\n\
-			sep_type = %d\n\
-			separate = %d\n\
-			weight = %d\n\
-			xconnect = %ld\n",
-			n,
-			graph->nodes[n]->in_new_way,
-			graph->nodes[n]->in_queue,
-			graph->nodes[n]->marked,
-			graph->nodes[n]->parent,
-			graph->nodes[n]->sep_type,
-			graph->nodes[n]->separate,
-			graph->nodes[n]->weight,
-			graph->nodes[n]->connect.xitem
-		);
-		while (x < graph->nodes[n]->connect.xitem)
-		{
-			printf(
-				"\t\t\t\t->%d\n",
-				((t_connect *)vect(&(graph->nodes[n]->connect), x))->dst
-			);
-			x++;
-		}
-		n++;
+		ft_free(rs[i].t);
+		i += 1;
 	}
+	ft_free(rs);
 }
 
+static void		main_free(t_anthill *ah)
+{
+	vect_del(ah->farm);
+}
+*/
 int				main(void)
 {
 	t_anthill		data;
 	t_read_room		read;
-	t_roadset		*roadset __attribute__ ((unused));
+	t_roadset		*roadset;
 	int				ret;
 	t_graph			graph;
 
@@ -167,6 +144,12 @@ int				main(void)
 	}
 	else
 		write(1, "Error\n", 6);
-	ft_memman_clean();
+/*
+	main_free(&data);
+
+	ft_free(graph.nodes);
+	roadset_free(roadset);
+*/
+//	ft_memman_clean();
 	return (0);
 }

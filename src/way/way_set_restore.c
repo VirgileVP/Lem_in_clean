@@ -13,21 +13,7 @@
 #include "way.h"
 #include "ft_qsort.h"
 
-int			way_cmp(const void *p1, const void *p2)
-{
-	printf(
-		"%d - %d = %d\n",
-		(int)((t_way *)p1)->len,
-		(int)((t_way *)p2)->len,
-		(int)((t_way *)p1)->len - (int)((t_way *)p2)->len
-		);
-	return ((int)((t_way *)p1)->len - (int)((t_way *)p2)->len);
-}
-
-static void	way_add(
-	t_way *dst,
-	t_vect *restrict way
-	)
+static void	way_add(t_way *dst, t_vect *restrict way)
 {
 	t_size		n;
 
@@ -42,11 +28,7 @@ static void	way_add(
 	dst->len = way->xitem;
 }
 
-static void	way_find(
-	t_graph *restrict graph,
-	t_vect *restrict way,
-	t_uint node
-	)
+static void	way_find(t_graph *restrict graph, t_vect *restrict way, t_uint node)
 {
 	t_iter				iter;
 	t_connect *restrict	tmp;
@@ -62,18 +44,14 @@ static void	way_find(
 	}
 }
 
-void		way_set_restore(
-	t_way_set *restrict set,
-	t_graph *restrict graph,
-	t_uint xway,
-	t_uint lemin
-	)
+void		way_set_restore(t_way_set *restrict set, t_graph *restrict graph,
+	t_uint xway, t_uint lemin)
 {
 	t_iter				iter;
 	t_vect				way;
 	t_size				way_index;
-	t_connect 			*connect;
-	
+	t_connect			*connect;
+
 	way_index = 0;
 	way_init(&way);
 	way_set_init(set, xway);
