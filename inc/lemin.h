@@ -60,13 +60,7 @@ typedef struct			s_roadset
 
 int						parse_map(t_anthill *ah, char **entry);
 int						read_error(t_read_room *pars);
-void					print_path(int ant, char *room);
-int						how_much_road(t_roadset *roads);
 int						empty_road(t_roadset *roads, int road_index);
-int						which_resolution(t_anthill *anthill, t_roadset *roads);
-int						multi_path(t_anthill *anthill, t_roadset *roads);
-int						all_ant_one_path(t_anthill *anthill, t_roadset *roads);
-void					oneshot(t_anthill *anthill);
 t_roadset				*solve(t_graph *restrict graph, t_uint lemin);
 
 #endif

@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "resolve_print.h"
+#include "print.h"
+
 //----------------PRINT-FUNCTION-----------------------------------------------
 
 __attribute__ ((unused))static void		print_roadset(t_roadset *rs, t_anthill *ah)
@@ -159,9 +162,9 @@ int				main(void)
 			if ((roadset = solve(&graph, data.nb_ant)) != NULL)
 			{
 				print_roadset(roadset, &data);
-//				ft_putstr("\n\n\n");
+				ft_putstr("\n\n\n");
 //				print_read(&read);
-//				which_resolution(&data, roadset);
+				which_resolution(&data, roadset);
 			}
 		}
 	}
