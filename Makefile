@@ -33,6 +33,7 @@ PARSE_SRC		=	$(addprefix $(PARSE_SRC_DIR)/, $(PARSE_SRC_NAME))
 
 PRINT_SRC_DIR	=	$(SRC_DIR)/print
 PRINT_SRC_NAME	=	multipath.c\
+					multipath2.c\
 					oneshot.c\
 					resolve_tool.c\
 					unipath.c
@@ -84,6 +85,8 @@ INC_NAME		=	inc/check_error.h\
 					inc/graph.h\
 					inc/lemin.h\
 					inc/parsing.h\
+					inc/print.h\
+					inc/resolve_print.h\
 					inc/queue.h\
 					inc/solve.h\
 					inc/way.h\
