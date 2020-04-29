@@ -25,7 +25,7 @@ void		vect_init(t_vect *restrict self, t_size item_size, t_size init_len)
 
 void		vect_del(t_vect *restrict self)
 {
-	ft_free(self);
+	ft_free(self->mem);
 	ft_bzero(self, sizeof(t_vect));
 }
 

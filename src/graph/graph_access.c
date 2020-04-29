@@ -17,7 +17,7 @@ t_node			*graph_node(t_graph *restrict graph, t_uint index)
 	return (graph->nodes[index]);
 }
 
-t_connect 		*graph_connect(t_vect *restrict self, t_uint dst)
+t_connect		*graph_connect(t_vect *restrict self, t_uint dst)
 {
 	t_connect	*connect;
 	t_size		n;

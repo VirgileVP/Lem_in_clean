@@ -16,7 +16,7 @@
 static t_qnode		*qnode_new(t_node_data *item)
 {
 	t_qnode			*new;
-	
+
 	new = ft_malloc(sizeof(t_qnode));
 	new->item = *item;
 	new->next = NULL;

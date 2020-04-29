@@ -15,19 +15,19 @@
 static void		parent_new(t_node *restrict node, t_graph *restrict graph)
 {
 	t_connect	*connect;
-	int			best_weight;
+	int			b_weight;
 	t_uint		ret;
 	int			tmp_weight;
 	t_iter		iter;
 
-	best_weight = INT_MAX;
+	b_weight = INT_MAX;
 	ret = node->parent;
 	iter_init(&iter, node, ITER_POSITIVE);
 	while ((connect = iter_next(&iter)))
 	{
-		if ((tmp_weight = graph_node(graph, connect->dst)->weight) < best_weight)
+		if ((tmp_weight = graph_node(graph, connect->dst)->weight) < b_weight)
 		{
-			best_weight = tmp_weight;
+			b_weight = tmp_weight;
 			ret = connect->dst;
 		}
 	}
@@ -63,7 +63,8 @@ void			way_reverse_new(t_graph *restrict graph)
 	while (pos != graph->start)
 	{
 		connect.dst = graph_node(graph, connect.src->parent);
-		connect.src_dst = graph_connect(&connect.src->connect, connect.src->parent);
+		connect.src_dst = graph_connect(&connect.src->connect,
+			connect.src->parent);
 		connect.dst_src = graph_connect(&connect.dst->connect, pos);
 		if (connect.dst->separate && connect.dst->sep_type == MARKED_OUT &&
 			connect.src_dst->state == CONNECT_POSITIVE)

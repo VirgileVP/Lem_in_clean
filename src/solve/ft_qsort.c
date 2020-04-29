@@ -25,17 +25,17 @@ int			part(t_way *restrict way, int start, int end)
 	{
 		if (way[j].len < way[end].len)
 		{
-			ft_memcpy(&tmp, &way[i], sizeof(t_way));
-			ft_memcpy(&way[i], &way[j], sizeof(t_way));
-			ft_memcpy(&way[j], &tmp, sizeof(t_way));
+			tmp = way[i];
+			way[i] = way[j];
+			way[j] = tmp;
 			i++;
 		}
 		j++;
 	}
-		ft_memcpy(&tmp, &way[i], sizeof(t_way));
-		ft_memcpy(&way[i], &way[end], sizeof(t_way));
-		ft_memcpy(&way[end], &tmp, sizeof(t_way));
-		return (i);
+	tmp = way[i];
+	way[i] = way[end];
+	way[end] = tmp;
+	return (i);
 }
 
 void		ft_qsort(t_way *restrict way, int start, int end)
