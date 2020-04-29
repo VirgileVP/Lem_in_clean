@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "resolve_print.h"
 
 void		oneshot(t_anthill *anthill)
 {

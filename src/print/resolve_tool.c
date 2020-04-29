@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "resolve_print.h"
+#include "print.h"
 
 void	print_path(int ant, char *room)
 {

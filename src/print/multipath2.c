@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
-#include "print.h"
 #include "resolve_print.h"
+#include "print.h"
 
 /*
 ** fill_remaining_ants :
@@ -20,7 +20,7 @@
 ** fill int *remaining_ants with the number of ant in each road
 */
 
-static void		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_road)
+void		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_road)
 {
 	int		count;
 
@@ -38,7 +38,7 @@ static void		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_r
 ** calcul total ant in int *remaining_ants
 */
 
-static int		total_ant(int *remaining_ants, int nb_road)
+int		total_ant(int *remaining_ants, int nb_road)
 {
 	int		count;
 	int		ret;
@@ -59,7 +59,7 @@ static int		total_ant(int *remaining_ants, int nb_road)
 ** return index of the last ant in the road_index-1 room()
 */
 
-static int	which_ant(t_roadset *roads, int road_index)
+int	which_ant(t_roadset *roads, int road_index)
 {
 	int		count;
 	int		ret;
@@ -83,7 +83,7 @@ static int	which_ant(t_roadset *roads, int road_index)
 ** if start == 1, move 1st ant out start room
 */
 
-static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
+int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 {
 	size_t	count;
 	int		start;
@@ -117,7 +117,7 @@ static int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 ** print the new road status
 */
 
-static void		print_step(t_anthill *anthill, t_roadset *roads, int road_index)
+void		print_step(t_anthill *anthill, t_roadset *roads, int road_index)
 {
 	int			current_room;
 	int			nb_roads;

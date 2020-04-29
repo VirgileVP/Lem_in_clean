@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "resolve_print.h"
 
 /*
 ** print_step :
@@ -18,7 +19,7 @@
 ** print the new road status
 */
 
-static void		print_step(t_anthill *anthill, t_roadset *roads)
+static void		print_step_unipath(t_anthill *anthill, t_roadset *roads)
 {
 	int			count;
 
@@ -66,7 +67,7 @@ static void		update_roads_rooms(t_anthill *anthill, t_roadset *roads)
 		}
 		current_room--;
 	}
-	print_step(anthill, roads);
+	print_step_unipath(anthill, roads);
 	if (roads[0].t[roads[0].len - 1].ant_index == roads[0].nb_ant)
 		roads[0].nb_ant = 0;
 }

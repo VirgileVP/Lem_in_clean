@@ -18,8 +18,6 @@
 # include "way.h"
 # include "queue.h"
 
-typedef struct s_anthill t_anthill;
-
 void		print_path(int ant, char *room);
 int			how_much_road(t_roadset *roads);
 int			which_resolution(t_anthill *anthill, t_roadset *roads);
