@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 15:18:47 by zseignon          #+#    #+#              #
-#    Updated: 2020/05/01 17:35:06 by user42           ###   ########lyon.fr    #
+#    Updated: 2020/05/01 17:41:37 by user42           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,7 @@ INC_FLAG				=	-I$(INC_DIR)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) Makefile
 	ar -rcs $(NAME) $(OBJ)
 	ranlib $(NAME)
 
@@ -143,27 +143,27 @@ test: $(NAME)
 	./a.out
 
 #	FT_VECTOR_COMPILATION	####################################################
-$(OBJ_DIR)/%.o: $(FT_VECT_SRC_DIR)/%.c $(INC)
+$(OBJ_DIR)/%.o: $(FT_VECT_SRC_DIR)/%.c $(INC) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	FT_MEMORY_MANAGEMENT_COMPILATION	########################################
-$(OBJ_DIR)/%.o : $(FT_MEMMAN_SRC_DIR)/%.c $(INC)
+$(OBJ_DIR)/%.o : $(FT_MEMMAN_SRC_DIR)/%.c $(INC) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	FT_CMP_COMPILATION	########################################################
-$(OBJ_DIR)/%.o : $(FT_CMP_SRC_DIR)/%.c $(INC)
+$(OBJ_DIR)/%.o : $(FT_CMP_SRC_DIR)/%.c $(INC) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	FT_ERROR_COMPILATION	####################################################
-$(OBJ_DIR)/%.o : $(FT_ERROR_SRC_DIR)/%.c $(INC)
+$(OBJ_DIR)/%.o : $(FT_ERROR_SRC_DIR)/%.c $(INC) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 
 #	LIBC_COMPILATION	########################################################
-$(OBJ_DIR)/%.o : $(LIBC_SRC_DIR)/%.c $(INC)
+$(OBJ_DIR)/%.o : $(LIBC_SRC_DIR)/%.c $(INC) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INC_FLAG)
 	

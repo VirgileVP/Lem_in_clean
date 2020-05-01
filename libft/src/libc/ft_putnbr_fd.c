@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 18:10:52 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 08:34:32 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:47:08 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libc.h"
 
-void		ft_putnbr_fd(int nb, int fd)
+int			ft_putnbr_fd(int nb, int fd)
 {
 	static char		buffer[11];
 	int				i;
@@ -20,8 +20,7 @@ void		ft_putnbr_fd(int nb, int fd)
 
 	if (nb == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		return (write(fd, "-2147483648", 11));
 	}
 	uval = (nb < 0) ? -nb : nb;
 	i = 10;
@@ -35,5 +34,5 @@ void		ft_putnbr_fd(int nb, int fd)
 	}
 	if (nb < 0)
 		buffer[--i] = '-';
-	write(fd, buffer + i, 11 - i);
+	return (write(fd, buffer + i, 11 - i));
 }

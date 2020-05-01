@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:59:02 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:33:03 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:53:08 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@
 
 void		ft_error_free_exit(const char *msg, int code);
 void		ft_error_exit(const char *msg, int code);
-void		ft_error_print(const char *msg);
+int			ft_error_print(const char *msg);
 
 #endif

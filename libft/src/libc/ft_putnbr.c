@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 09:23:22 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 08:34:55 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:47:21 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libc.h"
 
-void		ft_putnbr(int nb)
+int		ft_putnbr(int nb)
 {
-	ft_putnbr_fd(nb, 1);
+	return (ft_putnbr_fd(nb, 1));
 }

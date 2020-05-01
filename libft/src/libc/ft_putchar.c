@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:39:18 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 08:32:43 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:42:18 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(int c)
+int	ft_putchar(int c)
 {
-	write(1, (unsigned int *)&c, 1);
+	return (write(1, (unsigned int *)&c, 1));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:01:43 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 09:37:48 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:53:04 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 
 void		ft_error_free_exit(const char *msg, int code)
 {
+	int		ret;
+
 	ft_memman_clean();
-	write(FD_STDERR, msg, ft_strlen(msg));
-	exit(code);
+	ret = write(FD_STDERR, msg, ft_strlen(msg));
+	exit(code + (ret & 0));
 }
 
 void		ft_error_exit(const char *msg, int code)
 {
-	write(FD_STDERR, msg, ft_strlen(msg));
-	exit(code);
+	int		ret;
+
+	ret = write(FD_STDERR, msg, ft_strlen(msg));
+	exit(code + (ret & 0));
 }
 
-void		ft_error_print(const char *msg)
+int			ft_error_print(const char *msg)
 {
-	write(FD_STDERR, msg, ft_strlen(msg));
+	return (write(FD_STDERR, msg, ft_strlen(msg)));
 }

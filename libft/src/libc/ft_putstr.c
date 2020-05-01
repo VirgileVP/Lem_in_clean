@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:51:02 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 08:35:11 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:45:25 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libc.h"
 
-void	ft_putstr(char const *s)
+int	ft_putstr(char const *s)
 {
-	ft_putstr_fd(s, 1);
+	return (ft_putstr_fd(s, 1));
 }

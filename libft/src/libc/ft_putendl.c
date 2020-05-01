@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:53:40 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 08:34:18 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:45:37 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libc.h"
 
-void	ft_putendl(char const *s)
+int	ft_putendl(char const *s)
 {
-	ft_putstr(s);
-	ft_putchar('\n');
+	return (ft_putstr(s) + ft_putchar('\n'));
 }
