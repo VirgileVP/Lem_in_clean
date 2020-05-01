@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 13:35:26 by zseignon          #+#    #+#              #
-#    Updated: 2020/05/01 17:35:15 by user42           ###   ########lyon.fr    #
+#    Updated: 2020/05/01 17:59:32 by user42           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,51 +95,55 @@ INC_NAME		=	inc/check_error.h\
 INCFLAGS		=	-Iinc/ -Ilibft/inc/
 LIBFLAGS		=	-Llibft/ -lft
 
-all:$(NAME)
+all: lib $(NAME)
 
-$(NAME): $(OBJ)
+lib:
+	make -C libft
+
+$(NAME): $(OBJ) Makefile
 	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBFLAGS)
 
-$(OBJ_DIR)/%.o: $(GRAPH_SRC_DIR)/%.c $(INC_NAME)
+$(OBJ_DIR)/%.o: $(GRAPH_SRC_DIR)/%.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
-$(OBJ_DIR)/%.o: $(PARSE_SRC_DIR)/%.c $(INC_NAME)
+$(OBJ_DIR)/%.o: $(PARSE_SRC_DIR)/%.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
-$(OBJ_DIR)/%.o: $(PRINT_SRC_DIR)/%.c $(INC_NAME)
+$(OBJ_DIR)/%.o: $(PRINT_SRC_DIR)/%.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
-$(OBJ_DIR)/%.o: $(QUEUE_SRC_DIR)/%.c $(INC_NAME)
+$(OBJ_DIR)/%.o: $(QUEUE_SRC_DIR)/%.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
-$(OBJ_DIR)/%.o: $(SOLVE_SRC_DIR)/%.c $(INC_NAME)
+$(OBJ_DIR)/%.o: $(SOLVE_SRC_DIR)/%.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
-$(OBJ_DIR)/%.o: $(WAY_SRC_DIR)/%.c $(INC_NAME)
+$(OBJ_DIR)/%.o: $(WAY_SRC_DIR)/%.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
-$(OBJ_DIR)/%.o: $(MISC_SRC_DIR)/%.c $(INC_NAME)
+$(OBJ_DIR)/%.o: $(MISC_SRC_DIR)/%.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.c $(INC_NAME)
+$(OBJ_DIR)/main.o: $(SRC_DIR)/main.c $(INC_NAME) Makefile
 	@if test ! -d $(OBJ_DIR); then mkdir -p $(OBJ_DIR); fi
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCFLAGS)
 
 clean:
 		rm -rf $(OBJ_DIR)
+		make -C libft/ clean
 
 fclean:
 		rm -rf $(OBJ_DIR)
+		make -C libft/ fclean
 		rm -f $(NAME)
 
-re:fclean
-		make all
+re: fclean all
 
 .PHONY: clean fclean re all
