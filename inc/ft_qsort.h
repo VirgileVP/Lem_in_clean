@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_qsort.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 11:15:28 by zdebugs           #+#    #+#             */
-/*   Updated: 2020/03/17 11:18:15 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:29:41 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include "typedef.h"
 
-void        ft_qsort(
-    void *restrict mem,
-    t_size left,
-    t_size right
-);
+void	ft_qsort(void *restrict mem, t_size left, t_size right);
 
 #endif

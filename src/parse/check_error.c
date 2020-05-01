@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 13:48:34 by zdebugs           #+#    #+#             */
-/*   Updated: 2020/03/16 13:48:37 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:36:20 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int						read_error(t_read_room *pars)
 		temp = ft_strjoin(temp, "\n");
 		ft_strdel(&line);
 		pars->nb_line++;
-		line = NULL;
 	}
 	if (ret == 0)
 		return (-1);

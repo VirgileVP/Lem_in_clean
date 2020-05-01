@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:59:49 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/10 08:44:18 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:09:58 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef struct		s_vect
 **	ft_vect_man.c
 */
 
-void				vect_init(t_vect *restrict self, t_size item_size, t_size init_size);
+void				vect_init(t_vect *restrict self, t_size item_size,
+	t_size init_size);
 void				vect_del(t_vect *restrict self);
 void				vect_clean(t_vect *self);
 void				vect_extend(t_vect *restrict self, t_size n);
@@ -61,16 +62,23 @@ void				*vect_pop_p(t_vect *restrict self, void *item);
 **	ft_vect_utils.c
 */
 
-void				*vect_find_back(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *));
-void				*vect_find_front(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *));
+void				*vect_find_back(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *));
+void				*vect_find_front(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *));
 void				vect_map(t_vect *restrict self, void (*fct)(void *));
 
 /*
 **	ft_vect_sort.c
 */
 
-void				vect_sort(t_vect *restrict self, int (*cmp)(const void *, const void *), void (*sort)(const void *, t_size, t_size, int (*cmp)(const void *, const void *)));
-t_size				vect_find_bin(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *));
-int					vect_insert_uniq(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *));
+void				vect_sort(t_vect *restrict self,
+	int (*cmp)(const void *, const void *),
+	void (*sort)(const void *, t_size, t_size,
+	int (*cmp)(const void *, const void *)));
+t_size				vect_find_bin(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *));
+int					vect_insert_uniq(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *));
 
 #endif

@@ -29,7 +29,7 @@ void		*vect_add_i(t_vect *restrict self, void *item, t_size i)
 	tmp = vect(self, i);
 	ft_memmove(tmp + self->item_size, tmp, ((self->xitem) - i) * self->xitem);
 	self->xitem++;
-	return (ft_memcpy(tmp, item, self->item_size));	
+	return (ft_memcpy(tmp, item, self->item_size));
 }
 
 void		*vect_add_n(t_vect *restrict self, void *items, t_size n)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:07:29 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/26 09:54:47 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:30:32 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include "typedef.h"
-//# include "queue.h"
 
 /*
 **	NODE
@@ -75,7 +74,6 @@ typedef struct			s_graph
 	t_size				size;
 	t_uint				start;
 	t_uint				end;
-	
 }						t_graph;
 
 typedef struct s_queue	t_queue;
@@ -104,7 +102,6 @@ void					graph_connect_reverse(t_connect_data *connect);
 # define ITER_FORBIDDEN		3
 # define ITER_POSITIVE		4
 # define ITER_BY_NODE		5
-
 
 typedef struct			s_iter
 {

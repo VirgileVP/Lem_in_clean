@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 12:35:40 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 11:35:23 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:13:56 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_connect		*iter_next_allowed(t_iter *restrict iter)
 {
 	t_connect		*connect;
 
-	while ((connect = iter_next_all(iter)) && 
+	while ((connect = iter_next_all(iter)) &&
 			connect->state == CONNECT_FORBIDDEN)
 		continue ;
 	return (connect);
@@ -32,7 +32,7 @@ static t_connect		*iter_next_negative(t_iter *restrict iter)
 {
 	t_connect		*connect;
 
-	while ((connect = iter_next_all(iter)) && 
+	while ((connect = iter_next_all(iter)) &&
 			connect->state != CONNECT_NEGATIVE)
 		continue ;
 	return (connect);
@@ -42,7 +42,7 @@ static t_connect		*iter_next_forbidden(t_iter *restrict iter)
 {
 	t_connect		*connect;
 
-	while ((connect = iter_next_all(iter)) && 
+	while ((connect = iter_next_all(iter)) &&
 			connect->state != CONNECT_FORBIDDEN)
 		continue ;
 	return (connect);
@@ -52,9 +52,9 @@ static t_connect		*iter_next_positive(t_iter *restrict iter)
 {
 	t_connect		*connect;
 
-	while ((connect = iter_next_all(iter)) && 
+	while ((connect = iter_next_all(iter)) &&
 			connect->state != CONNECT_POSITIVE)
-			continue ;
+		continue ;
 	return (connect);
 }
 

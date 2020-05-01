@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:54:16 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 13:47:20 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:28:43 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ typedef struct		s_check_bad_order
 	int				end;
 }					t_check_bad_order;
 
-int			read_error(t_read_room *pars);
-int			free_temp_line(char *temp, char *line, int ret);
-int			count_space(char *line);
-int			check_definition(t_read_room *pars, t_check_bad_order *order, int index);
-int			check_room(char *line, int tube_pars);
-int			check_tubes(char *line);
+int					read_error(t_read_room *pars);
+int					free_temp_line(char *temp, char *line, int ret);
+int					count_space(char *line);
+int					check_definition(t_read_room *pars,
+	t_check_bad_order *order, int index);
+int					check_room(char *line, int tube_pars);
+int					check_tubes(char *line);
 
 #endif

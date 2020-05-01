@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   way_reverse_new.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:51:47 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 13:08:35 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:25:36 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ void			way_reverse_new(t_graph *restrict graph)
 			iter_init(&iter, connect.dst, ITER_FORBIDDEN);
 			connect.dst->parent = iter_next(&iter)->dst;
 		}
-		if (connect.dst->in_new_way)
-			parent_new(connect.dst, graph);
+		(connect.dst->in_new_way ? parent_new(connect.dst, graph) : 0);
 		connect.dst->in_new_way = 1;
 		connect_reverse(connect);
 		pos = connect.src->parent;

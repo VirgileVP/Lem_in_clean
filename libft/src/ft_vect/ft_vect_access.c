@@ -15,7 +15,7 @@
 
 void		*vect(t_vect *restrict self, t_size i)
 {
-	return(self->mem + (self->item_size * i));
+	return (self->mem + (self->item_size * i));
 }
 
 t_size		vect_i(t_vect *restrict self, void *item)

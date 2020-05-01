@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node_bypass.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:07:08 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/30 11:53:39 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:22:45 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,36 +68,30 @@ static void			weight_change(t_queue *restrict queue, t_uint item,
 }
 
 static void			node_check(t_queue *restrict queue, t_node_data src,
-							t_connect_data connect)
+							t_connect_data data)
 {
 	t_node_data		tmp;
 
-	tmp = data_set(src, connect);
-	if (connect.dst->marked == 0)
+	tmp = data_set(src, data);
+	if (data.dst->marked == 0)
 	{
 		queue_insert(queue, tmp);
-		node_mark(connect.dst, connect.src_dst->state, tmp.weight, src.self);
+		node_mark(data.dst, data.src_dst->state, tmp.weight, src.self);
 	}
-	else if (connect.dst->separate == 1 &&
-			connect.dst->sep_type == MARKED_IN &&
-			connect.src_dst->state == CONNECT_NEGATIVE)
+	else if (data.dst->separate == 1 &&
+			data.dst->sep_type == MARKED_IN &&
+			data.src_dst->state == CONNECT_NEGATIVE)
 	{
-		if (connect.dst->weight <= tmp.weight)
-			connect.dst->sep_type = MARKED_OUT;
-		else
-			node_mark(connect.dst, connect.src_dst->state, tmp.weight, src.self);
-		if (connect.dst->in_queue == 0)
-			queue_insert(queue, tmp);
-		else
-			weight_change(queue, connect.src_dst->dst, tmp.weight);
+		(data.dst->weight <= tmp.weight ? data.dst->sep_type = MARKED_OUT :
+			node_mark(data.dst, data.src_dst->state, tmp.weight, src.self));
+		(data.dst->in_queue == 0 ? queue_insert(queue, tmp) :
+			weight_change(queue, data.src_dst->dst, tmp.weight));
 	}
-	else if (connect.dst->weight > tmp.weight)
+	else if (data.dst->weight > tmp.weight)
 	{
-		node_mark(connect.dst, connect.src_dst->state, tmp.weight, src.self);
-		if (connect.dst->in_queue == 0)
-			queue_insert(queue, tmp);
-		else
-			weight_change(queue, connect.src_dst->dst, tmp.weight);
+		node_mark(data.dst, data.src_dst->state, tmp.weight, src.self);
+		(data.dst->in_queue == 0 ? queue_insert(queue, tmp) :
+			weight_change(queue, data.src_dst->dst, tmp.weight));
 	}
 }
 

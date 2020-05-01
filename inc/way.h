@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   way.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 08:44:27 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/17 11:22:37 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:31:50 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct			s_way_set
 	t_size				xway;
 	t_uint				moves;
 }						t_way_set;
-
 
 void					way_init(t_vect *restrict self);
 void					way_del(t_vect *restrict self);

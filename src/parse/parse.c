@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:47 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/30 12:37:14 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:14:24 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static enum e_flag	parse_tunnel(t_anthill *ah, char **entry, size_t y,
 	}
 	if ((i = rseek(ah, ah->room_data, prs->p[0])) < 0 ||
 			(j = rseek(ah, ah->room_data, prs->p[1])) < 0)
-			return (STOP);
+		return (STOP);
 	if ((i == ah->start && j == ah->end) ||
 			(i == ah->end && j == ah->start))
 		return (START_END_CONNECTED);

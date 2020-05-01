@@ -27,6 +27,7 @@ void		ft_memman_init(void)
 void			*ft_memman_malloc(t_size size)
 {
 	void	*tmp;
+	void	*new;
 	t_size	oldsize;
 
 	if (g_mem_manager.xitem == g_mem_manager.max_item)
@@ -34,11 +35,11 @@ void			*ft_memman_malloc(t_size size)
 		oldsize = g_mem_manager.max_item;
 		g_mem_manager.max_item += ((g_mem_manager.max_item <
 			MM_MAX_INDENT) ? g_mem_manager.max_item : MM_MAX_INDENT);
-		tmp = ft_nomm_realloc(g_mem_manager.mem, oldsize * PTR_SIZE,
+		new = ft_nomm_realloc(g_mem_manager.mem, oldsize * PTR_SIZE,
 								g_mem_manager.max_item * PTR_SIZE);
-		if (!tmp)
+		if (!new)
 			ft_error_free_exit(ERR_MEMALLOC_MSG, MEMERR_CODE);
-		g_mem_manager.mem = tmp;
+		g_mem_manager.mem = new;
 	}
 	tmp = malloc(size);
 	if (!tmp)

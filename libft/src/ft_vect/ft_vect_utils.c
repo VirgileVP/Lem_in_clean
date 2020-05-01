@@ -13,7 +13,8 @@
 #include "ft_vector.h"
 #include "libft.h"
 
-void		*vect_find_back(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *))
+void		*vect_find_back(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *))
 {
 	register t_size		n;
 
@@ -26,7 +27,8 @@ void		*vect_find_back(t_vect *restrict self, void *item, int (*cmp)(const void *
 	return (NULL);
 }
 
-void		*vect_find_front(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *))
+void		*vect_find_front(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *))
 {
 	register t_size		n;
 

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+         #
+#    By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 13:35:26 by zseignon          #+#    #+#              #
-#    Updated: 2020/03/17 11:18:40 by zdebugs          ###   ########lyon.fr    #
+#    Updated: 2020/05/01 17:35:15 by user42           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	lem-in
 
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra
+CFLAGS			=	-O3 -march=native -Wall -Wextra
 
 SRC_DIR			=	src
 

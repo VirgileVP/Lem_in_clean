@@ -15,7 +15,9 @@
 
 void		queue_init(t_queue *restrict self)
 {
-	ft_bzero(self, sizeof(t_queue));
+	self->head = NULL;
+	self->tail = NULL;
+	self->xitem = 0;
 }
 
 void		queue_clean(t_queue *restrict self)

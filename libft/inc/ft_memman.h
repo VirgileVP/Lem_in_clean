@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memman.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:00:46 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 15:00:30 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:09:04 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 **	ft_memory_manager.c
 */
 
-# include <stdio.h>
 void			ft_memman_check(void);
 
 void			ft_memman_init(void);

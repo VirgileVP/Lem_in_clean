@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/30 12:27:26 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:36:12 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "resolve_print.h"
 #include "print.h"
+#include <stdio.h>
 
 //----------------PRINT-FUNCTION-----------------------------------------------
 
@@ -75,10 +76,7 @@ static void		data_init(t_anthill *data, int nb_room, int nb_lemin)
 	}
 }
 
-static void		graph_init(
-	t_graph *restrict graph,
-	t_anthill *restrict ah
-	)
+static void		graph_init(t_graph *restrict graph, t_anthill *restrict ah)
 {
 	t_size		n;
 
@@ -93,25 +91,7 @@ static void		graph_init(
 	graph->end = ah->end;
 	graph->start = ah->start;
 }
-/*
-static void		roadset_free(t_roadset *rs)
-{
-	int			i;
 
-	i = 0;
-	while (rs[i].t)
-	{
-		ft_free(rs[i].t);
-		i += 1;
-	}
-	ft_free(rs);
-}
-
-static void		main_free(t_anthill *ah)
-{
-	vect_del(ah->farm);
-}
-*/
 int				main(void)
 {
 	t_anthill		data;
@@ -138,21 +118,15 @@ int				main(void)
 			graph_init(&graph, &data);
 			if ((roadset = solve(&graph, data.nb_ant)) != NULL)
 			{
-				print_roadset(roadset, &data);
-				ft_putstr("\n\n\n");
-//				print_read(&read);
+//				print_roadset(roadset, &data);
+//				ft_putstr("\n\n\n");
+				print_read(&read);
 				which_resolution(&data, roadset);
 			}
 		}
 	}
 	else
 		write(1, "Error\n", 6);
-/*
-	main_free(&data);
-
-	ft_free(graph.nodes);
-	roadset_free(roadset);
-*/
 //	ft_memman_clean();
 	return (0);
 }

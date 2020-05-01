@@ -13,12 +13,16 @@
 #include "ft_vector.h"
 #include "libft.h"
 
-void		vect_sort(t_vect *restrict self, int (*cmp)(const void *, const void *), void (*sort)(const void *, t_size, t_size, int (*cmp)(const void *, const void *)))
+void		vect_sort(t_vect *restrict self,
+	int (*cmp)(const void *, const void *),
+	void (*sort)(const void *, t_size, t_size,
+	int (*cmp)(const void *, const void *)))
 {
 	sort(self->mem, self->xitem, self->item_size, cmp);
 }
 
-t_size		vect_find_bin(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *))
+t_size		vect_find_bin(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *))
 {
 	t_size		bot;
 	t_size		top;
@@ -43,7 +47,8 @@ t_size		vect_find_bin(t_vect *restrict self, void *item, int (*cmp)(const void *
 	return (cmp(item, vect(self, bot)) ? 0 : 1 + bot);
 }
 
-int			vect_inset_uniq(t_vect *restrict self, void *item, int (*cmp)(const void *, const void *))
+int			vect_inset_uniq(t_vect *restrict self, void *item,
+	int (*cmp)(const void *, const void *))
 {
 	t_size		top;
 	t_size		bot;

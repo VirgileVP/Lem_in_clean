@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   misc.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 11:09:21 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 13:49:09 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:27:59 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct		s_gnl
 	int				current_fd;
 }					t_gnl;
 
-int			get_next_line(int fd, char **line);
-size_t		ft_count_words(char *s, char c);
-int			ft_is_strdigit(char *str);
-int			ft_isspace(int c);
-int			nmatch(char *s1, char *s2);
+int					get_next_line(int fd, char **line);
+size_t				ft_count_words(char *s, char c);
+int					ft_is_strdigit(char *str);
+int					ft_isspace(int c);
+int					nmatch(char *s1, char *s2);
 
 #endif

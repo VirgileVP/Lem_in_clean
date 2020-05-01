@@ -44,11 +44,13 @@ void		vect_extend(t_vect *restrict self, t_size n)
 	{
 		self->max_item <<= 1;
 	}
-	self->mem = ft_nomm_realloc(self->mem, old_size * self->item_size, self->max_item * self->item_size);
+	self->mem = ft_nomm_realloc(self->mem, old_size * self->item_size,
+		self->max_item * self->item_size);
 }
 
 void		vect_shrink(t_vect *restrict self, t_size reserve)
 {
-	self->mem = ft_nomm_realloc(self->mem, self->item_size * self->max_item, (self->xitem + reserve) * self->item_size);
+	self->mem = ft_nomm_realloc(self->mem, self->item_size * self->max_item,
+		(self->xitem + reserve) * self->item_size);
 	self->max_item = (self->xitem + reserve);
 }
