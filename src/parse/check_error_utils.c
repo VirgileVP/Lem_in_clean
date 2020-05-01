@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: vveyrat- <vveyrat-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/16 13:48:07 by zdebugs           #+#    #+#             */
-/*   Updated: 2020/03/16 13:48:16 by zdebugs          ###   ########lyon.fr   */
+/*   Created: 2020/03/10 11:42:26 by vveyrat-          #+#    #+#             */
+/*   Updated: 2020/03/10 11:42:28 by vveyrat-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

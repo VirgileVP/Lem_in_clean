@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unipath.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: vveyrat- <vveyrat-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 11:38:45 by vveyrat-          #+#    #+#             */
-/*   Updated: 2020/03/12 12:52:45 by zseignon         ###   ########lyon.fr   */
+/*   Created: 2020/03/10 11:42:26 by vveyrat-          #+#    #+#             */
+/*   Updated: 2020/03/10 11:42:28 by vveyrat-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int		solo_ant(t_anthill *anthill, t_roadset *roads)
 					roads[0].nb_ant = 0;
 				print_path(1, anthill->room_data[roads[0].t[count].n].name);
 				ft_putchar((count == roads[0].len - 1) ? '\n' : ' ');
-				break;
+				break ;
 			}
 			count++;
 		}

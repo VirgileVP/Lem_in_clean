@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multipath.c                                        :+:      :+:    :+:   */
+/*   multipath2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: vveyrat- <vveyrat-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 11:36:30 by vveyrat-          #+#    #+#             */
-/*   Updated: 2020/03/16 15:22:12 by zdebugs          ###   ########lyon.fr   */
+/*   Created: 2020/03/10 11:42:26 by vveyrat-          #+#    #+#             */
+/*   Updated: 2020/03/10 11:42:28 by vveyrat-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 ** fill int *remaining_ants with the number of ant in each road
 */
 
-void		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_road)
+void			fill_remaining_ants(t_roadset *roads,
+				int *remaining_ants, int nb_road)
 {
 	int		count;
 
@@ -38,10 +39,10 @@ void		fill_remaining_ants(t_roadset *roads, int *remaining_ants, int nb_road)
 ** calcul total ant in int *remaining_ants
 */
 
-int		total_ant(int *remaining_ants, int nb_road)
+int				total_ant(int *remaining_ants, int nb_road)
 {
-	int		count;
-	int		ret;
+	int			count;
+	int			ret;
 
 	count = 0;
 	ret = 0;
@@ -59,10 +60,10 @@ int		total_ant(int *remaining_ants, int nb_road)
 ** return index of the last ant in the road_index-1 room()
 */
 
-int	which_ant(t_roadset *roads, int road_index)
+int				which_ant(t_roadset *roads, int road_index)
 {
-	int		count;
-	int		ret;
+	int			count;
+	int			ret;
 
 	ret = 0;
 	count = 0;
@@ -83,28 +84,30 @@ int	which_ant(t_roadset *roads, int road_index)
 ** if start == 1, move 1st ant out start room
 */
 
-int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
+int				is_starting(t_roadset *road,
+				int road_index, t_anthill *anthill)
 {
-	size_t	count;
-	int		start;
-	int		nb_road;
+	size_t		count;
+	int			start;
+	int			nb_road;
 
 	count = 0;
 	start = 1;
-	nb_road = how_much_road(roads);
-	while (count < roads[road_index].len)
+	nb_road = how_much_road(road);
+	while (count < road[road_index].len)
 	{
-		if (roads[road_index].t[count].ant_index != 0)
+		if (road[road_index].t[count].ant_index != 0)
 			start = 0;
 		count++;
 	}
 	if (start == 1)
 	{
 		if (road_index == 0)
-			roads[road_index].t[1].ant_index = 1;
+			road[road_index].t[1].ant_index = 1;
 		else
-		    roads[road_index].t[1].ant_index = which_ant(roads, road_index) + 1;
-		print_path(roads[road_index].t[1].ant_index, anthill->room_data[roads[road_index].t[1].n].name);
+			road[road_index].t[1].ant_index = which_ant(road, road_index) + 1;
+		print_path(road[road_index].t[1].ant_index,
+		anthill->room_data[road[road_index].t[1].n].name);
 		if (road_index != nb_road - 1)
 			ft_putchar(' ');
 	}
@@ -117,7 +120,7 @@ int	is_starting(t_roadset *roads, int road_index, t_anthill *anthill)
 ** print the new road status
 */
 
-void		print_step(t_anthill *anthill, t_roadset *roads, int road_index)
+void			print_step(t_anthill *anthill, t_roadset *roads, int road_index)
 {
 	int			current_room;
 	int			nb_roads;

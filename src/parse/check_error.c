@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: vveyrat- <vveyrat-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/16 13:48:34 by zdebugs           #+#    #+#             */
-/*   Updated: 2020/05/01 17:36:20 by user42           ###   ########lyon.fr   */
+/*   Created: 2020/03/10 11:42:26 by vveyrat-          #+#    #+#             */
+/*   Updated: 2020/03/10 11:42:28 by vveyrat-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ int index, t_check_bad_order *order)
 					return (-1);
 				pars->nb_room++;
 			}
-			else
-				return (-1);
+			return (-1);
 		}
 	}
 	return (0);

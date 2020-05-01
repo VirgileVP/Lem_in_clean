@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolve_tool.c                                     :+:      :+:    :+:   */
+/*   resolve_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: vveyrat- <vveyrat-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 11:41:16 by vveyrat-          #+#    #+#             */
-/*   Updated: 2020/03/17 10:21:28 by zdebugs          ###   ########lyon.fr   */
+/*   Created: 2020/03/10 11:42:26 by vveyrat-          #+#    #+#             */
+/*   Updated: 2020/03/10 11:42:28 by vveyrat-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_path(int ant, char *room)
 	ft_putchar('L');
 	ft_putnbr(ant);
 	ft_putchar('-');
-	while(room[count] != ' ')
+	while (room[count] != ' ')
 		count++;
 	write(1, room, count);
 }
