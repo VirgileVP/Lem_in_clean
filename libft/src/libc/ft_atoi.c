@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:47:45 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/10 09:34:30 by zseignon         ###   ########lyon.fr   */

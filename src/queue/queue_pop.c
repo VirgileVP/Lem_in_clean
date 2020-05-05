@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue_pop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 09:37:55 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/26 11:54:59 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 11:54:59 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

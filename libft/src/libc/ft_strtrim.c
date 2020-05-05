@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 13:51:21 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/10 08:37:54 by zseignon         ###   ########lyon.fr   */

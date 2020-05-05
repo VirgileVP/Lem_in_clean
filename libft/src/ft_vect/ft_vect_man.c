@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vect_man.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:00:09 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/12 14:41:11 by zseignon         ###   ########lyon.fr   */

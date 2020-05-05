@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 09:12:29 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/10 08:24:41 by zseignon         ###   ########lyon.fr   */

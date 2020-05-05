@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 16:59:35 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/17 10:10:28 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/17 10:10:28 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

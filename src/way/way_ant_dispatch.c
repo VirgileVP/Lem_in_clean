@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   way_ant_dispatch.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 08:22:44 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/16 14:28:05 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/16 14:28:05 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

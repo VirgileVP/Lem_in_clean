@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   node_mark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:17:00 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/12 13:01:15 by zseignon         ###   ########lyon.fr   */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 14:24:57 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/10 08:35:53 by zseignon         ###   ########lyon.fr   */

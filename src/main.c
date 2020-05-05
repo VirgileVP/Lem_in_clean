@@ -3,44 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
-/*   Updated: 2020/05/01 17:36:12 by user42           ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 17:36:12 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "resolve_print.h"
 #include "print.h"
-#include <stdio.h>
-
-//----------------PRINT-FUNCTION-----------------------------------------------
-
-__attribute__ ((unused))static void		print_roadset(t_roadset *rs, t_anthill *ah)
-{
-	size_t			y;
-	size_t			x;
-
-	y = 0;
-	printf("ROADSET\n");
-	while (rs[y].t != NULL)
-	{
-		x = 0;
-		printf("PATH[%zu][%zu]: |", y, rs[y].len);
-		fflush(stdout);
-		while (x < rs[y].len)
-		{
-			write(1, ah->room_data[rs[y].t[x].n].name, (t_ul)ft_strchr(ah->room_data[rs[y].t[x].n].name, ' ') - (t_ul)ah->room_data[rs[y].t[x].n].name);
-			write(1, "|", 1);
-			x += 1;
-		}
-		y += 1;
-		printf("\n");
-	}
-}
-
-//-----------------------------------------------------------------------------
 
 static void		print_read(t_read_room *read)
 {
@@ -118,8 +90,6 @@ int				main(void)
 			graph_init(&graph, &data);
 			if ((roadset = solve(&graph, data.nb_ant)) != NULL)
 			{
-//				print_roadset(roadset, &data);
-//				ft_putstr("\n\n\n");
 				print_read(&read);
 				which_resolution(&data, roadset);
 			}
@@ -127,6 +97,5 @@ int				main(void)
 	}
 	else
 		write(1, "Error\n", 6);
-//	ft_memman_clean();
 	return (0);
 }

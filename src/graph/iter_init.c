@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   iter_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:40:33 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/12 11:35:37 by zseignon         ###   ########lyon.fr   */

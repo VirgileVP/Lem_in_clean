@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   graph_access.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:13:10 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/12 09:37:35 by zseignon         ###   ########lyon.fr   */

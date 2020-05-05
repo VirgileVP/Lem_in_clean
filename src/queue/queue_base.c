@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue_base.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 14:24:33 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/26 09:38:16 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 09:38:16 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

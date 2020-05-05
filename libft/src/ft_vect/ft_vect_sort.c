@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vect_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:01:11 by zseignon          #+#    #+#             */
 /*   Updated: 2020/03/05 15:01:23 by zseignon         ###   ########lyon.fr   */

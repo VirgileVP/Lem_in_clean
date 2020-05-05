@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   way_set_restore.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdebugs <zdebugs@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 14:45:44 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/26 14:48:25 by zdebugs          ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 14:48:25 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
