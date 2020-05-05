@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_strdigit.c                                   :+:      :+:    :+:   */
+/*   iter_next.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 11:13:48 by zseignon          #+#    #+#             */
-/*   Updated: 2020/05/05 11:51:12 by user42           ###   ########lyon.fr   */
+/*   Created: 2020/05/05 11:01:54 by user42            #+#    #+#             */
+/*   Updated: 2020/05/05 11:05:34 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int		ft_isdigit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
+#include "graph.h"
 
-int				ft_is_strdigit(char *str)
-{
-	int count;
+static t_connect	*(*g_iter_func[])(t_iter *restrict iter) = {
+	iter_next_all,
+	iter_next_allowed,
+	iter_next_negative,
+	iter_next_forbidden,
+	iter_next_positive
+};
 
-	count = 0;
-	if (str)
-	{
-		while (str[count])
-		{
-			if (ft_isdigit(str[count]) == 0)
-				return (0);
-			count++;
-		}
-		return (1);
-	}
-	return (0);
+t_connect			*iter_next(t_iter *restrict iter)
+{
+	return (g_iter_func[iter->fct](iter));
 }

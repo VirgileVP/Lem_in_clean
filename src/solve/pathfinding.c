@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:58:45 by zseignon          #+#    #+#             */
-/*   Updated: 2020/05/01 17:26:15 by user42           ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 11:22:57 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ static t_roadset	*roadset_convert(t_way_set *restrict set)
 	}
 	rs[n].t = NULL;
 	return (rs);
+}
+
+static void			best_change(t_uint *min_moves, t_way_set *tmp,
+	t_way_set *prev)
+{
+	*min_moves < UINT_MAX ? way_set_del(prev) : 0;
+	*min_moves = tmp->moves;
+	*prev = *tmp;
 }
 
 static int			pathfinding(t_graph *restrict graph)
@@ -75,11 +83,7 @@ t_roadset			*solve(t_graph *graph, t_uint lemin)
 		xway++;
 		way_set_restore(&tmp, graph, xway, lemin);
 		if (tmp.moves < min_moves)
-		{
-			min_moves < UINT_MAX ? way_set_del(&prev) : 0;
-			min_moves = tmp.moves;
-			prev = tmp;
-		}
+			best_change(&min_moves, &tmp, &prev);
 		else
 			way_set_del(&tmp);
 		if (tmp.moves > min_moves || xway == max_way)

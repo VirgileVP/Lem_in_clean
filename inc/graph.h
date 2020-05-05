@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:07:29 by zseignon          #+#    #+#             */
-/*   Updated: 2020/05/01 17:30:32 by user42           ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 11:55:05 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,11 @@ typedef struct			s_iter
 	t_uint				fct;
 }						t_iter;
 
+t_connect				*iter_next_all(t_iter *restrict iter);
+t_connect				*iter_next_allowed(t_iter *restrict iter);
+t_connect				*iter_next_negative(t_iter *restrict iter);
+t_connect				*iter_next_forbidden(t_iter *restrict iter);
+t_connect				*iter_next_positive(t_iter *restrict iter);
 void					iter_init(t_iter *restrict iter, t_node *restrict node,
 		t_uint type);
 t_connect				*iter_next(t_iter *iter);

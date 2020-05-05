@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 13:35:26 by zseignon          #+#    #+#              #
-#    Updated: 2020/05/01 17:59:32 by user42           ###   ########lyon.fr    #
+#    Updated: 2020/05/05 11:08:08 by user42           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ GRAPH_SRC_DIR	=	$(SRC_DIR)/graph
 GRAPH_SRC_NAME	=	graph_access.c\
 					graph_utils.c\
 					iter_init.c\
+					iter_next.c\
 					iter.c
 GRAPH_SRC		=	$(addprefix $(GRAPH_SRC_DIR)/, $(GRAPH_SRC_NAME))
 
