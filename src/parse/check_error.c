@@ -60,8 +60,7 @@ int index, t_check_bad_order *order)
 			order->start = 1;
 		if (order->end == 0 && ft_strcmp(pars->room[index], "##end") == 0)
 			order->end = 1;
-		index++;
-		if (pars->room[index][0] != '#')
+		if (pars->room[++index][0] != '#')
 		{
 			if (nmatch(pars->room[index], "* * *") == 1)
 			{
@@ -69,7 +68,8 @@ int index, t_check_bad_order *order)
 					return (-1);
 				pars->nb_room++;
 			}
-			return (-1);
+			else
+				return (-1);
 		}
 	}
 	return (0);
