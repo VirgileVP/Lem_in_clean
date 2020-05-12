@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:05:35 by zseignon          #+#    #+#             */
-/*   Updated: 2020/03/12 14:06:25 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/11 12:42:23 by user42           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void		*ft_malloc(t_size size)
 {
-	return (ft_memman_malloc(size));
+	return(ft_memman_malloc(size));
 }

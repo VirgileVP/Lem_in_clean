@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zseignon <zseignon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: zseignon <zseignon42@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 13:14:10 by zseignon          #+#    #+#             */
-/*   Updated: 2020/05/01 17:36:12 by zseignon         ###   ########lyon.fr   */
+/*   Updated: 2020/05/12 11:37:15 by zseignon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,38 +64,48 @@ static void		graph_init(t_graph *restrict graph, t_anthill *restrict ah)
 	graph->start = ah->start;
 }
 
+int				lemin(t_anthill *ah, t_read_room *read, t_roadset *roadset,
+	t_graph *graph)
+{
+	int		ret;
+
+	if (read_error(read) == -1)
+		return (-1);
+	read->nb_room -= 2;
+	data_init(ah, read->nb_room, ft_atoi(read->room[0]));
+	if ((ret = parse_map(ah, &read->room[1])) == -1)
+		return (-1);
+	if (ret == 2)
+	{
+		print_read(read);
+		oneshot(ah);
+	}
+	else
+	{
+		graph_init(graph, ah);
+		if ((roadset = solve(graph, ah->nb_ant)) != NULL)
+		{
+			print_read(read);
+			which_resolution(ah, roadset);
+		}
+		else
+			return (-1);
+	}
+	return (1);
+}
+
 int				main(void)
 {
 	t_anthill		data;
 	t_read_room		read;
 	t_roadset		*roadset;
-	int				ret;
 	t_graph			graph;
 
 	ft_memman_init();
 	ft_memset(&data, 0, sizeof(t_anthill));
 	ft_memset(&read, 0, sizeof(t_read_room));
-	if (read_error(&read) == 1)
-	{
-		read.nb_room -= 2;
-		data_init(&data, read.nb_room, ft_atoi(read.room[0]));
-		ret = parse_map(&data, &read.room[1]);
-		if (ret == 2)
-		{
-			print_read(&read);
-			oneshot(&data);
-		}
-		else
-		{
-			graph_init(&graph, &data);
-			if ((roadset = solve(&graph, data.nb_ant)) != NULL)
-			{
-				print_read(&read);
-				which_resolution(&data, roadset);
-			}
-		}
-	}
-	else
+	roadset = NULL;
+	if (lemin(&data, &read, roadset, &graph) == -1)
 		write(1, "Error\n", 6);
 	return (0);
 }

@@ -1,0 +1,11 @@
+20
+##start
+start 1 1
+##end
+end 2 2
+A1 3 3
+A2 4 4
+A3 5 5
+start-A1
+A1-A2
+A3-end
