@@ -1,0 +1,10 @@
+1
+##startblabla
+start 1 1
+##endblabla
+end 2 2
+A1 3 3
+A2 4 4
+start-A1
+A1-A2
+A2-end
