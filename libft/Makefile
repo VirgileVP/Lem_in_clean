@@ -75,6 +75,7 @@ LIBC_SRC_NAME			=	ft_atoi.c\
 							ft_putstr_fd.c\
 							ft_strcat.c\
 							ft_strchr.c\
+							ft_stroccurence.c\
 							ft_strclr.c\
 							ft_strcmp.c\
 							ft_strcpy.c\
