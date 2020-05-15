@@ -40,6 +40,23 @@ int						first_line(char **room, t_read_room *pars)
 }
 
 /*
+** check_command:
+**
+** check is start or end definitions are correct
+*/
+
+void					check_command(t_read_room *pars,
+int index, t_check_bad_order *order)
+{
+	if (order->start == 0 && pars->room[index][2] == 's'
+	&& pars->room[index][7] == '\0')
+		order->start = 1;
+	if (order->end == 0 && pars->room[index][2] == 'e'
+	&& pars->room[index][5] == '\0')
+		order->end = 1;
+}
+
+/*
 ** check_sharp:
 **
 ** check lines begining with sharp
@@ -56,10 +73,7 @@ int index, t_check_bad_order *order)
 		|| ft_strcmp(pars->room[index + 1], "##start") == 0
 		|| ft_strcmp(pars->room[index + 1], "##end") == 0)
 			return (-1);
-		if (order->start == 0 && ft_strcmp(pars->room[index], "##start") == 0)
-			order->start = 1;
-		if (order->end == 0 && ft_strcmp(pars->room[index], "##end") == 0)
-			order->end = 1;
+		check_command(pars, index, order);
 		if (pars->room[++index][0] != '#')
 		{
 			if (nmatch(pars->room[index], "* * *") == 1)
