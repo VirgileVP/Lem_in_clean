@@ -18,6 +18,7 @@ void		oneshot(t_anthill *anthill)
 	int		count;
 
 	count = 1;
+	ft_putstr("ONESHOT\n");
 	while (count <= anthill->nb_ant)
 	{
 		print_path(count, anthill->room_data[anthill->end].name);

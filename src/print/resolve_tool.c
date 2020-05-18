@@ -23,8 +23,10 @@ void	print_path(int ant, char *room)
 	ft_putnbr(ant);
 	ft_putchar('-');
 	while (room[count] != ' ')
+	{
+		ft_putchar(room[count]);
 		count++;
-	write(1, room, count);
+	}
 }
 
 int		empty_road(t_roadset *roads, int road_index)

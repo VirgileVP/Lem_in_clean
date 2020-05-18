@@ -76,26 +76,12 @@ static int		solo_ant(t_anthill *anthill, t_roadset *roads)
 {
 	size_t		count;
 
-	count = 0;
-	roads[0].t[1].ant_index = 1;
-	while (roads[0].nb_ant == 1)
+	count = 1;
+	while (count < roads[0].len)
 	{
-		count = 0;
-		while (count < roads[0].len)
-		{
-			if (roads[0].t[count].ant_index == 1)
-			{
-				roads[0].t[count].ant_index = 0;
-				if (count + 1 < roads[0].len)
-					roads[0].t[count + 1].ant_index = 1;
-				else
-					roads[0].nb_ant = 0;
-				print_path(1, anthill->room_data[roads[0].t[count].n].name);
-				ft_putchar((count == roads[0].len - 1) ? '\n' : ' ');
-				break ;
-			}
-			count++;
-		}
+		print_path(1, anthill->room_data[roads[0].t[count].n].name);
+		ft_putchar('\n');
+		count++;
 	}
 	return (0);
 }
