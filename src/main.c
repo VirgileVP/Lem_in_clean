@@ -106,6 +106,6 @@ int				main(void)
 	ft_memset(&read, 0, sizeof(t_read_room));
 	roadset = NULL;
 	if (lemin(&data, &read, roadset, &graph) == -1)
-		write(1, "Error\n", 6);
+		ft_putstr("Error\n");
 	return (0);
 }

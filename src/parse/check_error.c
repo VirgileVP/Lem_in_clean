@@ -110,7 +110,7 @@ int						check_error(t_read_room *pars)
 	{
 		if (ft_is_strdigit(pars->room[index]) == 1 && pars->decla_nb_ant == 1)
 			return (-1);
-		if (pars->room[index][0] == ' ' || pars->room[index][0] == 'L')
+		if (ft_isspace(pars->room[index][0]) == 1 || pars->room[index][0] == 'L')
 			return (-1);
 		if (pars->room[index][0] == '#'
 		&& check_sharp(pars, index, &order) == -1)
@@ -144,11 +144,14 @@ int						read_error(t_read_room *pars)
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
-		ret = (ft_strcmp(line, "\0") == 0) ? 0 : 1;
-		temp = ft_strjoin(temp, line);
-		temp = ft_strjoin(temp, "\n");
-		ft_strdel(&line);
-		pars->nb_line++;
+		if (ft_isspace(line[0]) == 0 && line[0] != '\n' && line[0] != 0)
+		{
+			ret = (ft_strcmp(line, "\0") == 0) ? 0 : 1;
+			temp = ft_strjoin(temp, line);
+			temp = ft_strjoin(temp, "\n");
+			pars->nb_line++;
+		}
+		ft_strdel(&line);		
 	}
 	if (ret == 0)
 		return (-1);
