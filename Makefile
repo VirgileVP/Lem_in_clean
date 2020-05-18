@@ -13,7 +13,7 @@
 NAME			=	lem-in
 
 CC				=	gcc
-CFLAGS			=	-O3 -march=native -Wall -Wextra
+CFLAGS			=	-O3 -march=native -Wall -Wextra -Werror
 
 SRC_DIR			=	src
 

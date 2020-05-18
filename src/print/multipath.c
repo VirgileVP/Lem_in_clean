@@ -73,8 +73,7 @@ static void	print_step_update_ant(t_anthill *anthill,
 ** move ants;
 */
 
-static void	update_roads_rooms2(t_roadset *roads,
-			int *remaining_ants, int road_index, int count)
+static void	update_roads_rooms2(t_roadset *roads, int road_index, int count)
 {
 	if (roads[road_index].t[count].ant_index ==
 	which_ant(roads, road_index + 1))
@@ -103,7 +102,7 @@ static void	update_roads_rooms(t_anthill *anthill,
 	while (count < roads[road_index].len)
 	{
 		if (roads[road_index].t[count].ant_index != 0)
-			update_roads_rooms2(roads, remaining_ants, road_index, count);
+			update_roads_rooms2(roads, road_index, count);
 		else if (roads[road_index].t[count].ant_index == 0
 		&& count >= 1 && roads[road_index].t[count - 1].ant_index ==
 		which_ant(roads, road_index) + 2)
