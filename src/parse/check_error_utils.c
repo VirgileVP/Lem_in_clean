@@ -96,7 +96,7 @@ t_check_bad_order *order, int index)
 **
 ** Check if a tube definition is valid
 */
-#include <stdio.h>
+
 int			check_tubes(char *line)
 {
 	int		index;

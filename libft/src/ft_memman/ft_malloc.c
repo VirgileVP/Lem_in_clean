@@ -14,5 +14,5 @@
 
 void		*ft_malloc(t_size size)
 {
-	return(ft_memman_malloc(size));
+	return (ft_memman_malloc(size));
 }

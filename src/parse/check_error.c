@@ -108,12 +108,10 @@ int						check_error(t_read_room *pars)
 		return (-1);
 	while (index < pars->nb_line)
 	{
-		if (ft_is_strdigit(pars->room[index]) == 1 && pars->decla_nb_ant == 1)
-			return (-1);
-		if (ft_isspace(pars->room[index][0]) == 1 || pars->room[index][0] == 'L')
-			return (-1);
-		if (pars->room[index][0] == '#'
-		&& check_sharp(pars, index, &order) == -1)
+		if ((ft_is_strdigit(pars->room[index]) && pars->decla_nb_ant == 1) ||
+			(ft_isspace(pars->room[index][0]) || pars->room[index][0] == 'L') ||
+			(pars->room[index][0] == '#' &&
+			check_sharp(pars, index, &order) == -1))
 			return (-1);
 		else if (ft_stroccurence(pars->room[index], '-') > 1
 		|| check_definition(pars, &order, index) == -1)
@@ -151,7 +149,7 @@ int						read_error(t_read_room *pars)
 			temp = ft_strjoin(temp, "\n");
 			pars->nb_line++;
 		}
-		ft_strdel(&line);		
+		ft_strdel(&line);
 	}
 	if (ret == 0)
 		return (-1);
